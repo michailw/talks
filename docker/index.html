@@ -8,7 +8,7 @@
 
         <link rel="stylesheet" href="../reveal.js/css/reveal.css">
         <link rel="stylesheet" href="../reveal.js/css/theme/black.css">
-        <link rel="stylesheet" href="../overwrites/css/overwrites.css">
+        <link rel="stylesheet" href="../overwrites/scss/overwrites.css">
 
         <!-- Theme used for syntax highlighting of code -->
         <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
@@ -243,11 +243,56 @@ date: can't set date: Operation not permitted
                     </section>
                     <section>
                         <h3>How to build own image?</h3>
-                        <ul>
-                            <li class="fragment fade-up">Follow Dockerfile syntax</li>
-                            <li class="fragment fade-up"><pre class="bash"><code>$ docker build .</code></pre></li>
-                            <li class="fragment fade-up">Each line creates next layer over previous image</li>
-                        </ul>
+                    </section>
+                    <section>
+                        <h3>Follow Dockerfile syntax</h3>
+                        <pre class="docker"><code data-trim data-noescape>
+                            <span class="fragment fade-up">FROM &lt;image&gt;[:&lt;tag&gt;] # base image</span>
+                            <span class="fragment fade-up">RUN &lt;command&gt; # runs command only once during build</span>
+                            <span class="fragment fade-up">CMD command param1 param2 # runs on container boot</span>
+                            <span class="fragment fade-up">EXPOSE &lt;port&gt; [&lt;port&gt;/&lt;protocol&gt;...]</span>
+                            <span class="fragment fade-up">ENV &lt;key&gt; &lt;value&gt; # only inside a container</span>
+                            <span class="fragment fade-up">ADD [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</span>
+                            <span class="fragment fade-up">COPY &lt;src&gt;... &lt;dest&gt;</span>
+                            <span class="fragment fade-up">ENTRYPOINT command param1 param2 # container will run as an executable</span>
+                            <span class="fragment fade-up">VOLUME ["/data"]</span>
+                            <span class="fragment fade-up">USER &lt;user&gt;[:&lt;group&gt;] # who runs executables</span>
+                            <span class="fragment fade-up">WORKDIR /path # where run executables</span>
+                            <span class="fragment fade-up">HEALTHCHECK [OPTIONS] CMD command</span>
+                        </code></pre>
+                        <aside class="notes">
+                            <p>
+                                ADD allows &lt;src&gt; to be an URL.
+                                If the &lt;src&gt; parameter of ADD is an archive in a recognised compression format,
+                                it will be unpacked.
+                            </p>
+                            <ul>
+                                <li>Dockerfile should specify at least one of CMD or ENTRYPOINT commands.</li>
+                                <li>ENTRYPOINT should be defined when using the container as an executable.</li>
+                                <li>CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.</li>
+                                <li>CMD will be overridden when running the container with alternative arguments.</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+                        <pre class="bash"><code>$ docker build .</code></pre>
+                        <pre class="bash fragment fade-up"><code>Sending build context to Docker daemon 15.36 kB
+Step 1/4 : FROM alpine:3.2
+ ---> 31f630c65071
+Step 2/4 : MAINTAINER forest.gump@example.com
+ ---> Using cache
+ ---> 2a1c91448f5f
+Step 3/4 : RUN apk update && apk add apache2 && rm -r /var/cache/
+ ---> Using cache
+ ---> 21ed6e7fbb73
+Step 4/4 : CMD apache2
+ ---> Using cache
+ ---> 7ea8aef582cc
+Successfully built 7ea8aef582cc
+</code></pre>
+                        <aside class="notes">
+                            Each line creates next layer over previous image
+                        </aside>
                     </section>
                 </section>
 
@@ -278,6 +323,7 @@ services:
 
   database:
     image: mysql</code></pre>
+                    <pre class="bash"><code>$ docker-compose up</code></pre>
                 </section>
 
                 <section>
@@ -445,6 +491,10 @@ USER appuser</code></pre>
 
                 <section>
                     <h1>Thank you for your time</h1>
+                    <p>
+                        Slides are available at
+                        <a href="https://michailw.github.io/talks/docker/">https://michailw.github.io/talks/docker/</a>
+                    </p>
                 </section>
 
             </div>
