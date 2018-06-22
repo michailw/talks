@@ -1,0 +1,8 @@
+/.idea
+*.css
+*.map
+node_modules
+
+docker-compose.yml
+
+/jwt

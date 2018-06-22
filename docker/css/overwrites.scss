@@ -1,0 +1,12 @@
+.reveal section img
+{
+  &.logoImage {
+    background: none;
+    border: none;
+  }
+
+  &.inlineImage {
+    margin: 0;
+    vertical-align: middle;
+  }
+}
