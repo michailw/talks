@@ -2,6 +2,7 @@
 *.css
 *.map
 node_modules
+!/overwrites/**/*.css
 
 docker-compose.yml
 

@@ -1,0 +1,8 @@
+.reveal section img.logoImage {
+  background: none;
+  border: none; }
+.reveal section img.inlineImage {
+  margin: 0;
+  vertical-align: middle; }
+
+/*# sourceMappingURL=overwrites.css.map */
