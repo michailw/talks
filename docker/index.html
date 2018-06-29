@@ -37,9 +37,21 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
 
                 <section>
                     <section>
-                        <h3>What is Docker?</h3>
+                        <h3>What is Docker? (#1)</h3>
                         <ul>
-                            <li>makes easier to create, build and ship apps in containers</li>
+                            <li class="fragment fade-up">virtualization solution</li>
+                            <li class="fragment fade-up">runs containers where isolates piece of software</li>
+                            <li class="fragment fade-up">it can be run on each platform</li>
+                            <li class="fragment fade-up">gives same environment wherever is used</li>
+                        </ul>
+                        <aside class="notes">
+                            As closest to production as possible.
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>What is Docker? (#2)</h3>
+                        <ul>
+                            <li class="fragment fade-up">makes easier to create, build and ship apps in containers</li>
                             <li class="fragment fade-up">single build contains only your application, libs/dependencies</li>
                             <li class="fragment fade-up">follows Open Container Initiative (part of Linux Foundation)</li>
                         </ul>
@@ -66,7 +78,18 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                             <li>share host's kernel</li>
                             <li class="fragment fade-up">can't boot different OS</li>
                             <li class="fragment fade-up">boot much faster</li>
+                            <li class="fragment fade-up">doesn't emulate virtual hardware</li>
                         </ul>
+                        <aside class="notes">
+                            Hyper-V, KVM, and Xen, all are "based on emulating virtual hardware.
+                            That means they're fat in terms of system requirements.
+
+                            Containers, however, use shared operating systems.
+                            This means they are much more efficient than hypervisors in system resource terms.
+                            Instead of virtualizing hardware, containers rest on top of a single Linux instance.
+                            This means you can "leave behind the useless 99.9 percent VM junk, leaving you with a small,
+                            neat capsule containing your application"
+                        </aside>
                     </section>
                 </section>
 
@@ -328,16 +351,28 @@ services:
                 </section>
 
                 <section>
+                    <h2>Use cases</h2>
+                    <ul>
+                        <li class="fragment slide-up">development box</li>
+                        <li class="fragment slide-up">production ready piece of software</li>
+                        <li class="fragment slide-up">CI/CD</li>
+                        <li class="fragment slide-up">better auto-scaling policies</li>
+                    </ul>
+                </section>
+
+                <section>
                     <section>
                         <h2>CI/CD</h2>
                     </section>
                     <section>
                         <h2>Bitbucket pipelines</h2>
                         <ul>
-                            <li>similar syntax to docker-compose.yml</li>
-                            <li class="fragment fade-up">limit of only one container with mounted codebase</li>
+                            <li class="fragment fade-up">similar syntax to docker-compose.yml</li>
+                            <li class="fragment fade-up">container with codebase is expected to finish it's work</li>
+                            <li class="fragment fade-up">containers with codebase can run in parallel</li>
+                            <li class="fragment fade-up">parallel containers can't see each other</li>
+                            <li class="fragment fade-up">codebase can't be mounted to services</li>
                             <li class="fragment fade-up">codebase can be mounted into different containers with steps</li>
-                            <li class="fragment fade-up">services are the only way of having multiple containers</li>
                             <li class="fragment fade-up">services are reachable through network only</li>
                         </ul>
                     </section>
@@ -378,14 +413,19 @@ definitions:
                     <section>
                         <h2>Gitlab pipelines</h2>
                         <ul>
-                            <li class="fragment fade-up">limit of only one container with mounted codebase</li>
-                            <li class="fragment fade-up">codebase can be mounted into different containers with jobs</li>
+                            <li class="fragment fade-up">similar syntax to docker-compose.yml</li>
+                            <li class="fragment fade-up">container with codebase is expected to finish it's work</li>
+                            <li class="fragment fade-up">containers with codebase can run in parallel as jobs</li>
+                            <li class="fragment fade-up">parallel containers can't see each other</li>
+                            <li class="fragment fade-up">codebase can't be mounted to services</li>
+                            <li class="fragment fade-up">codebase can be mounted into different containers with steps</li>
+                            <li class="fragment fade-up">services are reachable through network only</li>
                             <li class="fragment fade-up">services are the only way of having multiple containers</li>
                             <li class="fragment fade-up">services are reachable through network only</li>
                         </ul>
                     </section>
                     <section>
-<pre class="yaml"><code>image: php:latest
+<pre class="yaml"><code class="fullHeight">image: php:latest
 
 services:
   - mysql:5.7
@@ -426,6 +466,16 @@ deploy_production:
                 </section>
 
                 <section>
+                    <section>
+                        <h2>Security</h2>
+                    </section>
+                    <section>
+                        <h2>Security - software updates</h2>
+                        <ul>
+                            <li class="fragment fade-up">kernel is updated by host, not by docker</li>
+                            <li class="fragment fade-up">dependencies installed in an image are handled by image maintainer</li>
+                        </ul>
+                    </section>
                     <section>
                         <h2>Security - get rid of root privileges</h2>
                         <ul>
