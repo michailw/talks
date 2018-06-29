@@ -1,16 +1,23 @@
-.reveal section img
-{
-  &.logoImage {
-    background: none;
-    border: none;
+.reveal {
+  section img
+  {
+    &.logoImage {
+      background: none;
+      border: none;
+    }
+
+    &.inlineImage {
+      margin: 0;
+      vertical-align: middle;
+    }
   }
 
-  &.inlineImage {
-    margin: 0;
-    vertical-align: middle;
+  img.qrCodeLink {
+    max-width: 250px;
+    max-height: 250px;
   }
-}
-img.qrCodeLink {
-  max-width: 250px;
-  max-height: 250px;
+
+  pre code.fullHeight {
+    max-height: 600px;
+  }
 }

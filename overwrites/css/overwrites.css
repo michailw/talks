@@ -4,7 +4,10 @@
 .reveal section img.inlineImage {
   margin: 0;
   vertical-align: middle; }
-
-img.qrCodeLink {
+.reveal img.qrCodeLink {
   max-width: 250px;
   max-height: 250px; }
+.reveal pre code.fullHeight {
+  max-height: 600px; }
+
+/*# sourceMappingURL=overwrites.css.map */
