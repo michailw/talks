@@ -505,10 +505,10 @@ USER appuser</code></pre>
 
                 <section>
                     <section>
-                        <img src="images/logos/aws.png" class="logoImage"/>
+                        <img src="images/logos/aws.png" class="logoImage" style="max-height:80vh"/>
                     </section>
                     <section>
-                        <h2><img src="images/logos/aws.png" class="logoImage inlineImage"/> Elastic Container Service (ECS)</h2>
+                        <h2><img src="images/logos/aws.png" class="logoImage inlineImage" style="max-height:13vh"/> Elastic Container Service (ECS)</h2>
                         <ul>
                             <li>user manages clusters of containers</li>
                             <li class="fragment fade-up">cluster defines type of underlying EC2 instances</li>
@@ -517,7 +517,7 @@ USER appuser</code></pre>
                         </ul>
                     </section>
                     <section>
-                        <h2><img src="images/logos/aws.png" class="logoImage inlineImage"/> Fargate</h2>
+                        <h2><img src="images/logos/aws.png" class="logoImage inlineImage" style="max-height:13vh"/> Fargate</h2>
                         <ul>
                             <li>user doesn't have to manage cluster and instances</li>
                             <li class="fragment fade-up">user precises only CPU/memory requirements</li>
@@ -534,6 +534,19 @@ USER appuser</code></pre>
                         <li class="fragment fade-up">Kubernetes</li>
                         <li class="fragment fade-up">AWS/Azure/Google solutions</li>
                     </ul>
+                    <aside class="notes">
+                        Clearly, the process of deploying multiple containers to implement an application can
+                        be optimized through automation. This becomes more and more valuable as the number
+                        of containers and hosts grow. This type of automation is referred to as orchestration.
+                        Orchestration can include a number of features, including:
+                        <br/><br/>
+                        Provisioning hosts<br/>
+                        Instantiating a set of containers<br/>
+                        Rescheduling failed containers<br/>
+                        Linking containers together through agreed interfaces<br/>
+                        Exposing services to machines outside of the cluster<br/>
+                        Scaling out or down the cluster by adding or removing containers
+                    </aside>
                 </section>
 
                 <section>
