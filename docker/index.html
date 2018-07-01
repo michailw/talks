@@ -36,6 +36,19 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                 </section>
 
                 <section>
+                    <blockquote>
+                        <cite>
+                            The real value of Docker is not technology,
+                            it's getting people to agree on something
+                        </cite>
+                    </blockquote>
+                    ~ Solomon Hykes (CEO of Docker) @ Dockercon 2014
+                    <div class="fragment fade-up">
+                        <blockquote class="twitter-tweet" data-cards="hidden" data-lang="pl"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/docker?src=hash&amp;ref_src=twsrc%5Etfw">#docker</a> has now had more security issues within a year then <a href="https://twitter.com/hashtag/freebsd?src=hash&amp;ref_src=twsrc%5Etfw">#freebsd</a> <a href="https://twitter.com/hashtag/jails?src=hash&amp;ref_src=twsrc%5Etfw">#jails</a> has had since 2000. Good job <a href="https://twitter.com/hashtag/techbros?src=hash&amp;ref_src=twsrc%5Etfw">#techbros</a>. <a href="http://t.co/Qx6OMjmqlI">http://t.co/Qx6OMjmqlI</a></p>&mdash; Benjamin Perrault (@creepingfur) <a href="https://twitter.com/creepingfur/status/543685725825146880?ref_src=twsrc%5Etfw">2014-12-13</a></blockquote>
+                    </div>
+                </section>
+
+                <section>
                     <section>
                         <h3>What is Docker? (#1)</h3>
                         <ul>
@@ -55,6 +68,20 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                             <li class="fragment fade-up">single build contains only your application, libs/dependencies</li>
                             <li class="fragment fade-up">follows Open Container Initiative (part of Linux Foundation)</li>
                         </ul>
+                    </section>
+                    <section>
+                        <h3>Docker alternatives</h3>
+                        <ul>
+                            <li class="fragment fade-up">rkt - 2014 by CoreOS</li>
+                            <li class="fragment fade-up">LXD - 2014 by Canonical</li>
+                            <li class="fragment fade-up">LXC - 2008 by the Kernel authors</li>
+                            <li class="fragment fade-up">Linux VServer - 2008</li>
+                            <li class="fragment fade-up">Windows Containers - 2016</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Docker architecture</h3>
+                        <img src="images/docker-architecture.png" />
                     </section>
                     <section>
                         <h2>What is a container?</h2>
@@ -164,7 +191,7 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                         <h3>PID namespace</h3>
                         <ul>
                             <li>processes can see each other in bounds of same PID namespace</li>
-                            <li>when PID 1 is killed, whole namespace is killed either</li>
+                            <li>first process in a namespace has assigned PID=1</li>
                         </ul>
                     </section>
                     <section>
@@ -558,7 +585,8 @@ USER appuser</code></pre>
                     <p>
                         Slides are available on
                         <a href="https://michailw.github.io/talks/docker/">https://michailw.github.io/talks/docker/</a>
-                        <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink"/>
+                        <br/>
+                        <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
                     </p>
                 </section>
 
@@ -571,6 +599,7 @@ USER appuser</code></pre>
         <script>
             Reveal.initialize({
                 dependencies: [
+                    { src: 'https://platform.twitter.com/widgets.js' },
                     { src: '../reveal.js/plugin/markdown/marked.js' },
                     { src: '../reveal.js/plugin/markdown/markdown.js' },
                     { src: '../reveal.js/plugin/notes/notes.js', async: true },

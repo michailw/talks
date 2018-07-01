@@ -1,3 +1,6 @@
+$qrCodeSize: 200px;
+$smallQrCodeSize: 100px;
+
 .reveal {
   section img
   {
@@ -14,11 +17,23 @@
   }
 
   img.qrCodeLink {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: $qrCodeSize;
+    max-height: $qrCodeSize;
+
+    &.small {
+      max-width: $smallQrCodeSize;
+      max-height: $smallQrCodeSize;
+    }
   }
 
   pre code.fullHeight {
     max-height: 600px;
+  }
+}
+
+twitterwidget {
+  margin: {
+    left: auto;
+    right: auto;
   }
 }
