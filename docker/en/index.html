@@ -6,12 +6,12 @@
 
         <title>Docker from scratch</title>
 
-        <link rel="stylesheet" href="../reveal.js/css/reveal.css">
-        <link rel="stylesheet" href="../reveal.js/css/theme/beige.css">
-        <link rel="stylesheet" href="../overwrites/css/overwrites.css">
+        <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+        <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
 
         <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+        <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
 
         <!-- Printing and PDF exports -->
         <script>
@@ -26,13 +26,13 @@
         <div class="reveal">
             <div class="slides">
                 <section>
-                    <img src="images/logos/docker.svg" class="logoImage"/>
+                    <img src="../images/logos/docker.svg" class="logoImage"/>
                     <pre class="docker"><code>
 FROM scratch
 
 MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                     </code></pre>
-                    <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink"/>
+                    <img src="../qrcodeLink.png" alt="QRcode link" class="qrCodeLink"/>
                 </section>
 
                 <section>
@@ -81,11 +81,11 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                     </section>
                     <section>
                         <h3>Docker architecture</h3>
-                        <img src="images/docker-architecture.png" />
+                        <img src="../images/docker-architecture.png" />
                     </section>
                     <section>
                         <h2>What is a container?</h2>
-                        <img src="images/containers_on_ship.png"/>
+                        <img src="../images/containers_on_ship.png"/>
                     </section>
                     <section>
                         <h2>What is a container?</h2>
@@ -123,7 +123,7 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                 <section>
                     <section>
                         <h3>How container differs from VM?</h3>
-                        <img class="stretch" src="images/virtualization_vm.png"/>
+                        <img class="stretch" src="../images/virtualization_vm.png"/>
 
                         <aside class="notes">
                             Virtual machines (VMs) are
@@ -137,7 +137,7 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                     </section>
                     <section>
                         <h3>How container differs from VM?</h3>
-                        <img class="stretch" src="images/virtualization_container.png"/>
+                        <img class="stretch" src="../images/virtualization_container.png"/>
 
                         <aside class="notes">
                             Containers are
@@ -435,7 +435,7 @@ definitions:
                     <section>
                         <h2>Gitlab pipelines</h2>
                         <p>can organise chain of processes which leads to release</p>
-                        <img src="images/gitlab-pipelines-graph.png" />
+                        <img src="../images/gitlab-pipelines-graph.png" />
                     </section>
                     <section>
                         <h2>Gitlab pipelines</h2>
@@ -532,10 +532,10 @@ USER appuser</code></pre>
 
                 <section>
                     <section>
-                        <img src="images/logos/aws.png" class="logoImage" style="max-height:80vh"/>
+                        <img src="../images/logos/aws.png" class="logoImage" style="max-height:80vh"/>
                     </section>
                     <section>
-                        <h2><img src="images/logos/aws.png" class="logoImage inlineImage" style="max-height:13vh"/> Elastic Container Service (ECS)</h2>
+                        <h2><img src="../images/logos/aws.png" class="logoImage inlineImage" style="max-height:13vh"/> Elastic Container Service (ECS)</h2>
                         <ul>
                             <li>user manages clusters of containers</li>
                             <li class="fragment fade-up">cluster defines type of underlying EC2 instances</li>
@@ -544,7 +544,7 @@ USER appuser</code></pre>
                         </ul>
                     </section>
                     <section>
-                        <h2><img src="images/logos/aws.png" class="logoImage inlineImage" style="max-height:13vh"/> Fargate</h2>
+                        <h2><img src="../images/logos/aws.png" class="logoImage inlineImage" style="max-height:13vh"/> Fargate</h2>
                         <ul>
                             <li>user doesn't have to manage cluster and instances</li>
                             <li class="fragment fade-up">user precises only CPU/memory requirements</li>
@@ -586,15 +586,15 @@ USER appuser</code></pre>
                         Slides are available on
                         <a href="https://michailw.github.io/talks/docker/">https://michailw.github.io/talks/docker/</a>
                         <br/>
-                        <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+                        <img src="../qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
                     </p>
                 </section>
 
             </div>
         </div>
 
-        <script src="../reveal.js/lib/js/head.min.js"></script>
-        <script src="../reveal.js/js/reveal.js"></script>
+        <script src="../../reveal.js/lib/js/head.min.js"></script>
+        <script src="../../reveal.js/js/reveal.js"></script>
 
         <script>
             Reveal.initialize({
