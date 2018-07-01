@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Docker from scratch</title>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../overwrites/css/overwrites.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section class="present">
+            <h2>Docker from scratch</h2>
+
+            <img src="images/logos/docker.svg" class="logoImage"/>
+            <pre class="docker"><code>
+FROM scratch
+
+MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
+                    </code></pre>
+            <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink"/>
+
+        </section>
+
+        <section>
+            <h2>Pick version</h2>
+
+            <ul>
+                <li><a href="pl/">🇵🇱 Polish version</a></li>
+                <li><a href="en/">🇬🇧 English version</a></li>
+            </ul>
+        </section>
+    </div>
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: '../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+		]
+	});
+</script>
+</body>
+</html>

@@ -185,6 +185,7 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                         <p>
                             Each process is associated with a namespace and can only see or use the resources
                             associated with that namespace, and descendant namespaces where applicable.
+                            There are also some exceptions.
                         </p>
                     </section>
                     <section>
@@ -600,10 +601,10 @@ USER appuser</code></pre>
             Reveal.initialize({
                 dependencies: [
                     { src: 'https://platform.twitter.com/widgets.js' },
-                    { src: '../reveal.js/plugin/markdown/marked.js' },
-                    { src: '../reveal.js/plugin/markdown/markdown.js' },
-                    { src: '../reveal.js/plugin/notes/notes.js', async: true },
-                    { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                    { src: '../../reveal.js/plugin/markdown/marked.js' },
+                    { src: '../../reveal.js/plugin/markdown/markdown.js' },
+                    { src: '../../reveal.js/plugin/notes/notes.js', async: true },
+                    { src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
                 ]
             });
         </script>
