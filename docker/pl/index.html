@@ -1,0 +1,611 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Docker from scratch</title>
+
+        <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+        <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <img src="../images/logos/docker.svg" class="logoImage"/>
+                    <pre class="docker"><code>
+FROM scratch
+
+MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
+                    </code></pre>
+                    <img src="../qrcodeLink.png" alt="QRcode link" class="qrCodeLink"/>
+                </section>
+
+                <section>
+                    <blockquote>
+                        <cite>
+                            The real value of Docker is not technology,
+                            it's getting people to agree on something
+                        </cite>
+                    </blockquote>
+                    ~ Solomon Hykes (CEO of Docker) @ Dockercon 2014
+                    <div class="fragment fade-up">
+                        <blockquote class="twitter-tweet" data-cards="hidden" data-lang="pl"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/docker?src=hash&amp;ref_src=twsrc%5Etfw">#docker</a> has now had more security issues within a year then <a href="https://twitter.com/hashtag/freebsd?src=hash&amp;ref_src=twsrc%5Etfw">#freebsd</a> <a href="https://twitter.com/hashtag/jails?src=hash&amp;ref_src=twsrc%5Etfw">#jails</a> has had since 2000. Good job <a href="https://twitter.com/hashtag/techbros?src=hash&amp;ref_src=twsrc%5Etfw">#techbros</a>. <a href="http://t.co/Qx6OMjmqlI">http://t.co/Qx6OMjmqlI</a></p>&mdash; Benjamin Perrault (@creepingfur) <a href="https://twitter.com/creepingfur/status/543685725825146880?ref_src=twsrc%5Etfw">2014-12-13</a></blockquote>
+                    </div>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Czym jest Docker? (#1)</h3>
+                        <ul>
+                            <li class="fragment fade-up">technologia wirtualizacji</li>
+                            <li class="fragment fade-up">tworzy kontenery z wyizolowanym softem</li>
+                            <li class="fragment fade-up">działa na każdej platformie</li>
+                            <li class="fragment fade-up">tworzy takie samo środowisko w każdych warunkach</li>
+                        </ul>
+                        <aside class="notes">
+                            Tak bliskie produkcji jak to jest możliwe.
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Czym jest Docker? (#2)</h3>
+                        <ul>
+                            <li class="fragment fade-up">upraszcza tworzenie, build and dostarczanie softu</li>
+                            <li class="fragment fade-up">pojedynczy build zawiera tylko twój kod i ewentualnie liby/zależności</li>
+                            <li class="fragment fade-up">opiera się na Open Container Initiative (projekt Linux Foundation)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Alternatywy dla Dockera</h3>
+                        <ul>
+                            <li class="fragment fade-up">rkt - 2014 by CoreOS</li>
+                            <li class="fragment fade-up">LXD - 2014 by Canonical</li>
+                            <li class="fragment fade-up">LXC - 2008 by the Kernel authors</li>
+                            <li class="fragment fade-up">Linux VServer - 2008</li>
+                            <li class="fragment fade-up">Windows Containers - 2016</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Architektura Dockera</h3>
+                        <img src="../images/docker-architecture.png" />
+                    </section>
+                    <section>
+                        <h2>Czym jest kontener?</h2>
+                        <img src="../images/containers_on_ship.png"/>
+                    </section>
+                    <section>
+                        <h2>Czym jest kontener?</h2>
+                        <p>Wygląda jak VMka:</p>
+                        <ul>
+                            <li>własna przestrzeń procesów</li>
+                            <li class="fragment fade-up">własna sieć</li>
+                            <li class="fragment fade-up">można korzystać z konta root</li>
+                            <li class="fragment fade-up">można instalować pakiety (yum/apt-get)</li>
+                            <li class="fragment fade-up">można sterować servicami</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Czym jest kontener?</h2>
+                        <p>Ale jednak to nie VMka:</p>
+                        <ul>
+                            <li>współdzieli kernel hosta</li>
+                            <li class="fragment fade-up">nie uruchomi innych systemów operacyjnych</li>
+                            <li class="fragment fade-up">uruchamia się błyskawicznie</li>
+                            <li class="fragment fade-up">nie emuluje sprzętu</li>
+                        </ul>
+                        <aside class="notes">
+                            Hyper-V, KVM, and Xen, all are "based on emulating virtual hardware.
+                            That means they're fat in terms of system requirements.
+
+                            Containers, however, use shared operating systems.
+                            This means they are much more efficient than hypervisors in system resource terms.
+                            Instead of virtualizing hardware, containers rest on top of a single Linux instance.
+                            This means you can "leave behind the useless 99.9 percent VM junk, leaving you with a small,
+                            neat capsule containing your application"
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Czym kontenery różnią się od VMek?</h3>
+                        <img class="stretch" src="../images/virtualization_vm.png"/>
+
+                        <aside class="notes">
+                            Virtual machines (VMs) are
+                            <ul>
+                                <li>an abstraction of physical hardware turning one server into many servers</li>
+                                <li>The hypervisor allows multiple VMs to run on a single machine</li>
+                                <li>Each VM includes a full copy of an operating system, one or more apps, necessary binaries and libraries - taking up tens of GBs.</li>
+                                <li>VMs can also be slow to boot.</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Czym kontenery różnią się od VMek?</h3>
+                        <img class="stretch" src="../images/virtualization_container.png"/>
+
+                        <aside class="notes">
+                            Containers are
+                            <ul>
+                                <li>an abstraction at the app layer that packages code and dependencies together</li>
+                                <li>Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space.</li>
+                                <li>Containers take up less space than VMs (container images are typically tens of MBs in size)</li>
+                                <li>start almost instantly</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Jak to działa? - Linux</h3>
+                        <ul>
+                            <li>wspóldzielą z hostem kernel</li>
+                            <li class="fragment fade-up">zawsze wspóldzielą Linux kernel</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Jak to działa? -  OSX i Windows</h3>
+                        <ul>
+                            <li>wymaga dodatkowej VMki z Linux Kernel</li>
+                            <li class="fragment fade-up">Hyper-V dla Windows 10</li>
+                            <li class="fragment fade-up">HyperKit dla macOS od 10.10 (Yosemite)</li>
+                            <li class="fragment fade-up">Docker-machine (na Virtualbox) dla wcześniejszych wersji</li>
+                        </ul>
+                        <aside class="notes">
+                            <ul>
+                                <li>
+                                    Hyper-V is solution made by Microsoft
+                                </li>
+                                <li>
+                                    HyperKit is a complete hypervisor, based on two other projects, which is optimized for
+                                    lightweight virtual machines and container deployment on macOS.
+                                    On OS level it's based on Hypervisor framework by Apple since Yosemite release.
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Kernel namespaces - o co chodzi?</h3>
+                        <p>
+                            Każdy proces jest powiązany z konkretną przestrzenią nazw.
+                            Może korzystać tylko z tych zasobów, które są częścią tej samej przestrzeni nazw,
+                            lub jej potomnych.
+                        </p>
+                    </section>
+                    <section>
+                        <h3>PID namespace</h3>
+                        <ul>
+                            <li>procesy mogą się "widzieć" w ramach tej samej PID namespace</li>
+                            <li>pierwszy proces w przestrzeni ma przypisany PID=1</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Net namespace</h3>
+                        <p>Pozwala na tworzenie całych infrastraktór sieciowych, włączając:</p>
+                        <ul>
+                            <li>interfejsy</li>
+                            <li>tabele routingu</li>
+                            <li>reguły firewalla</li>
+                            <li>sockety</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Mnt namespace</h3>
+                        <ul>
+                            <li>izoluje punkty montowania dla procesów</li>
+                            <li class="fragment fade-up">umożliwia różne "widoki" na pliki hosta</li>
+                            <li class="fragment fade-up">punkty montowania mogą być współdzielone</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>UTS namespace</h3>
+                        <p>izoluje hostname oraz NIS domain name</p>
+                        <aside class="notes">
+                            NIS: Network Information Service, initially Yellow Pages,
+                            is a directory service protocol for distributing system configuration data such
+                            as user and host names between computers on a computer network
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>ipc namespace (interprocess communication)</h3>
+                        <ul>
+                            <li>semafory</li>
+                            <li>POSIX message queues</li>
+                            <li>pamięć współdzielona</li>
+                        </ul>
+                        <aside class="notes">
+                            POSIX: used to pass a message between a process and its child processes
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>user namespace</h3>
+                        <ul>
+                            <li>tabela IDków użytkowników systemu</li>
+                            <li class="fragment fade-up">mapuje użytkownika kontenera na użytkownika hosta</li>
+                            <li class="fragment fade-up">używana do izolacji przywilejów</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Co nie znajduje się w przestrzeniach nazw?</h3>
+                        <ul>
+                            <li>czas - spróbuj go zmienić z poziomu kontenera</li>
+                        </ul>
+<pre class="bash fragment fade-up"><code data-trim data-noescape>
+/ # whoami
+root
+/ # uname -a
+Linux 51a456ca0479 3.10.0-693.11.6.el7.x86_64 #1 SMP Thu Jan 4 01:06:37 UTC 2018 x86_64 Linux
+/ # date +%T -s "10:13:13"
+date: can't set date: Operation not permitted
+</code></pre>
+                        <ul>
+                            <li class="fragment fade-up">kernel keyring - syscalle są zablokowane</li>
+                            <li class="fragment fade-up">wszystko pod ścieżką /sys/</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h3>Filozofia jednej usługi (procesu) na kontener</h3>
+                    <ul>
+                        <li class="fragment fade-up">prostrze do skalowania</li>
+                        <li class="fragment fade-up">prostrze w utrzymaniu</li>
+                        <li class="fragment fade-up">brak problemu zabicia procesu nr 1</li>
+                        <li class="fragment fade-up">większy wysiłek w konfiguracji niż VMki</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Docker image</h3>
+                    </section>
+                    <section>
+                        <h3>Czym jest docker image?</h3>
+                        <ul>
+                            <li class="fragment fade-up">nakładka na kernel</li>
+                            <li class="fragment fade-up">zawiera liby i/lub binarki</li>
+                            <li class="fragment fade-up">definiuje porty wyeksponowane na świat, workdir</li>
+                            <li class="fragment fade-up">uruchamia domyślny proces w kontenerze</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Co jest wewnątrz docker image?</h3>
+                        <ul>
+                            <li class="fragment fade-up">zależności konkretnej dystrybucji linuxa <a href="https://github.com/tianon/docker-brew-ubuntu-core/tree/46511cf49ad5d2628f3e8d88e1f8b18699a3ad8f/bionic">przykład - Ubuntu</a></li>
+                            <li class="fragment fade-up">zbudowane zależności dla aplikacji</li>
+                            <li class="fragment fade-up">wszystko jest spakowane używając warstwowego systemu plików</li>
+                            <li class="fragment fade-up">obrazy są tylko do odczytu</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Jak stworzyć własny docker image?</h3>
+                    </section>
+                    <section>
+                        <h3>Składnia Dockerfile</h3>
+                        <pre class="docker"><code data-trim data-noescape>
+                            <span class="fragment fade-up">FROM &lt;image&gt;[:&lt;tag&gt;] # obraz bazowy</span>
+                            <span class="fragment fade-up">RUN &lt;command&gt; # wołane jednorazowo, w trakcie buildu</span>
+                            <span class="fragment fade-up">CMD command param1 param2 # wołane przy starcie kontenera</span>
+                            <span class="fragment fade-up">EXPOSE &lt;port&gt; [&lt;port&gt;/&lt;protocol&gt;...]</span>
+                            <span class="fragment fade-up">ENV &lt;key&gt; &lt;value&gt; # tylko wewnątrz kontenera</span>
+                            <span class="fragment fade-up">ADD [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</span>
+                            <span class="fragment fade-up">COPY &lt;src&gt;... &lt;dest&gt;</span>
+                            <span class="fragment fade-up">ENTRYPOINT command param1 param2 # kontener jako binarka</span>
+                            <span class="fragment fade-up">VOLUME ["/data"]</span>
+                            <span class="fragment fade-up">USER &lt;user&gt;[:&lt;group&gt;] # kto woła komendy</span>
+                            <span class="fragment fade-up">WORKDIR /path # gdzie uruchamiać komendy</span>
+                            <span class="fragment fade-up">HEALTHCHECK [OPTIONS] CMD command</span>
+                        </code></pre>
+                        <aside class="notes">
+                            <p>
+                                ADD allows &lt;src&gt; to be an URL.
+                                If the &lt;src&gt; parameter of ADD is an archive in a recognised compression format,
+                                it will be unpacked.
+                            </p>
+                            <ul>
+                                <li>Dockerfile should specify at least one of CMD or ENTRYPOINT commands.</li>
+                                <li>ENTRYPOINT should be defined when using the container as an executable.</li>
+                                <li>CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.</li>
+                                <li>CMD will be overridden when running the container with alternative arguments.</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+                        <pre class="bash"><code>$ docker build .</code></pre>
+                        <pre class="bash fragment fade-up"><code>Sending build context to Docker daemon 15.36 kB
+Step 1/4 : FROM alpine:3.2
+ ---> 31f630c65071
+Step 2/4 : MAINTAINER forest.gump@example.com
+ ---> Using cache
+ ---> 2a1c91448f5f
+Step 3/4 : RUN apk update && apk add apache2 && rm -r /var/cache/
+ ---> Using cache
+ ---> 21ed6e7fbb73
+Step 4/4 : CMD apache2
+ ---> Using cache
+ ---> 7ea8aef582cc
+Successfully built 7ea8aef582cc
+</code></pre>
+                        <aside class="notes">
+                            Each line creates next layer over previous image
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Uruchamianie kontenera</h3>
+                        <pre class="bash"><code data-trim data-noescape>
+                            $ <span class="fragment fade-up">docker run</span> <span class="fragment fade-up">-it</span> <span class="fragment fade-up">ubuntu:14.04</span> <span class="fragment fade-up">/bin/bash</span>
+                        </code></pre>
+                        <pre class="bash fragment fade-up"><code data-trim data-noescape>
+                            $ docker run -it tomcat <span class="fragment fade-up">-d</span> <span class="fragment fade-up">-p 8080:80</span>
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <h3>Docker-Compose na ratunek</h3>
+<pre class="yaml"><code>version: '3'
+services:
+  web:
+    image: apache
+    links:
+      - database
+    ports:
+      - '8080:80'
+    volumes:
+      - ./project:/var/www:rw
+
+  database:
+    image: mysql</code></pre>
+                    <pre class="bash"><code>$ docker-compose up</code></pre>
+                </section>
+
+                <section>
+                    <h2>Przykłady użycia</h2>
+                    <ul>
+                        <li class="fragment slide-up">development box</li>
+                        <li class="fragment slide-up">soft gotowy do wrzutki na produkcję</li>
+                        <li class="fragment slide-up">CI/CD</li>
+                        <li class="fragment slide-up">lepsza polityka auto-skalowania</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>CI/CD</h2>
+                    </section>
+                    <section>
+                        <h2>Bitbucket pipelines</h2>
+<pre class="yaml"><code>image: alpine:latest
+
+pipelines:
+  default:
+    - step:
+        image: node:8.9.4
+        caches:
+          - node_modules
+        script:
+          - npm run build
+  branches:
+    master:
+      - step:
+          script:
+            - ./generateReleaseNotes.sh
+            - ./updateVersionTag.sh
+            - ./broadcastRelease.sh
+
+definitions:
+  services:
+    redis:
+      image: redis:3.2
+    mysql:
+      image: mysql:5.7
+      environment:
+        MYSQL_ROOT_PASSWORD: strong_and_secret
+</code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>składnia podobna do docker-compose.yml</li>
+                                <li>kontener z kodem powinien zakończyć swoje działanie</li>
+                                <li>kontener z kodem mogą działać równolegle</li>
+                                <li>równoległe kontenery nie wiedzą o sobie nawzajem</li>
+                                <li>kod nie może byc podmontowany do usług</li>
+                                <li>kod może być podmontowany do różnych kontenerów za pomocą "kroków"</li>
+                                <li>usługi są dostępne tylko przez sieć</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Gitlab pipelines</h2>
+                        <p>Mogą zarządzać łańcuchem procesów prowadzących do releasu</p>
+                        <img src="../images/gitlab-pipelines-graph.png" />
+                    </section>
+                    <section>
+<pre class="yaml"><code class="fullHeight">image: php:latest
+
+services:
+  - mysql:5.7
+
+variables:
+  MYSQL_DATABASE: fancyDB
+  MYSQL_ROOT_PASSWORD: secret
+  DB_HOST: mysql
+  DB_USERNAME: root
+
+stages:
+  - test
+  - deploy
+
+unit_test:
+  stage: test
+  script:
+    - composer install
+    - ./vendor/bin/phpunit
+
+deploy_production:
+  stage: deploy
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ~/.composer/vendor/bin/envoy run deploy
+  environment:
+    name: production
+    url: http://192.168.1.1
+  when: manual
+  only:
+    - master
+</code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>similar syntax to docker-compose.yml</li>
+                                <li>container with codebase is expected to finish it's work</li>
+                                <li>containers with codebase can run in parallel as jobs</li>
+                                <li>parallel containers can't see each other</li>
+                                <li>codebase can't be mounted to services</li>
+                                <li>codebase can be mounted into different containers with steps</li>
+                                <li>services are reachable through network only</li>
+                                <li>services are the only way of having multiple containers</li>
+                                <li>services are reachable through network only</li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Security</h2>
+                    </section>
+                    <section>
+                        <h2>Security - aktualizacje</h2>
+                        <ul>
+                            <li class="fragment fade-up">update kernela zależy od hosta, nie dockera</li>
+                            <li class="fragment fade-up">zależności instalowane wewnątrz obrazu są utrzymywane przez twórcę obrazu</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Security - pozbądź się przywilejów roota</h2>
+                        <ul>
+                            <li class="fragment fade-up">wdrażaj zasadę najwęższych potrzebnych uprawnień</li>
+                            <li class="fragment fade-up">Docker wymaga przywilejów roots by działać, kontenery nie</li>
+                            <li class="fragment fade-up">procesy działające wewnątrz kontenera niczym się nie różniąod innych</li>
+                            <li class="fragment fade-up">większość obrazów działa na uprawnieniach roota i zostawiają TOBIE co z tym zrobić</li>
+                        </ul>
+                    </section>
+                    <section>
+<pre><code class="bash">
+$ docker run -v /root:/tmp/rootdir alpine:latest ls -la /tmp/rootdir
+drwxr-xr-x+  126 root  root       4032 Jun 21 13:43 .
+drwxr-xr-x     7 root  root        224 Jun 15 12:31 ..
+-rw-r--r--     1 root  root        266 Nov 26  2017 secretFile.txt
+</code></pre>
+                    </section>
+                    <section>
+<pre><code class="docker">FROM anyimage:latest
+
+RUN groupadd -g 999 appuser && \
+    useradd -r -u 999 -g appuser appuser
+
+USER appuser</code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <img src="../images/logos/aws.png" class="logoImage" style="max-height:80vh"/>
+                    </section>
+                    <section>
+                        <h2><img src="../images/logos/aws.png" class="logoImage inlineImage" style="max-height:13vh"/> Elastic Container Service (ECS)</h2>
+                        <ul>
+                            <li>użytkownik zarządza klastrem kontenerów</li>
+                            <li class="fragment fade-up">klaster definiuje typ instancji EC2 na których działa</li>
+                            <li class="fragment fade-up">każda instancja może uruchomić wiele kontenerów</li>
+                            <li class="fragment fade-up">każda instancja dalej jest zarządzana przez użytkownika</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2><img src="../images/logos/aws.png" class="logoImage inlineImage" style="max-height:13vh"/> Fargate</h2>
+                        <ul>
+                            <li>użytkownik nie zarządza instancjami</li>
+                            <li class="fragment fade-up">użytkownik określa jedynie wymagania CPU/pamięci</li>
+                            <li class="fragment fade-up">kontenery są tworzone na infrastrukturze AWS</li>
+                            <li class="fragment fade-up">wsparcie Kubernetes w roku 2018</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Kolejny krok - orchestrastion</h2>
+                    <ul>
+                        <li class="fragment fade-up">Docker Swarm</li>
+                        <li class="fragment fade-up">Kubernetes</li>
+                        <li class="fragment fade-up">AWS/Azure/Google solutions</li>
+                    </ul>
+                    <aside class="notes">
+                        Clearly, the process of deploying multiple containers to implement an application can
+                        be optimized through automation. This becomes more and more valuable as the number
+                        of containers and hosts grow. This type of automation is referred to as orchestration.
+                        Orchestration can include a number of features, including:
+                        <br/><br/>
+                        Provisioning hosts<br/>
+                        Instantiating a set of containers<br/>
+                        Rescheduling failed containers<br/>
+                        Linking containers together through agreed interfaces<br/>
+                        Exposing services to machines outside of the cluster<br/>
+                        Scaling out or down the cluster by adding or removing containers
+                    </aside>
+                </section>
+
+                <section>
+                    <h1>Pytania?</h1>
+                </section>
+
+                <section>
+                    <h1>Dzięki za poświęcony czas!</h1>
+                    <p>
+                        Slajdy są dostępne na
+                        <a href="https://michailw.github.io/talks/docker/">https://michailw.github.io/talks/docker/</a>
+                        <br/>
+                        <img src="../qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+                    </p>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../../reveal.js/lib/js/head.min.js"></script>
+        <script src="../../reveal.js/js/reveal.js"></script>
+
+        <script>
+            Reveal.initialize({
+                dependencies: [
+                    { src: 'https://platform.twitter.com/widgets.js' },
+                    { src: '../../reveal.js/plugin/markdown/marked.js' },
+                    { src: '../../reveal.js/plugin/markdown/markdown.js' },
+                    { src: '../../reveal.js/plugin/notes/notes.js', async: true },
+                    { src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
