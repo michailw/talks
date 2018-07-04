@@ -120,14 +120,14 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                             <li class="fragment fade-up">nie emuluje sprzętu</li>
                         </ul>
                         <aside class="notes">
-                            Hyper-V, KVM, and Xen, all are "based on emulating virtual hardware.
-                            That means they're fat in terms of system requirements.
+                            Hyper-V, KVM i Xen - wszystkie z nich bazują na emulowaniu wirtualnego sprzętu.
+                            Oznacza to, że są ciężkie z punktu widzenia wymagań takich systemów.
 
-                            Containers, however, use shared operating systems.
-                            This means they are much more efficient than hypervisors in system resource terms.
-                            Instead of virtualizing hardware, containers rest on top of a single Linux instance.
-                            This means you can "leave behind the useless 99.9 percent VM junk, leaving you with a small,
-                            neat capsule containing your application"
+                            Kontenery za to używają współdzielonego systemu operacyjnego.
+                            Oznacza to, że są lekkie z punktu widzenia wymagań systemowych.
+                            Zamiast wirtualizować sprzęt, kontenery są uruchamiane na instacji z Linuxem.
+                            Dzięki temu można zredukować narzut 99.9% pracy VMki, pozostawiając małą "kapsułę"
+                            zawierającą aplikację.
                         </aside>
                     </section>
                 </section>
@@ -138,12 +138,12 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                         <img class="stretch" src="../images/virtualization_vm.png"/>
 
                         <aside class="notes">
-                            Virtual machines (VMs) are
+                            Maszyny wirtualne są (VM)
                             <ul>
-                                <li>an abstraction of physical hardware turning one server into many servers</li>
-                                <li>The hypervisor allows multiple VMs to run on a single machine</li>
-                                <li>Each VM includes a full copy of an operating system, one or more apps, necessary binaries and libraries - taking up tens of GBs.</li>
-                                <li>VMs can also be slow to boot.</li>
+                                <li>abstrakcją fizycznego sprzętu, zamieniającego jeden serwer w wiele serwerów</li>
+                                <li>Nadzorca pozwala uruchomić wiele VMek na jednej fizycznej maszynie</li>
+                                <li>Każda VMka zawiera pełną kopię systemu operacyjnego, jedną lub więcej aplikacji, wymaganych binarek i bibliotek - mnóstwo GB</li>
+                                <li>VMka może się uruchamiać bardzo wolno</li>
                             </ul>
                         </aside>
                     </section>
@@ -152,12 +152,12 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                         <img class="stretch" src="../images/virtualization_container.png"/>
 
                         <aside class="notes">
-                            Containers are
+                            Kontenery są
                             <ul>
-                                <li>an abstraction at the app layer that packages code and dependencies together</li>
-                                <li>Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space.</li>
-                                <li>Containers take up less space than VMs (container images are typically tens of MBs in size)</li>
-                                <li>start almost instantly</li>
+                                <li>abstrakcją warstwy aplikacji opakowującą razem kod aplikacji i zależności</li>
+                                <li>wiele kontenerów działa na tej samej maszynie, współdzieląc ten sam Kernel, każdy z nich działa jako izolowany proces</li>
+                                <li>kontenery zajmują mniej miejsca niż VMki (obrazy kontenerów zajmują zazwyczaj dziesiątki MB)</li>
+                                <li>natychmiastowy start</li>
                             </ul>
                         </aside>
                     </section>
@@ -179,7 +179,7 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                         <aside class="notes">
                             <ul>
                                 <li>
-                                    Hyper-V is solution made by Microsoft
+                                    Hyper-V - rozwiązanie Microsoftu
                                 </li>
                                 <li>
                                     HyperKit is a complete hypervisor, based on two other projects, which is optimized for
@@ -229,9 +229,9 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                         <h3>UTS namespace</h3>
                         <p>izoluje hostname oraz NIS domain name</p>
                         <aside class="notes">
-                            NIS: Network Information Service, initially Yellow Pages,
-                            is a directory service protocol for distributing system configuration data such
-                            as user and host names between computers on a computer network
+                            NIS: Network Information Service, kiedyś Yellow Pages,
+                            protokół typu klient-serwer opracowany przez Sun Microsystems,
+                            służący do śledzenia użytkowników i nazw hostów w sieci.
                         </aside>
                     </section>
                     <section>
@@ -242,7 +242,8 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                             <li>pamięć współdzielona</li>
                         </ul>
                         <aside class="notes">
-                            POSIX: used to pass a message between a process and its child processes
+                            POSIX message queues<br/>
+                            używane do przekazywania wiadomości pomiędzy procesem nadrzędnym i jego potomnymi
                         </aside>
                     </section>
                     <section>
@@ -326,15 +327,15 @@ date: can't set date: Operation not permitted
                         </code></pre>
                         <aside class="notes">
                             <p>
-                                ADD allows &lt;src&gt; to be an URL.
-                                If the &lt;src&gt; parameter of ADD is an archive in a recognised compression format,
-                                it will be unpacked.
+                                ADD pozwala by &lt;src&gt; było URL.
+                                Jeśli parametr &lt;src&gt; komendy ADD jest archiwum w rozpoznawalnym formacie,
+                                zostanie rozpakowane w miejscu docelowym.
                             </p>
                             <ul>
-                                <li>Dockerfile should specify at least one of CMD or ENTRYPOINT commands.</li>
-                                <li>ENTRYPOINT should be defined when using the container as an executable.</li>
-                                <li>CMD should be used as a way of defining default arguments for an ENTRYPOINT command or for executing an ad-hoc command in a container.</li>
-                                <li>CMD will be overridden when running the container with alternative arguments.</li>
+                                <li>Dockerfile powinien precyzować przynajmniej jedną komendę CMD lub ENTRYPOINT</li>
+                                <li>ENTRYPOINT jest używany gdy chcemy używać kontenera tak jak pliku wykonywalnego</li>
+                                <li>CMD jest używane jako podanie domyślnych argumentów dla komendy wpisanej do ENTRYPOINT, lub uruchamiania komend ad-hoc w kontenerze</li>
+                                <li>CMD będzie nadpisane, jeśli kontener został uruchomiony z inną komendą przekazaną argumentem.</li>
                             </ul>
                         </aside>
                     </section>
@@ -355,7 +356,7 @@ Step 4/4 : CMD apache2
 Successfully built 7ea8aef582cc
 </code></pre>
                         <aside class="notes">
-                            Each line creates next layer over previous image
+                            Każda linia tworzy nową warstwę na poprzednim obrazie
                         </aside>
                     </section>
                 </section>
@@ -490,15 +491,13 @@ deploy_production:
 </code></pre>
                         <aside class="notes">
                             <ul>
-                                <li>similar syntax to docker-compose.yml</li>
-                                <li>container with codebase is expected to finish it's work</li>
-                                <li>containers with codebase can run in parallel as jobs</li>
-                                <li>parallel containers can't see each other</li>
-                                <li>codebase can't be mounted to services</li>
-                                <li>codebase can be mounted into different containers with steps</li>
-                                <li>services are reachable through network only</li>
-                                <li>services are the only way of having multiple containers</li>
-                                <li>services are reachable through network only</li>
+                                <li>składnia podobna do docker-compose.yml</li>
+                                <li>kontener z kodem powinien zakończyć swoje działanie</li>
+                                <li>kontener z kodem mogą działać równolegle</li>
+                                <li>równoległe kontenery nie wiedzą o sobie nawzajem</li>
+                                <li>kod nie może byc podmontowany do usług</li>
+                                <li>kod może być podmontowany do różnych kontenerów za pomocą "kroków"</li>
+                                <li>usługi są dostępne tylko przez sieć</li>
                             </ul>
                         </aside>
                     </section>
@@ -574,17 +573,18 @@ USER appuser</code></pre>
                         <li class="fragment fade-up">AWS/Azure/Google solutions</li>
                     </ul>
                     <aside class="notes">
-                        Clearly, the process of deploying multiple containers to implement an application can
-                        be optimized through automation. This becomes more and more valuable as the number
-                        of containers and hosts grow. This type of automation is referred to as orchestration.
-                        Orchestration can include a number of features, including:
+                        Proces wdrażania wielu kontenerów wymaganych przez aplikację może być zautomatyzowane przez
+                        automatyzację. Staje się to tym bardziej pożądane, w miarę wzrostu zapotrzebowania
+                        na ilość kontenerów, oraz hostów które te kontenery utrzymują.
+                        Ten szczególny typ automatyzacji nazywamy orchestration.
+                        Może on w sobie zawierać różne funkcjonalności:
                         <br/><br/>
-                        Provisioning hosts<br/>
-                        Instantiating a set of containers<br/>
-                        Rescheduling failed containers<br/>
-                        Linking containers together through agreed interfaces<br/>
-                        Exposing services to machines outside of the cluster<br/>
-                        Scaling out or down the cluster by adding or removing containers
+                        budowanie hostów (provisioning)
+                        inicjowanie grupy kontenerów<br/>
+                        "przekładanie" błednych kontenerów<br/>
+                        łączenie kontenerów przy pomocy ustalonych interfejsów<br/>
+                        eksponowanie usług na świat<br/>
+                        skalowanie poziome klastra przez dodawanie/usuwanie kontenerów
                     </aside>
                 </section>
 
