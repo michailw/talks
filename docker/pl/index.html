@@ -372,6 +372,22 @@ Successfully built 7ea8aef582cc
                             Każda linia tworzy nową warstwę na poprzednim obrazie
                         </aside>
                     </section>
+                    <section>
+                        <h3>Multistage build (Docker >= 1.7)</h3>
+<pre class="docker"><code>
+FROM maven:3.5-jdk-8 as BUILD
+
+COPY src /usr/src/myapp/src
+COPY pom.xml /usr/src/myapp
+RUN mvn -f /usr/src/myapp/pom.xml clean package
+
+FROM tomcat:8.0-alpine
+
+COPY --from=BUILD \
+    /usr/src/myapp/target/people-1.0-SNAPSHOT.war \
+    /usr/local/tomcat/webapps/myapp.war
+</code></pre>
+                    </section>
                 </section>
 
                 <section>
