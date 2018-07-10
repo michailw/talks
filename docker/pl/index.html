@@ -57,6 +57,7 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                         <li class="fragment fade-up">Docker image</li>
                         <li class="fragment fade-up">Docker compose</li>
                         <li class="fragment fade-up">CI/CD</li>
+                        <li class="fragment fade-up">Security</li>
                         <li class="fragment fade-up">AWS</li>
                     </ol>
                 </section>
@@ -65,11 +66,10 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                     <section>
                         <h3>Produkty firmy Docker Inc.</h3>
                         <ul>
-                            <li class="fragment fade-up">libcontainerd</li>
-                            <li class="fragment fade-up">Docker engine</li>
+                            <li class="fragment fade-up">libcontainerd (Docker engine)</li>
+                            <li class="fragment fade-up">Docker registry</li>
                             <li class="fragment fade-up">Docker hub</li>
                             <li class="fragment fade-up">Docker machine</li>
-                            <li class="fragment fade-up">Docker registry</li>
                             <li class="fragment fade-up">Docker-compose</li>
                             <li class="fragment fade-up">Docker swarm</li>
                         </ul>
@@ -97,10 +97,10 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                     <section>
                         <h3>Alternatywy dla Dockera</h3>
                         <ul>
-                            <li class="fragment fade-up">rkt - 2014 by CoreOS</li>
-                            <li class="fragment fade-up">LXD - 2014 by Canonical</li>
                             <li class="fragment fade-up">LXC - 2008 by the Kernel authors</li>
                             <li class="fragment fade-up">Linux VServer - 2008</li>
+                            <li class="fragment fade-up">LXD - 2014 by Canonical</li>
+                            <li class="fragment fade-up">rkt - 2014 by CoreOS</li>
                             <li class="fragment fade-up">Windows Containers - 2016</li>
                         </ul>
                     </section>
@@ -290,8 +290,8 @@ date: can't set date: Operation not permitted
                 <section>
                     <h3>Filozofia jednej usługi (procesu) na kontener</h3>
                     <ul>
-                        <li class="fragment fade-up">prostrze do skalowania</li>
-                        <li class="fragment fade-up">prostrze w utrzymaniu</li>
+                        <li class="fragment fade-up">prostsze do skalowania</li>
+                        <li class="fragment fade-up">prostsze w utrzymaniu</li>
                         <li class="fragment fade-up">brak problemu zabicia procesu nr 1</li>
                         <li class="fragment fade-up">większy wysiłek w konfiguracji niż VMki</li>
                     </ul>
@@ -373,7 +373,7 @@ Successfully built 7ea8aef582cc
                         </aside>
                     </section>
                     <section>
-                        <h3>Multistage build (Docker >= 1.7)</h3>
+                        <h3>Multistage build (Docker >= 17.05)</h3>
 <pre class="docker"><code>
 FROM maven:3.5-jdk-8 as BUILD
 
@@ -548,16 +548,19 @@ deploy_production:
                         <ul>
                             <li class="fragment fade-up">wdrażaj zasadę najwęższych potrzebnych uprawnień</li>
                             <li class="fragment fade-up">Docker wymaga przywilejów roota by działać, kontenery nie</li>
-                            <li class="fragment fade-up">procesy działające wewnątrz kontenera niczym się nie różniąod innych</li>
+                            <li class="fragment fade-up">procesy działające wewnątrz kontenera niczym się nie różnią od innych</li>
                             <li class="fragment fade-up">większość obrazów działa na uprawnieniach roota i zostawiają TOBIE co z tym zrobić</li>
                         </ul>
                     </section>
                     <section>
-<pre><code class="bash">
-$ docker run -v /root:/tmp/rootdir alpine:latest ls -la /tmp/rootdir
+<pre><code class="bash" data-trim data-noescape>
+$ sudo echo "SECRET STRING" > /root/secretFile.txt
+$ docker run <span class="fragment fade-up">-v /root:/tmp/rootdir</span> <span class="fragment fade-up">alpine:latest</span> <span class="fragment fade-up">ls -la /tmp/rootdir</span>
+<span class="fragment fade-up">
 drwxr-xr-x+  126 root  root       4032 Jun 21 13:43 .
 drwxr-xr-x     7 root  root        224 Jun 15 12:31 ..
 -rw-r--r--     1 root  root        266 Nov 26  2017 secretFile.txt
+</span>
 </code></pre>
                     </section>
                     <section>
@@ -595,7 +598,7 @@ USER appuser</code></pre>
                 </section>
 
                 <section>
-                    <h2>Kolejny krok - orchestrastion</h2>
+                    <h2>Kolejny krok - orchestration</h2>
                     <ul>
                         <li class="fragment fade-up">Docker Swarm</li>
                         <li class="fragment fade-up">Kubernetes</li>
