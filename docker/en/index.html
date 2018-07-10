@@ -49,6 +49,19 @@ MAINTAINER Michal Wojtowicz michal@wojtowicz.ovh
                 </section>
 
                 <section>
+                    <h3>Agenda</h3>
+                    <ol>
+                        <li class="fragment fade-up">What is Docker?</li>
+                        <li class="fragment fade-up">What is kontener?</li>
+                        <li class="fragment fade-up">Kernel namespaces</li>
+                        <li class="fragment fade-up">Docker image</li>
+                        <li class="fragment fade-up">Docker compose</li>
+                        <li class="fragment fade-up">CI/CD</li>
+                        <li class="fragment fade-up">AWS</li>
+                    </ol>
+                </section>
+
+                <section>
                     <section>
                         <h3>Products of Docker Inc.</h3>
                         <ul>
@@ -603,6 +616,54 @@ USER appuser</code></pre>
                         Exposing services to machines outside of the cluster<br/>
                         Scaling out or down the cluster by adding or removing containers
                     </aside>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Revision</h2>
+                    </section>
+                    <section>
+                        <h3>What is docker?</h3>
+                        <ul>
+                            <li class="fragment fade-up">containers software</li>
+                            <li class="fragment fade-up">most popular</li>
+                            <li class="fragment fade-up">open-source</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Czym jest kontener?</h3>
+                        <ul>
+                            <li class="fragment fade-up">app packed with all dependencies</li>
+                            <li class="fragment fade-up">doesn't rely on OS</li>
+                            <li class="fragment fade-up">works everywhere</li>
+                            <li class="fragment fade-up">lightweight</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>How to make Docker images?</h3>
+                        <ul>
+                            <li class="fragment fade-up">follow Dockerfile syntax</li>
+                            <li class="fragment fade-up">containers must be stateless</li>
+                            <li class="fragment fade-up">keep build context small</li>
+                            <li class="fragment fade-up">watch out permissions (security)</li>
+                            <li class="fragment fade-up">use multi-stage builds</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>What should you keep in mind about pipelines?</h3>
+                        <ul>
+                            <li class="fragment fade-up">there's not standard</li>
+                            <li class="fragment fade-up">problematic usage of containers with mounted codebase</li>
+                            <li class="fragment fade-up">servics containers are available through the network only</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>How AWS supports Docker?</h3>
+                        <ul>
+                            <li class="fragment fade-up">ECS/Fargate</li>
+                            <li class="fragment fade-up">own container orchestration solution</li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section>
