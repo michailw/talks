@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <title>Blocking synchronous JS calls</title>
+
+	<link rel="stylesheet" href="../highlight/styles/default.css">
+	<script src="../highlight/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">
+		function sleep(ms) {
+			let start = new Date().getTime(), expire = start + ms;
+			while (new Date().getTime() < expire) {}
+		}
+
+		function getSyncUrl(url) {
+			console.log("Making request to " + url);
+			sleep((Math.floor(Math.random() * 5) + 1) * 1000);
+			return "// Result of " + url;
+		}
+    </script>
+</head>
+<body>
+<pre>
+    <code>
+    var helloNumber = 1;
+
+    var a = getSyncUrl("http://google.com");
+
+    setTimeout(function() {
+        console.log("Some text from asynchronous function");
+        alert("Synchronous alert from asynchronous function");
+    }, 0);
+
+    document.getElementById("hello").innerText = "Hello there #" + helloNumber++;
+
+    var b = getSyncUrl("http://yahoo.com");
+    var c = getSyncUrl("http://bbc.co.uk");
+
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    </code>
+</pre>
+<hr/>
+<button type="button" id="runScript">Run this code</button>
+
+<br/>
+
+<ul>
+    <li><a href="http://linkedin.com" target="_blank">Linked In</a></li>
+    <li><a href="http://netflix.com" target="_blank">Netflix</a></li>
+    <li><a href="#" onclick="alert('This is the alert');">Show me the alert</a></li>
+</ul>
+
+<h3 id="hello">Hello there (init)</h3>
+
+<script type="text/javascript">
+    let helloNumber = 1;
+    document.getElementById("runScript").addEventListener("click", () => {
+		let a = getSyncUrl("http://google.com");
+
+		setTimeout(function() {
+			console.log("Some text from asynchronous function");
+			alert("Synchronous alert from asynchronous function");
+        }, 0);
+
+		document.getElementById("hello").innerText = "Hello there #" + helloNumber++;
+
+		let b = getSyncUrl("http://yahoo.com");
+		let c = getSyncUrl("http://bbc.co.uk");
+
+		console.log(a);
+		console.log(b);
+		console.log(c);
+    });
+</script>
+</body>
+</html>
