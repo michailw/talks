@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>AWS Services</title>
+
+        <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+        <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <div style="vertical-align: middle; line-height: 10px;">
+                        <img src="../images/logos/Pitney_Bowes_2015.svg" class="logoImage" style="width: 30%; display:inline-block;"/>
+                        <br/>
+                        <br/>
+                        ❤️<br/>️<br/>
+                        <img src="../images/logos/aws.png" class="logoImage" style="max-height: 30vh; max-width:30%"/>
+                        ️<br/>️<br/>
+                    </div>
+                    <h4>Michal Wojtowicz</h4>
+                    <h5>michal@wojtowicz.ovh</h5>
+                    <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+                </section>
+
+                <section>
+                    <img src="../../images/avatar.jpg" class="logoImage avatar"/>
+                    <h2>Michal Wojtowicz</h2>
+                    <h4>Senior Software Engineer</h4>
+                    <img src="../images/logos/Pitney_Bowes_2015.svg" class="logoImage"/>
+                </section>
+
+                <section>
+                    <h1>ZACZYNAMY!</h1>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Ogólne informacje</h2>
+                    </section>
+
+                    <section>
+                        <h2>Regiony</h2>
+                        <img src="../images/Global-Infrastructure.png" class="logoImage"/>
+                    </section>
+
+                    <section>
+                        <h2>Regiony</h2>
+                        <ul>
+                            <li>21 regionów</li>
+                            <li>60 stref (availability zones)</li>
+                            <li class="fragment fade-up">region specjalny - Chiny (Beijing, Ningxia)</li>
+                            <li class="fragment fade-up">region specjalny - US GovCloud (US-East, US-West)</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>US GovCloud</h2>
+                        <img src="../images/usgovcloud.png" class="logoImage"/>
+                    </section>
+
+                    <section>
+                        <h2>
+                            <img src="../images/usgovcloud.png" class="logoImage" style="max-height:4rem; margin:0;"/>
+                            US GovCloud
+                        </h2>
+
+                        <ul>
+                            <li>dostępne tylko dla obywateli USA (lub posiadaczy zielonej karty)</li>
+                            <li>dostęp tylko z terenu USA</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>
+                            <img src="../images/usgovcloud.png" class="logoImage" style="max-height:4rem; margin:0;"/>
+                            US GovCloud - certyfikacje
+                        </h2>
+
+                        <img src="../images/usgovcloud-compliance.png" class="logoImage"/>
+                    </section>
+
+                    <section>
+                        <h2>Virtual private Cloud (VPC) 1/2</h2>
+
+                        <ul>
+                            <li>wirtualna sieć w infrastrukturze AWS</li>
+                            <li>iluzja własnego data center</li>
+                            <li>właściciel VPC zarządza dostępem z/do sieci</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Virtual private Cloud (VPC) 2/2</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">statyczna adresacja IPv4 (elastic IP)</li>
+                            <li class="fragment fade-up">wiele adresów IP wskazujących na zasób</li>
+                            <li class="fragment fade-up">definiowanie/przypisywanie interfejsów sieciowych</li>
+                            <li class="fragment fade-up">konfiguracja security group w trakcie działania zasobów VPC</li>
+                            <li class="fragment fade-up">kontrola ruchu sieciowego</li>
+                            <li class="fragment fade-up">network access control lists</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>EC2 Instances</h2>
+                        <p>
+                            <i>Elastic Compute Cloud</i>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>EC2 Instances</h2>
+                        <ul>
+                            <li class="fragment fade-up">dostarcza wirtualne maszyny</li>
+                            <li class="fragment fade-up">user wybiera typ (CPU, RAM)</li>
+                            <li class="fragment fade-up">dowolna ilość wolumenów dyskowych</li>
+                            <li class="fragment fade-up">płacisz tylko za działające maszyny</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>EC2 Instances - modele sprzedaży</h2>
+                        <ul>
+                            <li class="fragment fade-up">on-demand</li>
+                            <li class="fragment fade-up">reserved</li>
+                            <li class="fragment fade-up">spot instances</li>
+                        </ul>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>on-demand - standardowa płatność za zużycie/h</li>
+                                <li>reserved - płatnośc z wyprzedzeniem, 40% redukcji kosztów względem on-demand</li>
+                                <li>spot - giełda nieuzywanych instancji</li>
+                                <li>dedicated host - rezerwacja na fizyczny serwer do stawiania instancji EC2</li>
+                            </ul>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>EC2 Spot instances</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">pozwala na redukcję kosztów (nawet 10x mniejsze ceny)</li>
+                            <li class="fragment fade-up">w każdej chwili mogą zostać odebrane (2 minutes notification)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>EC2 Spot Fleet</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">definiuje klaster instancji, które sa wymagane do działania</li>
+                            <li class="fragment fade-up">może zawierac mix spot-instances i on-demand</li>
+                            <li class="fragment fade-up">pozwala definiować automatyczne reguły pozwalające obniżać koszty</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>EC2 Instances - typy</h2>
+                        <ul>
+                            <li class="fragment fade-up">General Purpose</li>
+                            <li class="fragment fade-up">Compute optimized</li>
+                            <li class="fragment fade-up">Accelerate Computing (GPU)</li>
+                            <li class="fragment fade-up">Storage optimized</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Amazon Machine Image (AMI)</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">zawiera pełen obraz instancji</li>
+                            <li class="fragment fade-up">obrazy mogą być płatne (np. AWS Linux)</li>
+                            <li class="fragment fade-up">AWS nie pobiera opłat za obrazy systemów open-source (np. Ubuntu)</li>
+                            <li class="fragment fade-up">możliwośc przechowywania własnych AMI</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Instance store</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">storage tymczasowy</li>
+                            <li class="fragment fade-up">dane sa ulotne wskutek usunięcia maszyny lub błędu dysków</li>
+                            <li class="fragment fade-up">dobry na bufory, cache</li>
+                        </ul>
+
+                        <aside class="notes">
+                            maszyny posiadające zasoby instance-store nie mają funkcji STOP
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Elastic Block Storage (EBS)</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">block storage dla instancji</li>
+                            <li class="fragment fade-up">wysoka dostępność i solidność</li>
+                            <li class="fragment fade-up">rekomendowany dla szybkiego dostępu do danych</li>
+                            <li class="fragment fade-up">rekomendowany dla długiego utrzymania danych</li>
+                            <li class="fragment fade-up">wspiera szyfrowanie</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <img src="../images/osi.png" />
+                    </section>
+
+                    <section>
+                        <h2>Security groups</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">firewall działający na warstwie 4</li>
+                            <li class="fragment fade-up">filtruje pakiety ICMP</li>
+                            <li class="fragment fade-up">filtruje pakiety TCP/UDP</li>
+                            <li class="fragment fade-up">umożliwia filtrowanie po zakresie portów</li>
+                            <li class="fragment fade-up">umożliwia filtrowanie po zakresie adresów IP</li>
+                            <li class="fragment fade-up">działa na połączenia przychodzące i wychodzące</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Elastic IP</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">adres IPv4 powiązany z kontem AWS</li>
+                            <li class="fragment fade-up">można go dowolnie przepinać</li>
+                            <li class="fragment fade-up">brak wsparcia dla IPv6</li>
+                            <li class="fragment fade-up">płatny, gdy nieużywany</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Network interfaces</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">reprezentuje wirtualną kartą sieciową</li>
+                            <li class="fragment fade-up">wiele prywatnych adresów IPv4 z puli VPC</li>
+                            <li class="fragment fade-up">jeden publiczny IPv4</li>
+                            <li class="fragment fade-up">wiele publicznych IPv6</li>
+                            <li class="fragment fade-up">MAC adres</li>
+                            <li class="fragment fade-up">wiele security group</li>
+                        </ul>
+
+                        <aside class="notes">
+                            Liczba interfejsów możliwych do przypisania na instancję zależy od jej typu.
+                            Liczba adresów IP możliwych do przypisania równiez się różni w zalezności od typu instancji.
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <h1>Pytania?</h1>
+                </section>
+
+                <section>
+                    <h1>Dzięki za poświęcony czas!</h1>
+                    <p>
+                        Slajdy są dostępne na
+                        <a href="https://michailw.github.io/talks/aws/pl/">https://michailw.github.io/talks/aws/pl/</a>
+                        <br/>
+                        <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+                    </p>
+                </section>
+            </div>
+        </div>
+
+        <script src="../../reveal.js/lib/js/head.min.js"></script>
+        <script src="../../reveal.js/js/reveal.js"></script>
+
+        <script>
+            Reveal.initialize({
+                dependencies: [
+                    { src: 'https://platform.twitter.com/widgets.js' },
+                    { src: '../../reveal.js/plugin/markdown/marked.js' },
+                    { src: '../../reveal.js/plugin/markdown/markdown.js' },
+                    { src: '../../reveal.js/plugin/notes/notes.js', async: true },
+                    { src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
