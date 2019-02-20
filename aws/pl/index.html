@@ -264,6 +264,150 @@
                 </section>
 
                 <section>
+                    <section>
+                        <h2>Virtual private Cloud (VPC) 1/2</h2>
+
+                        <ul>
+                            <li>wirtualna sieć w infrastrukturze AWS</li>
+                            <li>iluzja własnego data center</li>
+                            <li>właściciel VPC zarządza dostępem z/do sieci</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Virtual private Cloud (VPC) 2/2</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">statyczna adresacja IPv4 (elastic IP)</li>
+                            <li class="fragment fade-up">wiele adresów IP wskazujących na zasób</li>
+                            <li class="fragment fade-up">definiowanie/przypisywanie interfejsów sieciowych</li>
+                            <li class="fragment fade-up">konfiguracja security group w trakcie działania zasobów VPC</li>
+                            <li class="fragment fade-up">kontrola ruchu sieciowego</li>
+                            <li class="fragment fade-up">network access control lists</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>VPC - adresacja</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">każda sieć posiada jeden z adresów z zakresów 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</li>
+                            <li class="fragment fade-up">VPC obejmuje wszystkie AZ w regionie</li>
+                            <li class="fragment fade-up">VPC może dzielić się na podsieci</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>VPC - podsieci</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">podsieć jest częścią większej puli adresowej</li>
+                            <li class="fragment fade-up">podsieć obejmuje zasięgiem jedną AZ</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>VPC peering</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">tworzy prywatne połączenie między dwoma VPC</li>
+                            <li class="fragment fade-up">umożliwia łączenie sieci w wielu regionach lub kontach AWS</li>
+                            <li class="fragment fade-up">nie używa zasobów typu VPN lub gateway</li>
+                            <li class="fragment fade-up">nie posiada single-point-of-failure</li>
+                            <li class="fragment fade-up">brak narzutu na transfer</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>NAT gateway</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">pozwalają podłączać prywatne sieci do Internetu</li>
+                            <li class="fragment fade-up">uniemożliwiają dostęp do zasobów VPC z Internetu</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Internet gateway</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">umożliwia dodanie reguł routingu dla zasobów "z Internetu"</li>
+                            <li class="fragment fade-up">uniemożliwiają dostęp do zasobów VPC z Internetu</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Network ACL</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">firewall warstwy 4 dla podsieci</li>
+                            <li class="fragment fade-up">każda podsieć musi mieć przypisany jeden domyślny ACL</li>
+                            <li class="fragment fade-up">domyślnie ACL puszcza wszystko</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Elastic Load Balancer (ELB)</h2>
+                    </section>
+
+                    <section>
+                        <img src="../images/loadBalancer.svg">
+                        <p>&copy; <a href="https://www.educative.io/collection/page/5668639101419520/5649050225344512/5747976207073280">Educative.io</a></p>
+                    </section>
+
+                    <section>
+                        <h2>Typy balancerow (ELB)</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">Network load balancer</li>
+                            <li class="fragment fade-up">Classic Load Balancer</li>
+                            <li class="fragment fade-up">Application Load Balancer</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Network load balancer (ELB)</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">warstwa 4 OSI</li>
+                            <li class="fragment fade-up">żongluje pakietami TCP</li>
+                            <li class="fragment fade-up">może miec przypisany statyczny IP</li>
+                            <li class="fragment fade-up">obsługa SSl (TLS)</li>
+                            <li class="fragment fade-up">wspiera websockety</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Classic load balancer (ELB)</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">warstwa 7 OSI</li>
+                            <li class="fragment fade-up">obsługuje HTTP</li>
+                            <li class="fragment fade-up">sticky sessions</li>
+                            <li class="fragment fade-up">nie wspiera websocketow</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Application load balancer (ELB)</h2>
+
+                        <ul>
+                            <li>warstwa 7 OSI</li>
+                            <li>obsługuje HTTP</li>
+                            <li>sticky sessions</li>
+                            <li class="fragment fade-up">obsługa HTTP/2</li>
+                            <li class="fragment fade-up">routing na podstawie hosta / ścieżki</li>
+                            <li class="fragment fade-up">funkcje lambda jako target</li>
+                            <li class="fragment fade-up">uwierzytelnianie</li>
+                            <li class="fragment fade-up">przekierowania</li>
+                            <li class="fragment fade-up">wspiera websockety</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="q&a">
                     <h1>Pytania?</h1>
                 </section>
 
