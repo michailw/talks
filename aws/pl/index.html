@@ -436,6 +436,18 @@
                     { src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
                 ]
             });
+
+            Reveal.addKeyBinding(
+                {
+                    keyCode: 80,
+                    key: 'P',
+                    description: 'Jump to the end of slideshow'
+                },
+                function() {
+					let indices = Reveal.getIndices(document.getElementById('q&a'));
+					Reveal.slide(indices.h, indices.v, indices.f);
+                }
+            );
         </script>
     </body>
 </html>

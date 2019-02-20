@@ -3,6 +3,7 @@
 *.map
 node_modules
 !/overwrites/**/*.css
+.DS_Store
 
 docker-compose.yml
 
