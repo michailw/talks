@@ -407,6 +407,95 @@
                     </section>
                 </section>
 
+                <section>
+                    <section>
+                        <h2>Simple Storage Service (S3)</h2>
+                    </section>
+
+                    <section>
+                        <h2>S3</h2>
+
+                        <ul>
+                            <li>object storage</li>
+                            <li class="fragment fade-up">przechowuje dane w tzw. bucketach</li>
+                            <li class="fragment fade-up">wystawia dane do pobierania po HTTP</li>
+                            <li class="fragment fade-up">umożliwia na ograniczenia dostępu do obiektów</li>
+                            <li class="fragment fade-up">obiekty mogą być wersjonowane</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>S3 Bucket</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">bucket istnieje w konkretnym regionie</li>
+                            <li class="fragment fade-up">nazwa bucketa musi być unikalna w skali globalnej</li>
+                            <li class="fragment fade-up">bucket może być szyfrowany</li>
+                            <li class="fragment fade-up">bucket policies / ACL</li>
+                            <li class="fragment fade-up">replikacja multiregionalna</li>
+                            <li class="fragment fade-up">eventy</li>
+                        </ul>
+
+                        <aside class="notes">
+                            S3 wspiera protokół BitTorrent do pobierania plików
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Relational Database Service (RDS)</h2>
+                    </section>
+
+                    <section>
+                        <h2>RDS</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">baza danych jako serwis</li>
+                            <li class="fragment fade-up">pozwala skalować CPU, pamięć, dysk, IOPS niezależnie od siebie</li>
+                            <li class="fragment fade-up">dba o backupy, fail detection, data recovery</li>
+                            <li class="fragment fade-up">automatyczne aktualizacje silnika</li>
+                            <li class="fragment fade-up">uproszczona replikacja danych</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>RDS - silniki</h2>
+
+                        <ul>
+                            <li>Aurora / MySQL / MariaDB</li>
+                            <li>PostgreSQL</li>
+                            <li>MS SQL</li>
+                            <li>Oracle</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>RDS - ograniczenia</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">typ instancji</li>
+                            <li class="fragment fade-up">brak dostępu do tabel systemowych</li>
+                            <li class="fragment fade-up">brak dostępu do instancji przez SSH</li>
+                        </ul>
+
+                        <aside class="notes">
+                            Typy: Magnetic, General Purpose (SSD), Provisioned IOPS
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>RDS - backupy</h2>
+
+                        <ul>
+                            <li class="fragment fade-up">ręczne</li>
+                            <li class="fragment fade-up">zautomatyzowane (cykliczne)</li>
+                            <li class="fragment fade-up">pierwszy zawiera pełną kopię danych z bazy</li>
+                            <li class="fragment fade-up">pkażdy kolejny jest przyrostowy</li>
+                        </ul>
+                    </section>
+                </section>
+
                 <section id="q&a">
                     <h1>Pytania?</h1>
                 </section>
