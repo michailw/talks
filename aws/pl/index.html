@@ -95,7 +95,9 @@
 
                         <img src="../images/usgovcloud-compliance.png" class="logoImage"/>
                     </section>
+                </section>
 
+                <section>
                     <section>
                         <h2>Virtual private Cloud (VPC) 1/2</h2>
 
@@ -496,6 +498,16 @@
                     </section>
                 </section>
 
+                <section>
+                    <section>
+                        <h2>Identity and Access Management (IAM)</h2>
+                    </section>
+
+                    <section>
+                        <h2>IAM</h2>
+                    </section>
+                </section>
+
                 <section id="q&a">
                     <h1>Pytania?</h1>
                 </section>
@@ -522,21 +534,10 @@
                     { src: '../../reveal.js/plugin/markdown/marked.js' },
                     { src: '../../reveal.js/plugin/markdown/markdown.js' },
                     { src: '../../reveal.js/plugin/notes/notes.js', async: true },
-                    { src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                    { src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../../reveal-alt-arrows/alt-arrows.js' }
                 ]
             });
-
-            Reveal.addKeyBinding(
-                {
-                    keyCode: 80,
-                    key: 'P',
-                    description: 'Jump to the end of slideshow'
-                },
-                function() {
-					let indices = Reveal.getIndices(document.getElementById('q&a'));
-					Reveal.slide(indices.h, indices.v, indices.f);
-                }
-            );
         </script>
     </body>
 </html>
