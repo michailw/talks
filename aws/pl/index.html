@@ -1,543 +1,1052 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-        <title>AWS Services</title>
-
-        <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
-        <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
-        <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
-
-        <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
-
-        <!-- Printing and PDF exports -->
-        <script>
-            var link = document.createElement( 'link' );
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
-            document.getElementsByTagName( 'head' )[0].appendChild( link );
-        </script>
-    </head>
-    <body>
-        <div class="reveal">
-            <div class="slides">
-                <section>
-                    <div style="vertical-align: middle; line-height: 10px;">
-                        <img src="../images/logos/Pitney_Bowes_2015.svg" class="logoImage" style="width: 30%; display:inline-block;"/>
-                        <br/>
-                        <br/>
-                        ❤️<br/>️<br/>
-                        <img src="../images/logos/aws.png" class="logoImage" style="max-height: 30vh; max-width:30%"/>
-                        ️<br/>️<br/>
-                    </div>
-                    <h4>Michal Wojtowicz</h4>
-                    <h5>michal@wojtowicz.ovh</h5>
-                    <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
-                </section>
-
-                <section>
-                    <img src="../../images/avatar.jpg" class="logoImage avatar"/>
-                    <h2>Michal Wojtowicz</h2>
-                    <h4>Senior Software Engineer</h4>
-                    <img src="../images/logos/Pitney_Bowes_2015.svg" class="logoImage"/>
-                </section>
-
-                <section>
-                    <h1>ZACZYNAMY!</h1>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Ogólne informacje</h2>
-                    </section>
-
-                    <section>
-                        <h2>Regiony</h2>
-                        <img src="../images/Global-Infrastructure.png" class="logoImage"/>
-                    </section>
-
-                    <section>
-                        <h2>Regiony</h2>
-                        <ul>
-                            <li>21 regionów</li>
-                            <li>60 stref (availability zones)</li>
-                            <li class="fragment fade-up">region specjalny - Chiny (Beijing, Ningxia)</li>
-                            <li class="fragment fade-up">region specjalny - US GovCloud (US-East, US-West)</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>US GovCloud</h2>
-                        <img src="../images/usgovcloud.png" class="logoImage"/>
-                    </section>
-
-                    <section>
-                        <h2>
-                            <img src="../images/usgovcloud.png" class="logoImage" style="max-height:4rem; margin:0;"/>
-                            US GovCloud
-                        </h2>
-
-                        <ul>
-                            <li>dostępne tylko dla obywateli USA (lub posiadaczy zielonej karty)</li>
-                            <li>dostęp tylko z terenu USA</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>
-                            <img src="../images/usgovcloud.png" class="logoImage" style="max-height:4rem; margin:0;"/>
-                            US GovCloud - certyfikacje
-                        </h2>
-
-                        <img src="../images/usgovcloud-compliance.png" class="logoImage"/>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Virtual private Cloud (VPC) 1/2</h2>
-
-                        <ul>
-                            <li>wirtualna sieć w infrastrukturze AWS</li>
-                            <li>iluzja własnego data center</li>
-                            <li>właściciel VPC zarządza dostępem z/do sieci</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Virtual private Cloud (VPC) 2/2</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">statyczna adresacja IPv4 (elastic IP)</li>
-                            <li class="fragment fade-up">wiele adresów IP wskazujących na zasób</li>
-                            <li class="fragment fade-up">definiowanie/przypisywanie interfejsów sieciowych</li>
-                            <li class="fragment fade-up">konfiguracja security group w trakcie działania zasobów VPC</li>
-                            <li class="fragment fade-up">kontrola ruchu sieciowego</li>
-                            <li class="fragment fade-up">network access control lists</li>
-                        </ul>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>EC2 Instances</h2>
-                        <p>
-                            <i>Elastic Compute Cloud</i>
-                        </p>
-                    </section>
-                    <section>
-                        <h2>EC2 Instances</h2>
-                        <ul>
-                            <li class="fragment fade-up">dostarcza wirtualne maszyny</li>
-                            <li class="fragment fade-up">user wybiera typ (CPU, RAM)</li>
-                            <li class="fragment fade-up">dowolna ilość wolumenów dyskowych</li>
-                            <li class="fragment fade-up">płacisz tylko za działające maszyny</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>EC2 Instances - modele sprzedaży</h2>
-                        <ul>
-                            <li class="fragment fade-up">on-demand</li>
-                            <li class="fragment fade-up">reserved</li>
-                            <li class="fragment fade-up">spot instances</li>
-                        </ul>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>on-demand - standardowa płatność za zużycie/h</li>
-                                <li>reserved - płatnośc z wyprzedzeniem, 40% redukcji kosztów względem on-demand</li>
-                                <li>spot - giełda nieuzywanych instancji</li>
-                                <li>dedicated host - rezerwacja na fizyczny serwer do stawiania instancji EC2</li>
-                            </ul>
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>EC2 Spot instances</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">pozwala na redukcję kosztów (nawet 10x mniejsze ceny)</li>
-                            <li class="fragment fade-up">w każdej chwili mogą zostać odebrane (2 minutes notification)</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>EC2 Spot Fleet</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">definiuje klaster instancji, które sa wymagane do działania</li>
-                            <li class="fragment fade-up">może zawierac mix spot-instances i on-demand</li>
-                            <li class="fragment fade-up">pozwala definiować automatyczne reguły pozwalające obniżać koszty</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>EC2 Instances - typy</h2>
-                        <ul>
-                            <li class="fragment fade-up">General Purpose</li>
-                            <li class="fragment fade-up">Compute optimized</li>
-                            <li class="fragment fade-up">Accelerate Computing (GPU)</li>
-                            <li class="fragment fade-up">Storage optimized</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>Amazon Machine Image (AMI)</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">zawiera pełen obraz instancji</li>
-                            <li class="fragment fade-up">obrazy mogą być płatne (np. Windows)</li>
-                            <li class="fragment fade-up">AWS nie pobiera opłat za obrazy systemów open-source (np. Ubuntu)</li>
-                            <li class="fragment fade-up">możliwośc przechowywania własnych AMI</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>Instance store</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">storage tymczasowy</li>
-                            <li class="fragment fade-up">dane sa ulotne wskutek usunięcia maszyny lub błędu dysków</li>
-                            <li class="fragment fade-up">dobry na bufory, cache</li>
-                        </ul>
-
-                        <aside class="notes">
-                            maszyny mające root dir na instance-store nie mają funkcji STOP
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>Elastic Block Storage (EBS)</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">block storage dla instancji</li>
-                            <li class="fragment fade-up">wysoka dostępność i solidność</li>
-                            <li class="fragment fade-up">rekomendowany dla szybkiego dostępu do danych</li>
-                            <li class="fragment fade-up">rekomendowany dla długiego utrzymania danych</li>
-                            <li class="fragment fade-up">wspiera szyfrowanie</li>
-                        </ul>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <img src="../images/osi.png" />
-                    </section>
-
-                    <section>
-                        <h2>Security groups</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">firewall działający na warstwie 4</li>
-                            <li class="fragment fade-up">filtruje pakiety ICMP</li>
-                            <li class="fragment fade-up">filtruje pakiety TCP/UDP</li>
-                            <li class="fragment fade-up">umożliwia filtrowanie po zakresie portów</li>
-                            <li class="fragment fade-up">umożliwia filtrowanie po zakresie adresów IP</li>
-                            <li class="fragment fade-up">działa na połączenia przychodzące i wychodzące</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Elastic IP</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">adres IPv4 powiązany z kontem AWS</li>
-                            <li class="fragment fade-up">można go dowolnie przepinać</li>
-                            <li class="fragment fade-up">brak wsparcia dla IPv6</li>
-                            <li class="fragment fade-up">płatny, gdy nieużywany</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Network interfaces</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">reprezentuje wirtualną kartą sieciową</li>
-                            <li class="fragment fade-up">wiele prywatnych adresów IPv4 z puli VPC</li>
-                            <li class="fragment fade-up">jeden publiczny IPv4</li>
-                            <li class="fragment fade-up">wiele publicznych IPv6</li>
-                            <li class="fragment fade-up">MAC adres</li>
-                            <li class="fragment fade-up">wiele security group</li>
-                        </ul>
-
-                        <aside class="notes">
-                            Liczba interfejsów możliwych do przypisania na instancję zależy od jej typu.
-                            Liczba adresów IP możliwych do przypisania równiez się różni w zalezności od typu instancji.
-                        </aside>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Virtual private Cloud (VPC) 1/2</h2>
-
-                        <ul>
-                            <li>wirtualna sieć w infrastrukturze AWS</li>
-                            <li>iluzja własnego data center</li>
-                            <li>właściciel VPC zarządza dostępem z/do sieci</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Virtual private Cloud (VPC) 2/2</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">statyczna adresacja IPv4 (elastic IP)</li>
-                            <li class="fragment fade-up">wiele adresów IP wskazujących na zasób</li>
-                            <li class="fragment fade-up">definiowanie/przypisywanie interfejsów sieciowych</li>
-                            <li class="fragment fade-up">konfiguracja security group w trakcie działania zasobów VPC</li>
-                            <li class="fragment fade-up">kontrola ruchu sieciowego</li>
-                            <li class="fragment fade-up">network access control lists</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>VPC - adresacja</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">każda sieć posiada jeden z adresów z zakresów 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</li>
-                            <li class="fragment fade-up">VPC obejmuje wszystkie AZ w regionie</li>
-                            <li class="fragment fade-up">VPC może dzielić się na podsieci</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>VPC - podsieci</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">podsieć jest częścią większej puli adresowej</li>
-                            <li class="fragment fade-up">podsieć obejmuje zasięgiem jedną AZ</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>VPC peering</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">tworzy prywatne połączenie między dwoma VPC</li>
-                            <li class="fragment fade-up">umożliwia łączenie sieci w wielu regionach lub kontach AWS</li>
-                            <li class="fragment fade-up">nie używa zasobów typu VPN lub gateway</li>
-                            <li class="fragment fade-up">nie posiada single-point-of-failure</li>
-                            <li class="fragment fade-up">brak narzutu na transfer</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>NAT gateway</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">pozwalają podłączać prywatne sieci do Internetu</li>
-                            <li class="fragment fade-up">uniemożliwiają dostęp do zasobów VPC z Internetu</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Internet gateway</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">umożliwia dodanie reguł routingu dla zasobów "z Internetu"</li>
-                            <li class="fragment fade-up">uniemożliwiają dostęp do zasobów VPC z Internetu</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Network ACL</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">firewall warstwy 4 dla podsieci</li>
-                            <li class="fragment fade-up">każda podsieć musi mieć przypisany jeden domyślny ACL</li>
-                            <li class="fragment fade-up">domyślnie ACL puszcza wszystko</li>
-                        </ul>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Elastic Load Balancer (ELB)</h2>
-                    </section>
-
-                    <section>
-                        <img src="../images/loadBalancer.svg">
-                        <p>&copy; <a href="https://www.educative.io/collection/page/5668639101419520/5649050225344512/5747976207073280">Educative.io</a></p>
-                    </section>
-
-                    <section>
-                        <h2>Typy balancerow (ELB)</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">Network load balancer</li>
-                            <li class="fragment fade-up">Classic Load Balancer</li>
-                            <li class="fragment fade-up">Application Load Balancer</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Network load balancer (ELB)</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">warstwa 4 OSI</li>
-                            <li class="fragment fade-up">żongluje pakietami TCP</li>
-                            <li class="fragment fade-up">może miec przypisany statyczny IP</li>
-                            <li class="fragment fade-up">obsługa SSl (TLS)</li>
-                            <li class="fragment fade-up">wspiera websockety</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Classic load balancer (ELB)</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">warstwa 7 OSI</li>
-                            <li class="fragment fade-up">obsługuje HTTP</li>
-                            <li class="fragment fade-up">sticky sessions</li>
-                            <li class="fragment fade-up">nie wspiera websocketow</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Application load balancer (ELB)</h2>
-
-                        <ul>
-                            <li>warstwa 7 OSI</li>
-                            <li>obsługuje HTTP</li>
-                            <li>sticky sessions</li>
-                            <li class="fragment fade-up">obsługa HTTP/2</li>
-                            <li class="fragment fade-up">routing na podstawie hosta / ścieżki</li>
-                            <li class="fragment fade-up">funkcje lambda jako target</li>
-                            <li class="fragment fade-up">uwierzytelnianie</li>
-                            <li class="fragment fade-up">przekierowania</li>
-                            <li class="fragment fade-up">wspiera websockety</li>
-                        </ul>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Simple Storage Service (S3)</h2>
-                    </section>
-
-                    <section>
-                        <h2>S3</h2>
-
-                        <ul>
-                            <li>object storage</li>
-                            <li class="fragment fade-up">przechowuje dane w tzw. bucketach</li>
-                            <li class="fragment fade-up">wystawia dane do pobierania po HTTP</li>
-                            <li class="fragment fade-up">umożliwia na ograniczenia dostępu do obiektów</li>
-                            <li class="fragment fade-up">obiekty mogą być wersjonowane</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>S3 Bucket</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">bucket istnieje w konkretnym regionie</li>
-                            <li class="fragment fade-up">nazwa bucketa musi być unikalna w skali globalnej</li>
-                            <li class="fragment fade-up">bucket może być szyfrowany</li>
-                            <li class="fragment fade-up">bucket policies / ACL</li>
-                            <li class="fragment fade-up">replikacja multiregionalna</li>
-                            <li class="fragment fade-up">eventy</li>
-                        </ul>
-
-                        <aside class="notes">
-                            S3 wspiera protokół BitTorrent do pobierania plików
-                        </aside>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Relational Database Service (RDS)</h2>
-                    </section>
-
-                    <section>
-                        <h2>RDS</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">baza danych jako serwis</li>
-                            <li class="fragment fade-up">pozwala skalować CPU, pamięć, dysk, IOPS niezależnie od siebie</li>
-                            <li class="fragment fade-up">dba o backupy, fail detection, data recovery</li>
-                            <li class="fragment fade-up">automatyczne aktualizacje silnika</li>
-                            <li class="fragment fade-up">uproszczona replikacja danych</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>RDS - silniki</h2>
-
-                        <ul>
-                            <li>Aurora / MySQL / MariaDB</li>
-                            <li>PostgreSQL</li>
-                            <li>MS SQL</li>
-                            <li>Oracle</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>RDS - ograniczenia</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">typ instancji</li>
-                            <li class="fragment fade-up">brak dostępu do tabel systemowych</li>
-                            <li class="fragment fade-up">brak dostępu do instancji przez SSH</li>
-                        </ul>
-
-                        <aside class="notes">
-                            Typy: Magnetic, General Purpose (SSD), Provisioned IOPS
-                        </aside>
-                    </section>
-
-                    <section>
-                        <h2>RDS - backupy</h2>
-
-                        <ul>
-                            <li class="fragment fade-up">ręczne</li>
-                            <li class="fragment fade-up">zautomatyzowane (cykliczne)</li>
-                            <li class="fragment fade-up">pierwszy zawiera pełną kopię danych z bazy</li>
-                            <li class="fragment fade-up">pkażdy kolejny jest przyrostowy</li>
-                        </ul>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Identity and Access Management (IAM)</h2>
-                    </section>
-
-                    <section>
-                        <h2>IAM</h2>
-                    </section>
-                </section>
-
-                <section id="q&a">
-                    <h1>Pytania?</h1>
-                </section>
-
-                <section>
-                    <h1>Dzięki za poświęcony czas!</h1>
-                    <p>
-                        Slajdy są dostępne na
-                        <a href="https://michailw.github.io/talks/aws/pl/">https://michailw.github.io/talks/aws/pl/</a>
-                        <br/>
-                        <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
-                    </p>
-                </section>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AWS Services</title>
+
+    <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        .lambdaLogo {
+            border: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <div style="vertical-align: middle; line-height: 10px;">
+                <img src="../images/logos/Pitney_Bowes_2015.svg" class="logoImage" style="width: 30%; display:inline-block;"/>
+                <br/>
+                <br/>
+                ❤️<br/>️<br/>
+                <img src="../images/logos/aws.png" class="logoImage" style="max-height: 30vh; max-width:30%"/>
+                ️<br/>️<br/>
             </div>
-        </div>
+            <h4>Michal Wojtowicz</h4>
+            <h5>michal@wojtowicz.ovh</h5>
+            <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+        </section>
 
-        <script src="../../reveal.js/lib/js/head.min.js"></script>
-        <script src="../../reveal.js/js/reveal.js"></script>
+        <section>
+            <img src="../../images/avatar.jpg" class="logoImage avatar"/>
+            <h2>Michal Wojtowicz</h2>
+            <h4>Senior Software Engineer</h4>
+            <img src="../images/logos/Pitney_Bowes_2015.svg" class="logoImage"/>
+        </section>
 
-        <script>
-            Reveal.initialize({
-                dependencies: [
-                    { src: 'https://platform.twitter.com/widgets.js' },
-                    { src: '../../reveal.js/plugin/markdown/marked.js' },
-                    { src: '../../reveal.js/plugin/markdown/markdown.js' },
-                    { src: '../../reveal.js/plugin/notes/notes.js', async: true },
-                    { src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: '../../reveal-alt-arrows/alt-arrows.js' }
-                ]
-            });
-        </script>
-    </body>
+        <section>
+            <h1>ZACZYNAMY!</h1>
+        </section>
+
+        <section>
+            <section>
+                <h1>Czym jest chmura?</h1>
+            </section>
+
+            <section>
+                <h2>Czym jest chmura?</h2>
+
+                <ul>
+                    <li class="fragment fade-up">usługa oferująca oprogramowanie i/lub infrastrukturę</li>
+                    <li class="fragment fade-up">eliminuje zakup licencji</li>
+                    <li class="fragment fade-up">eliminuje zakup sprzętu</li>
+                    <li class="fragment fade-up">ściąga odpowiedzialność za zarządzanie sprzętem</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Modele chmury</h2>
+
+                <p style="font-size: 5rem;">
+                    IaaS / Paas / SaaS<br/>
+                </p>
+                <p>
+                    <span data-fragment-index="1" class="fragment fade-up" style="margin-right:100px;">Infrastructure</span>
+                    <span data-fragment-index="3" class="fragment fade-up" style="margin-right:100px;">Platform</span>
+                    <span data-fragment-index="4" class="fragment fade-up" style="margin-right:100px;">Software</span>
+                </p>
+
+                <p class="fragment fade-up" data-fragment-index="2">
+                    ... as a Service
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>AWS - Ogólne informacje</h2>
+            </section>
+
+            <section>
+                <h2>Regiony</h2>
+                <img src="../images/Global-Infrastructure.png" class="logoImage"/>
+            </section>
+
+            <section>
+                <h2>Regiony</h2>
+                <ul>
+                    <li>21 regionów</li>
+                    <li>60 stref (availability zones)</li>
+                    <li class="fragment fade-up">region specjalny - Chiny (Beijing, Ningxia)</li>
+                    <li class="fragment fade-up">region specjalny - US GovCloud (US-East, US-West)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>US GovCloud</h2>
+                <img src="../images/usgovcloud.png" class="logoImage"/>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../images/usgovcloud.png" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    US GovCloud
+                </h2>
+
+                <ul>
+                    <li>dostępne tylko dla obywateli USA (lub posiadaczy zielonej karty)</li>
+                    <li>dostęp tylko z terenu USA</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../images/usgovcloud.png" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    US GovCloud - certyfikacje
+                </h2>
+
+                <img src="../images/usgovcloud-compliance.png" class="logoImage"/>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Identity and Access Management (IAM)</h2>
+            </section>
+
+            <section>
+                <h2>IAM</h2>
+
+                <ul>
+                    <li class="fragment fade-up">kontrola nad dostępem do zasobów AWS</li>
+                    <li class="fragment fade-up">dostarcza mechanizmy uwierzytelniania i autoryzacji</li>
+                    <li class="fragment fade-up">pozwala współdzielić zasoby w ramach jednego konta AWS</li>
+                    <li class="fragment fade-up">atomowe uprawnienia do zasobów</li>
+                    <li class="fragment fade-up">zabezpiecza zasoby przed aplikacjami uruchamianymi w AWS</li>
+                    <li class="fragment fade-up">MFA</li>
+                    <li class="fragment fade-up">Eventually Consistent</li>
+                    <li class="fragment fade-up">gratis 💰</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>IAM - użytkownicy</h2>
+
+                <ul>
+                    <li class="fragment fade-up">root user - pełna władza</li>
+                    <li class="fragment fade-up">IAM user - użytkownik z uprawnieniami</li>
+                    <li class="fragment fade-up">użytkownik może się uwierzytelnić loginem i hasłem</li>
+                    <li class="fragment fade-up">użytkownik może się uwierzytelnić kluczami API (max 2)</li>
+                    <li class="fragment fade-up">dane użytkowników mogą zostać dostarczone z zewnątrz</li>
+                    <li class="fragment fade-up">użytkownicy mogą być łączeni w grupy</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>IAM - permissions, policies</h2>
+
+                <ul>
+                    <li class="fragment fade-up">policy - zestaw reguł uprawnień dostępu (permissions)</li>
+                    <li class="fragment fade-up">reguły mogą przyznawać, bądź odbierać dostęp</li>
+                    <li class="fragment fade-up">policy mogą być przypisywane do użytkowników i grup</li>
+                    <li class="fragment fade-up">każdy użytkownik/grupa może mieć przypisane wiele policies</li>
+                    <li class="fragment fade-up">uprawnienia mogą być ogólne, jak i szczegółowe</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>IAM - roles</h2>
+
+                <ul>
+                    <li class="fragment fade-up">role - sztuczna "tożsamość"</li>
+                    <li class="fragment fade-up">może mieć przypisane wiele policies</li>
+                    <li class="fragment fade-up">rola może być tymczasowo przypisywana do użytkownika/zasobu</li>
+                    <li class="fragment fade-up">w przypadku EC2 instancje wymagają "instance profile" do korzystania z ról</li>
+                </ul>
+
+                <aside class="notes">
+                    instance profile pozwala instancji EC2 uzyskiwać tymczasowe klucze do korzystania z AWS SDK
+                </aside>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Virtual private Cloud (VPC) 1/2</h2>
+
+                <ul>
+                    <li>wirtualna sieć w infrastrukturze AWS</li>
+                    <li>iluzja własnego data center</li>
+                    <li>właściciel VPC zarządza dostępem z/do sieci</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Virtual private Cloud (VPC) 2/2</h2>
+
+                <ul>
+                    <li class="fragment fade-up">statyczna adresacja IPv4 (elastic IP)</li>
+                    <li class="fragment fade-up">wiele adresów IP wskazujących na zasób</li>
+                    <li class="fragment fade-up">definiowanie/przypisywanie interfejsów sieciowych</li>
+                    <li class="fragment fade-up">konfiguracja security group w trakcie działania zasobów VPC</li>
+                    <li class="fragment fade-up">kontrola ruchu sieciowego</li>
+                    <li class="fragment fade-up">network access control lists</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>EC2 Instances</h2>
+                <p>
+                    <i>Elastic Compute Cloud</i>
+                </p>
+            </section>
+            <section>
+                <h2>EC2 Instances</h2>
+                <ul>
+                    <li class="fragment fade-up">dostarcza wirtualne maszyny</li>
+                    <li class="fragment fade-up">user wybiera typ (CPU, RAM)</li>
+                    <li class="fragment fade-up">dowolna ilość wolumenów dyskowych</li>
+                    <li class="fragment fade-up">płacisz tylko za działające maszyny</li>
+                </ul>
+            </section>
+            <section>
+                <h2>EC2 Instances - modele sprzedaży</h2>
+                <ul>
+                    <li class="fragment fade-up">on-demand</li>
+                    <li class="fragment fade-up">reserved</li>
+                    <li class="fragment fade-up">spot instances</li>
+                </ul>
+
+                <aside class="notes">
+                    <ul>
+                        <li>on-demand - standardowa płatność za zużycie/h</li>
+                        <li>reserved - płatnośc z wyprzedzeniem, 40% redukcji kosztów względem on-demand</li>
+                        <li>spot - giełda nieuzywanych instancji</li>
+                        <li>dedicated host - rezerwacja na fizyczny serwer do stawiania instancji EC2</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>EC2 Spot instances</h2>
+
+                <ul>
+                    <li class="fragment fade-up">pozwala na redukcję kosztów (nawet 10x mniejsze ceny)</li>
+                    <li class="fragment fade-up">w każdej chwili mogą zostać odebrane (2 minutes notification)</li>
+                </ul>
+            </section>
+            <section>
+                <h2>EC2 Spot Fleet</h2>
+
+                <ul>
+                    <li class="fragment fade-up">definiuje klaster instancji, które sa wymagane do działania</li>
+                    <li class="fragment fade-up">może zawierac mix spot-instances i on-demand</li>
+                    <li class="fragment fade-up">pozwala definiować automatyczne reguły pozwalające obniżać koszty</li>
+                </ul>
+            </section>
+            <section>
+                <h2>EC2 Instances - typy</h2>
+                <ul>
+                    <li class="fragment fade-up">General Purpose</li>
+                    <li class="fragment fade-up">Compute optimized</li>
+                    <li class="fragment fade-up">Accelerate Computing (GPU)</li>
+                    <li class="fragment fade-up">Storage optimized</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Amazon Machine Image (AMI)</h2>
+
+                <ul>
+                    <li class="fragment fade-up">zawiera pełen obraz instancji</li>
+                    <li class="fragment fade-up">obrazy mogą być płatne (np. Windows)</li>
+                    <li class="fragment fade-up">AWS nie pobiera opłat za obrazy systemów open-source (np. Ubuntu)</li>
+                    <li class="fragment fade-up">możliwośc przechowywania własnych AMI</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Instance store</h2>
+
+                <ul>
+                    <li class="fragment fade-up">storage tymczasowy</li>
+                    <li class="fragment fade-up">dane sa ulotne wskutek usunięcia maszyny lub błędu dysków</li>
+                    <li class="fragment fade-up">dobry na bufory, cache</li>
+                </ul>
+
+                <aside class="notes">
+                    maszyny mające root dir na instance-store nie mają funkcji STOP
+                </aside>
+            </section>
+            <section>
+                <h2>Elastic Block Storage (EBS)</h2>
+
+                <ul>
+                    <li class="fragment fade-up">block storage dla instancji</li>
+                    <li class="fragment fade-up">wysoka dostępność i solidność</li>
+                    <li class="fragment fade-up">rekomendowany dla szybkiego dostępu do danych</li>
+                    <li class="fragment fade-up">rekomendowany dla długiego utrzymania danych</li>
+                    <li class="fragment fade-up">wspiera szyfrowanie</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <img src="../images/osi.png" />
+            </section>
+
+            <section>
+                <h2>Security groups</h2>
+
+                <ul>
+                    <li class="fragment fade-up">firewall działający na warstwie 4</li>
+                    <li class="fragment fade-up">filtruje pakiety ICMP</li>
+                    <li class="fragment fade-up">filtruje pakiety TCP/UDP</li>
+                    <li class="fragment fade-up">umożliwia filtrowanie po zakresie portów</li>
+                    <li class="fragment fade-up">umożliwia filtrowanie po zakresie adresów IP</li>
+                    <li class="fragment fade-up">działa na połączenia przychodzące i wychodzące</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Elastic IP</h2>
+
+                <ul>
+                    <li class="fragment fade-up">adres IPv4 powiązany z kontem AWS</li>
+                    <li class="fragment fade-up">można go dowolnie przepinać</li>
+                    <li class="fragment fade-up">brak wsparcia dla IPv6</li>
+                    <li class="fragment fade-up">płatny, gdy nieużywany</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Network interfaces</h2>
+
+                <ul>
+                    <li class="fragment fade-up">jest wirtualną kartą sieciową</li>
+                    <li class="fragment fade-up">wiele prywatnych adresów IPv4 z puli VPC</li>
+                    <li class="fragment fade-up">jeden publiczny IPv4</li>
+                    <li class="fragment fade-up">wiele publicznych IPv6</li>
+                    <li class="fragment fade-up">MAC adres</li>
+                    <li class="fragment fade-up">wiele security group</li>
+                </ul>
+
+                <aside class="notes">
+                    Liczba interfejsów możliwych do przypisania na instancję zależy od jej typu.
+                    Liczba adresów IP możliwych do przypisania równiez się różni w zalezności od typu instancji.
+                </aside>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Virtual private Cloud (VPC) 1/2</h2>
+
+                <ul>
+                    <li>wirtualna sieć w infrastrukturze AWS</li>
+                    <li>iluzja własnego data center</li>
+                    <li>właściciel VPC zarządza dostępem z/do sieci</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Virtual private Cloud (VPC) 2/2</h2>
+
+                <ul>
+                    <li class="fragment fade-up">statyczna adresacja IPv4 (elastic IP)</li>
+                    <li class="fragment fade-up">wiele adresów IP wskazujących na zasób</li>
+                    <li class="fragment fade-up">definiowanie/przypisywanie interfejsów sieciowych</li>
+                    <li class="fragment fade-up">konfiguracja security group w trakcie działania zasobów VPC</li>
+                    <li class="fragment fade-up">kontrola ruchu sieciowego</li>
+                    <li class="fragment fade-up">network access control lists</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>VPC - adresacja</h2>
+
+                <ul>
+                    <li class="fragment fade-up">każda sieć posiada jeden z adresów z zakresów 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</li>
+                    <li class="fragment fade-up">VPC obejmuje wszystkie AZ w regionie</li>
+                    <li class="fragment fade-up">VPC może dzielić się na podsieci</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>VPC - podsieci</h2>
+
+                <ul>
+                    <li class="fragment fade-up">podsieć jest częścią większej puli adresowej</li>
+                    <li class="fragment fade-up">podsieć obejmuje zasięgiem jedną AZ</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>VPC peering</h2>
+
+                <ul>
+                    <li class="fragment fade-up">tworzy prywatne połączenie między dwoma VPC</li>
+                    <li class="fragment fade-up">umożliwia łączenie sieci w wielu regionach lub kontach AWS</li>
+                    <li class="fragment fade-up">nie używa zasobów typu VPN lub gateway</li>
+                    <li class="fragment fade-up">nie posiada single-point-of-failure</li>
+                    <li class="fragment fade-up">brak narzutu na transfer</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>NAT gateway</h2>
+
+                <ul>
+                    <li class="fragment fade-up">pozwalają podłączać prywatne sieci do Internetu</li>
+                    <li class="fragment fade-up">uniemożliwiają dostęp do zasobów VPC z Internetu</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Internet gateway</h2>
+
+                <ul>
+                    <li class="fragment fade-up">umożliwia dodanie reguł routingu dla zasobów "z Internetu"</li>
+                    <li class="fragment fade-up">umożliwiają dostęp do zasobów VPC z Internetu</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Network ACL</h2>
+
+                <ul>
+                    <li class="fragment fade-up">firewall warstwy 4 dla podsieci</li>
+                    <li class="fragment fade-up">każda podsieć musi mieć przypisany jeden domyślny ACL</li>
+                    <li class="fragment fade-up">domyślnie ACL puszcza wszystko</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Elastic Load Balancer (ELB)</h2>
+            </section>
+
+            <section>
+                <img src="../images/loadBalancer.svg">
+                <p>&copy; <a href="https://www.educative.io/collection/page/5668639101419520/5649050225344512/5747976207073280">Educative.io</a></p>
+            </section>
+
+            <section>
+                <h2>Typy balancerów (ELB)</h2>
+
+                <ul>
+                    <li class="fragment fade-up">Network load balancer</li>
+                    <li class="fragment fade-up">Classic Load Balancer</li>
+                    <li class="fragment fade-up">Application Load Balancer</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Network load balancer (ELB)</h2>
+
+                <ul>
+                    <li class="fragment fade-up">warstwa 4 OSI</li>
+                    <li class="fragment fade-up">żongluje pakietami TCP</li>
+                    <li class="fragment fade-up">może miec przypisany statyczny IP</li>
+                    <li class="fragment fade-up">obsługa SSL (TLS)</li>
+                    <li class="fragment fade-up">targetuje instancje lub adresy IP</li>
+                    <li class="fragment fade-up">wspiera websockety</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Classic load balancer (ELB)</h2>
+
+                <ul>
+                    <li class="fragment fade-up">warstwa 7 OSI</li>
+                    <li class="fragment fade-up">obsługuje tylko HTTP</li>
+                    <li class="fragment fade-up">sticky sessions</li>
+                    <li class="fragment fade-up">targetuje instancje lub adresy IP</li>
+                    <li class="fragment fade-up">nie wspiera websocketow</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Application load balancer (ELB)</h2>
+
+                <ul>
+                    <li>warstwa 7 OSI</li>
+                    <li>obsługuje HTTP</li>
+                    <li>sticky sessions</li>
+                    <li class="fragment fade-up">targetuje instancje, adresy IP lub funkcje lambda</li>
+                    <li class="fragment fade-up">wspiera websockety</li>
+                    <li class="fragment fade-up">obsługa HTTP/2</li>
+                    <li class="fragment fade-up">routing na podstawie hosta / ścieżki</li>
+                    <li class="fragment fade-up">uwierzytelnianie</li>
+                    <li class="fragment fade-up">przekierowania</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>API Gateway</h2>
+            </section>
+
+            <section data-background="../images/api-gateway.jpeg" data-background-size="contain"></section>
+
+            <section>
+                <h2>API Gateway</h2>
+
+                <ul>
+                    <li>REST/WebSocket API</li>
+                    <li class="fragment fade-up">bezbolesne skalowanie poziome</li>
+                    <li class="fragment fade-up">proste wersjonowanie API</li>
+                    <li class="fragment fade-up">wiele źródeł danych do API</li>
+                    <li class="fragment fade-up">możliwość sprzedawania API jako SaaS</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>CloudFront</h2>
+            </section>
+
+            <section>
+                <h2>CloudFront 1/2</h2>
+
+                <ul>
+                    <li>content delivery network (CDN)</li>
+                    <li class="fragment fade-up">wysokie transfery</li>
+                    <li class="fragment fade-up">low latency</li>
+                    <li class="fragment fade-up">bliskie końcowym użytkownikom</li>
+                    <li class="fragment fade-up">155 Edge Locations</li>
+                    <li class="fragment fade-up">11 Regional Edge Caches</li>
+                    <li class="fragment fade-up">166 Points of Presence</li>
+                    <li class="fragment fade-up">bezpośrednie połączenie do sieci AWS</li>
+                </ul>
+            </section>
+
+            <section data-background="../images/cloudfront.png" data-background-size="contain"></section>
+
+            <section>
+                <h2>CloudFront 2/2</h2>
+
+                <ul>
+                    <li>wspiera tylko protokół HTTP</li>
+                    <li class="fragment fade-up">wspiera websockety</li>
+                    <li class="fragment fade-up">źródłem danych mogą być EC2, LB, Lambda</li>
+                    <li class="fragment fade-up">Lambda@Edge</li>
+                    <li class="fragment fade-up">wykrywa typ urządzenia (desktop/mobile)</li>
+                    <li class="fragment fade-up">detekcja kraju pochodzenia requestu</li>
+                    <li class="fragment fade-up">pełna kontrola zachowania cache</li>
+                    <li class="fragment fade-up">darmowy transfer wewnątrz sieci AWS</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Lambda functions</h2>
+                <img src="../images/lambda-logo.png">
+            </section>
+
+            <section>
+                <h2>Lambda functions <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>uruchamia twój kod...</li>
+                    <li class="fragment fade-up">... ale serwer dla ciebie nie istnieje</li>
+                    <li class="fragment fade-up">płacisz tylko za czas, kiedy kod sie wykonuje</li>
+                    <li class="fragment fade-up">serverless computing</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - jak to działa? <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ol>
+                    <li class="fragment fade-up">piszesz kod</li>
+                    <li class="fragment fade-up">kod jest uruchamiany przez event z innych usług AWS</li>
+                    <li class="fragment fade-up">Lambda wykonuje kod</li>
+                    <li class="fragment fade-up">płacisz</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Lambda - języki <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">Node.js</li>
+                    <li class="fragment fade-up">Java</li>
+                    <li class="fragment fade-up">C#</li>
+                    <li class="fragment fade-up">Python</li>
+                    <li class="fragment fade-up">Go</li>
+                </ul>
+
+                <aside class="notes">
+                    Każdy inny język może być również obsługiwany przez Lambdy,
+                    jeśli postawimy do tego kompatybilny interpreter na maszynie EC2.
+                </aside>
+            </section>
+
+            <section>
+                <h2>Lambda - jak pisać? <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">AWS Web Console</li>
+                </ul>
+            </section>
+
+            <section data-background-size="contain" data-background="../images/lambda-web-ide.gif"></section>
+
+            <section>
+                <h2>Lambda - jak pisać? <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>AWS Web Console</li>
+                    <li>lokalne IDE + upload</li>
+                    <li class="fragment fade-up">Serverless Framework</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - cechy wspólne <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">handler - uruchamiana funkcja</li>
+                    <li class="fragment fade-up">context - interakcje z AWS Lambda</li>
+                    <li class="fragment fade-up">logi - wszystko do CloudWatcha</li>
+                    <li class="fragment fade-up">wyjątki - należy je rzucać</li>
+                    <li class="fragment fade-up">skalowanie poziome</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - sposoby uruchamiania <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">ręcznie</li>
+                    <li class="fragment fade-up">automatycznie, przy pomocy eventu</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - skąd pochodzą eventy 1/3 <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>Amazon S3</li>
+                    <li>Amazon DynamoDB</li>
+                    <li>Amazon Kinesis Data Streams</li>
+                    <li>Amazon Simple Notification Service</li>
+                    <li>Amazon Simple Email Service</li>
+                    <li>Amazon Simple Queue Service</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - skąd pochodzą eventy 2/3 <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>Amazon Cognito</li>
+                    <li>AWS CloudFormation</li>
+                    <li>Amazon CloudWatch Logs</li>
+                    <li>Amazon CloudWatch Events</li>
+                    <li>AWS CodeCommit</li>
+                    <li>Scheduled Events (powered by Amazon CloudWatch Events)</li>
+                    <li>AWS Config</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - skąd pochodzą eventy 3/3 <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>Amazon Alexa</li>
+                    <li>Amazon Lex</li>
+                    <li>Amazon API Gateway</li>
+                    <li>AWS IoT Button</li>
+                    <li>Amazon CloudFront</li>
+                    <li>Amazon Kinesis Data Firehose</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - koszty <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <p>koszt za 100ms</p>
+
+                <ul>
+                    <li>128 RAM - $ 0.000000208 ~ 4.8 mln</li>
+                    <li>512 RAM - $ 0.000000834 ~ 1.9 mln</li>
+                    <li>1024 RAM - $ 0.000001667 ~ 600 tys</li>
+                    <li>2048 RAM - $ 0.000003334 ~ 300 tys</li>
+                    <li>3008 RAM - $ 0.000004897 ~ 200 tys</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - limity 1/2 <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>Pamięć 128MB - 3008 MB, skok co 64 MB</li>
+                    <li>Timeout - 15 minut</li>
+                    <li>Env vars - 4 KB</li>
+                    <li>IAM policy - 20 KB</li>
+                    <li>warstwy - 5</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - limity 2/2 <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>req/res synchroniczny - 6 MB</li>
+                    <li>req/res asynchroniczny - 256 KB</li>
+                    <li>rozmiar przy uploadzie - 50 MB</li>
+                    <li>rozmiar funkcji - 250 MB</li>
+                    <li>edytor web - 3 MB</li>
+                    <li>/tmp storage - 512 MB</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - warstwy <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>pozwalają budować współdzielone komponenty</li>
+                    <li>zmniejszają rozmiar samej funkcji</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda@Edge <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+            </section>
+
+            <section>
+                <h2>Lambda@Edge <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <img src="../images/lambda-at-edge.png"/>
+            </section>
+
+            <section>
+                <h2>Lambda@Edge 1/2 <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">tylko nodejs6.10 lub nodejs8.10</li>
+                    <li class="fragment fade-up">brak dostępu do VPC</li>
+                    <li class="fragment fade-up">brak powiązań z innymi kontami AWS</li>
+                    <li class="fragment fade-up">brak wsparcia dla env vars</li>
+                    <li class="fragment fade-up">brak wsparcia dla warstw</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda@Edge 2/2 <img src="../images/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">Timeout - 30 sekund</li>
+                    <li class="fragment fade-up">Response - 1 MB</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Simple Storage Service (S3)</h2>
+            </section>
+
+            <section>
+                <h2>S3</h2>
+
+                <ul>
+                    <li>object storage</li>
+                    <li class="fragment fade-up">przechowuje dane w tzw. bucketach</li>
+                    <li class="fragment fade-up">wystawia dane do pobierania po HTTP</li>
+                    <li class="fragment fade-up">umożliwia na ograniczenia dostępu do obiektów</li>
+                    <li class="fragment fade-up">obiekty mogą być wersjonowane</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>S3 Bucket</h2>
+
+                <ul>
+                    <li class="fragment fade-up">bucket istnieje w konkretnym regionie</li>
+                    <li class="fragment fade-up">nazwa bucketa musi być unikalna w skali globalnej</li>
+                    <li class="fragment fade-up">bucket może być szyfrowany</li>
+                    <li class="fragment fade-up">bucket policies / ACL</li>
+                    <li class="fragment fade-up">replikacja multiregionalna</li>
+                    <li class="fragment fade-up">eventy</li>
+                </ul>
+
+                <aside class="notes">
+                    S3 wspiera protokół BitTorrent do pobierania plików
+                </aside>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Relational Database Service (RDS)</h2>
+            </section>
+
+            <section>
+                <h2>RDS</h2>
+
+                <ul>
+                    <li class="fragment fade-up">baza danych jako serwis</li>
+                    <li class="fragment fade-up">pozwala skalować CPU+pamięć, dysk, IOPS niezależnie od siebie</li>
+                    <li class="fragment fade-up">dba o backupy, fail detection, data recovery</li>
+                    <li class="fragment fade-up">automatyczne aktualizacje silnika</li>
+                    <li class="fragment fade-up">uproszczona replikacja danych</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>RDS - silniki</h2>
+
+                <ul>
+                    <li>Aurora / MySQL / MariaDB</li>
+                    <li>PostgreSQL</li>
+                    <li>MS SQL</li>
+                    <li>Oracle</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>RDS - ograniczenia</h2>
+
+                <ul>
+                    <li class="fragment fade-up">typ instancji</li>
+                    <li class="fragment fade-up">brak dostępu do tabel systemowych</li>
+                    <li class="fragment fade-up">brak dostępu do instancji przez SSH</li>
+                </ul>
+
+                <aside class="notes">
+                    Typy: Magnetic, General Purpose (SSD), Provisioned IOPS
+                </aside>
+            </section>
+
+            <section>
+                <h2>RDS - backupy</h2>
+
+                <ul>
+                    <li class="fragment fade-up">ręczne</li>
+                    <li class="fragment fade-up">zautomatyzowane (cykliczne)</li>
+                    <li class="fragment fade-up">pierwszy zawiera pełną kopię danych z bazy</li>
+                    <li class="fragment fade-up">każdy kolejny jest przyrostowy</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Cloud Formation</h2>
+            </section>
+
+            <section>
+                <h2>Cloud Formation</h2>
+
+                <ul>
+                    <li>infrastructure as a code</li>
+                    <li class="fragment fade-up">pozwala opisać wszystkie zasoby AWS</li>
+                    <li class="fragment fade-up">nie opisuje zawartości maszyn (provisioning)</li>
+                    <li class="fragment fade-up">posiada edytor wizualny</li>
+                </ul>
+            </section>
+
+            <section data-background="../images/cloudformation-designer.png" data-background-size="contain"></section>
+
+            <section data-background="../images/cloudformation-yaml.png" data-background-size="contain"></section>
+
+            <section>
+                <h2>Cloud Formation</h2>
+
+                <ul>
+                    <li>infrastructure as a code</li>
+                    <li>pozwala opisać wszystkie zasoby AWS</li>
+                    <li>nie opisuje zawartości maszyn (provisioning)</li>
+                    <li>posiada edytor wizualny</li>
+                    <li>szablony mogą być parametryzowane</li>
+                    <li class="fragment fade-up">stacki mogą zawierać inne stacki</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Elastic Beanstalk</h2>
+            </section>
+
+            <section>
+                <h2>Elastic Beanstalk</h2>
+
+                <ul>
+                    <li>upraszcza deployment aplikacji</li>
+                    <li>szybki start z kodem w chmurze</li>
+                    <li class="fragment fade-up">jest nakładką na ponad 100 innych usług AWS</li>
+                    <li class="fragment fade-up">uruchamia kod na instancjach EC2</li>
+                    <li class="fragment fade-up">użytkownik wybiera platformę, która ma zostać uruchomiona na EC2</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Elastic Beanstalk - platformy</h2>
+
+                <ul>
+                    <li>Packer Builder</li>
+                    <li>Single Container Docker</li>
+                    <li>Multicontainer Docker</li>
+                    <li>Preconfigured Docker</li>
+                    <li>Go</li>
+                    <li>Java SE</li>
+                    <li>Java with Tomcat</li>
+                    <li>.NET on Windows Server with IIS</li>
+                    <li>Node.js</li>
+                    <li>PHP</li>
+                    <li>Python</li>
+                    <li>Ruby</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Elastic Beanstalk - Docker</h2>
+
+                <ul>
+                    <li class="fragment fade-up">integruje się z ECS i ELB</li>
+                    <li class="fragment fade-up">auto skalowanie bez konfiguracji</li>
+                    <li class="fragment fade-up">twarde limity pamięci</li>
+                    <li class="fragment fade-up">obraz Dockera jest budowany po stronie AWSa</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <h2>Kontenery</h2>
+        </section>
+
+        <section>
+            <section>
+                <h2>Elastic Container Service</h2>
+
+                <ul>
+                    <li class="fragment fade-up">własny standard AWSa</li>
+                    <li class="fragment fade-up">pozwala na pełną kontrolę</li>
+                    <li class="fragment fade-up">obraz budowany poza infrastrukturą</li>
+                    <li class="fragment fade-up">twarde i miękkie limity pamięci</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Elastic Container Service - działanie</h2>
+
+                <ul>
+                    <li class="fragment fade-up">działa na maszynach EC2</li>
+                    <li class="fragment fade-up">użytkownik staje się właścicielem maszyn EC2</li>
+                    <li class="fragment fade-up">użytkownik dba o utrzymanie maszyn EC2</li>
+                    <li class="fragment fade-up">pozwala montować zewnętrzne dyski (EBS/S3/IS)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Elastic Container Service - model Fargate</h2>
+
+                <ul>
+                    <li class="fragment fade-up">użytkownik nie zarządza maszynami EC2</li>
+                    <li class="fragment fade-up">użytkownik nie jest właścicielem maszyn EC2</li>
+                    <li class="fragment fade-up">nie mozna montować zewnętrznych dysków</li>
+                    <li class="fragment fade-up">droższy w użyciu niż ECS</li>
+                    <li class="fragment fade-up">rekomendowany aplikacjom mocno zintegrowanych przez sieć</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Elastic Kubernetes Service</h2>
+            </section>
+
+            <section>
+                <h2>Elastic Kubernetes Service</h2>
+
+                <ul>
+                    <li>uruchamia stacki Kubernetes w chmurze AWSa</li>
+                    <li class="fragment fade-up">brak modyfikacji względem ogólnie przyjętego standardu</li>
+                    <li class="fragment fade-up">klaster jest uruchamiany na maszynach EC2</li>
+                    <li class="fragment fade-up">użytkownik staje się właścicielem maszyn EC2</li>
+                    <li class="fragment fade-up">maszyny uruchamiają AMI AWS Linux 2</li>
+                    <li class="fragment fade-up">można dostarczyć inny AMI, z agentem EKS</li>
+                    <li class="fragment fade-up">uwierzytelnianie do administracji przez IAM</li>
+                </ul>
+            </section>
+        </section>
+
+        <section id="q&a">
+            <h1>Pytania?</h1>
+        </section>
+
+        <section>
+            <h1>Dzięki za poświęcony czas!</h1>
+            <p>
+                Slajdy są dostępne na
+                <a href="https://michailw.github.io/talks/aws/pl/">https://michailw.github.io/talks/aws/pl/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+    </div>
+</div>
+
+<script src="../../reveal.js/lib/js/head.min.js"></script>
+<script src="../../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'https://platform.twitter.com/widgets.js' },
+			{ src: '../../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
+		]
+	});
+
+	Reveal.configure({
+		keyboard: {
+			39: 'next',
+			37: 'prev'
+		}
+	});
+</script>
+</body>
 </html>
