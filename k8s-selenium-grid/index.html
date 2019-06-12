@@ -67,9 +67,17 @@
 
         .reveal #costsTable td, .reveal #costsTable th {
             text-align: center;
+            vertical-align: middle;
         }
         .reveal #costsTable td:first-child {
             text-align: left;
+        }
+        .reveal #costsTable th:last-child img {
+            margin-bottom: -10px;
+        }
+        .reveal #costsTable th:last-child small {
+            display: block;
+            margin-top: 20px;
         }
     </style>
 
@@ -362,8 +370,9 @@ $ minikube service --namespace zalenium zalenium
                         <img src="images/logos/browserstack-logo.png" class="logoImage" style="width:200px;"/>
                     </th>
                     <th>
-                        <img src="images/logos/KubernetesLogo.png" class="logoImage" style="width:100px;" /> +
-                        <img src="images/logos/selenium-logo.svg" class="logoImage" style="width:100px;" />
+                        <img src="images/logos/awsLogo.png" class="logoImage" style="width:70px;" /> +
+                        <img src="images/logos/KubernetesLogo.png" class="logoImage" style="width:70px;" /> +
+                        <img src="images/logos/selenium-logo.svg" class="logoImage" style="width:70px;" />
                         <br/>
                         <small>(assuming t2.micro instances + 20GB EBS volumes)</small>
                     </th>
@@ -403,6 +412,22 @@ $ minikube service --namespace zalenium zalenium
                     </tr>
                     </tbody>
                 </table>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Next steps</h1>
+            </section>
+
+            <section>
+                <h2>Next steps</h2>
+
+                <ol>
+                    <li class="fragment fade-up">Try OpenShift as deployment cloud</li>
+                    <li class="fragment fade-up">Combine OpenShift deployment with Gitlab</li>
+                    <li class="fragment fade-up">Use Gitlab's ReviewApps feature to test any commit in the cloud</li>
+                </ol>
             </section>
         </section>
 
