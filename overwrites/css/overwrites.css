@@ -11,6 +11,8 @@
   width: 20rem;
   border-radius: 50%;
   float: left; }
+.reveal section img.avatar.center {
+  float: none; }
 
 .reveal img.qrCodeLink {
   max-width: 200px;

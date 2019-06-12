@@ -19,6 +19,10 @@ $smallQrCodeSize: 100px;
       width:20rem;
       border-radius:50%;
       float:left;
+
+      &.center {
+        float: none;
+      }
     }
   }
 
