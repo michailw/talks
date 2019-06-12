@@ -49,7 +49,24 @@
             -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
         }
+
+        #typed-container {
+            position: absolute;
+            bottom: 43px;
+            left: 230px;
+            padding-left: 15px;
+            font-size: 20px;
+            z-index:9999;
+            border-left: 2px solid #ccc;
+            padding-bottom: 3px;
+        }
+
+        #typed-strings {
+            display: none;
+        }
     </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 </head>
 <body>
 <div class="reveal">
@@ -337,12 +354,20 @@ $ minikube service --namespace zalenium zalenium
             </p>
         </section>
     </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/"><img src="../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:michal.wojtowicz@pb.com"><img src="../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> michal.wojtowicz@pb.com</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
 </div>
 
 <script src="../reveal.js/lib/js/head.min.js"></script>
 <script src="../reveal.js/js/reveal.js"></script>
 
-<script>
+<script type="text/javascript">
 	Reveal.initialize({
 		dependencies: [
 			{ src: '../reveal.js/plugin/markdown/marked.js' },
@@ -359,6 +384,14 @@ $ minikube service --namespace zalenium zalenium
 	// 		37: 'prev'
 	// 	}
 	// });
+
+	var typed = new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 5000,
+        loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
 </script>
 </body>
 </html>
