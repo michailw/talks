@@ -120,24 +120,6 @@
             </section>
 
             <section>
-                <div class="cross-container">
-                    <img src="images/converse-shoes.jpeg" class="logoImage" style="width: 70%;"/>
-                </div>
-            </section>
-
-            <section>
-                <img src="images/converse.jpg" class="logoImage" />
-            </section>
-
-            <section>
-                <img src="images/chatbot2.jpeg" class="logoImage" />
-            </section>
-
-            <section>
-                <img src="images/chatbots.png" class="logoImage" />
-            </section>
-
-            <section>
                 <img src="images/logos/awsLogo.png" class="logoImage" />
             </section>
 
@@ -333,6 +315,16 @@ $ minikube service --namespace zalenium zalenium
             </section>
 
             <section>
+                <h1>Code part - Openshift</h1>
+                <pre class="bash"><code>
+helm template --name zalenium \
+        --set hub.serviceType=NodePort \
+        --set hub.openshift.deploymentConfig.enabled=true \
+        charts/zalenium | oc apply -n zalenium -f -
+</code></pre>
+            </section>
+
+            <section>
                 <img src="images/zalenium-live-preview.jpg" class="logoImage" />
             </section>
 
@@ -363,7 +355,7 @@ $ minikube service --namespace zalenium zalenium
             <section>
                 <h2>Monthly cost</h2>
 
-                <table style="font-size: 60%;" id="costsTable">
+                <table style="font-size: 60%; margin:0 -100px;" id="costsTable">
                     <thead>
                     <th></th>
                     <th>
@@ -376,6 +368,11 @@ $ minikube service --namespace zalenium zalenium
                         <br/>
                         <small>(assuming t2.micro instances + 20GB EBS volumes)</small>
                     </th>
+                    <th>
+                        <img src="images/logos/Logotype_RH_OpenShift_wLogo_RGB_Black.png" class="logoImage" style="width:200px;"/>
+                        by
+                        <img src="../images/logos/Pitney_Bowes_2015.svg" class="logoImage" style="width:200px"/>
+                    </th>
                     </thead>
                     <tbody>
                     <tr>
@@ -385,6 +382,7 @@ $ minikube service --namespace zalenium zalenium
                             $160<br/>
                             <small>($140 for Kubernetes stack + $20 for EC2 resources)</small>
                         </td>
+                        <td>FREE</td>
                     </tr>
                     <tr>
                         <td>2 parallel tests</td>
@@ -393,6 +391,7 @@ $ minikube service --namespace zalenium zalenium
                             $170<br/>
                             <small>($140 for Kubernetes stack + $30 for EC2 resources)</small>
                         </td>
+                        <td>FREE</td>
                     </tr>
                     <tr>
                         <td>10 parallel tests</td>
@@ -401,6 +400,7 @@ $ minikube service --namespace zalenium zalenium
                             $230<br/>
                             <small>($140 for Kubernetes stack + $90 for EC2 resources)</small>
                         </td>
+                        <td>FREE</td>
                     </tr>
                     <tr>
                         <td>25 parallel tests</td>
@@ -409,6 +409,7 @@ $ minikube service --namespace zalenium zalenium
                             $370<br/>
                             <small>($140 for Kubernetes stack + $230 for EC2 resources)</small>
                         </td>
+                        <td>FREE</td>
                     </tr>
                     </tbody>
                 </table>
@@ -424,7 +425,6 @@ $ minikube service --namespace zalenium zalenium
                 <h2>Next steps</h2>
 
                 <ol>
-                    <li class="fragment fade-up">Try OpenShift as deployment cloud</li>
                     <li class="fragment fade-up">Combine OpenShift deployment with Gitlab</li>
                     <li class="fragment fade-up">Use Gitlab's ReviewApps feature to test any commit in the cloud</li>
                 </ol>
