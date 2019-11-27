@@ -11,8 +11,8 @@
   width: 20rem;
   border-radius: 50%;
   float: left; }
-.reveal section img.avatar.center {
-  float: none; }
+  .reveal section img.avatar.center {
+    float: none; }
 
 .reveal img.qrCodeLink {
   max-width: 200px;
@@ -32,8 +32,39 @@
   font-size: 1rem;
   bottom: 20px;
   left: 20px;
-  height: 65px;
-  width: 40%; }
+  background-size: contain;
+  height: 5vh;
+  width: 20vw; }
+
+.lambdaLogo {
+  border: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  width: 70px; }
+
+#typed-container {
+  position: absolute;
+  bottom: 43px;
+  left: 230px;
+  padding-left: 15px;
+  font-size: 20px;
+  z-index: 9999;
+  border-left: 2px solid #ccc;
+  padding-bottom: 3px; }
+
+#typed-strings {
+  display: none; }
+
+@media all and (max-width: 1024px) {
+  .reveal:after {
+    font-size: .5rem; }
+  #typed-container {
+    font-size: .5rem;
+    bottom: 30px;
+    left: calc(20vw + 30px); }
+    #typed-container img {
+      max-width: 4vw;
+      max-height: 4vh; } }
 
 twitterwidget {
   margin-left: auto;
@@ -42,14 +73,11 @@ twitterwidget {
 a.no-shadow {
   text-shadow: none;
   box-shadow: none;
-  text-decoration: none;
-}
-a.no-shadow:hover {
-  text-shadow: none;
-  box-shadow: none;
-  text-decoration: none;
-  color: #8b743d;
-}
-a.no-shadow:hover img {
-  box-shadow: none;
-}
+  text-decoration: none; }
+  a.no-shadow:hover {
+    text-shadow: none;
+    box-shadow: none;
+    text-decoration: none;
+    color: #8b743d; }
+    a.no-shadow:hover img {
+      box-shadow: none; }
