@@ -1,0 +1,589 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Serverless development</title>
+
+    <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        .lambdaLogo {
+            border: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            width: 70px;
+        }
+
+        #typed-container {
+            position: absolute;
+            bottom: 43px;
+            left: 230px;
+            padding-left: 15px;
+            font-size: 20px;
+            z-index:9999;
+            border-left: 2px solid #ccc;
+            padding-bottom: 3px;
+        }
+
+        #typed-strings {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Od zera do serverless developera</h1>
+            <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+        </section>
+
+        <section>
+            <h2>Slajdy</h2>
+            <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink"/>
+            <br />
+            <a href="http://michailw.github.io/talks/serverless-development/pl/">http://michailw.github.io/talks/serverless-development/pl/</a>
+        </section>
+
+        <section>
+            <img src="../../images/avatar.jpg" class="logoImage avatar"/>
+            <h2>Michal Wojtowicz</h2>
+            <h4>Senior Software Engineer</h4>
+            <img src="../images/logos/Pitney_Bowes_2015.svg" class="logoImage"/>
+        </section>
+
+        <section>
+            <h1>ZACZYNAMY!</h1>
+        </section>
+
+        <section>
+            <section>
+                <h2>Serverless functions</h2>
+            </section>
+
+            <section>
+                <h2>Czym jest serverless function?</h2>
+
+                <ul>
+                    <li>uruchamia twój kod...</li>
+                    <li class="fragment fade-up">... ale serwer dla ciebie nie istnieje</li>
+                    <li class="fragment fade-up">płacisz tylko za czas, kiedy kod sie wykonuje</li>
+                    <li class="fragment fade-up">serverless computing</li>
+                </ul>
+            </section>
+            
+            <section>
+                <img src="../images/management-chart.png" class="logoImage">
+                <br/>
+                <a href="https://read.acloud.guru/the-evolution-from-servers-to-functions-21833b576744" target="_blank" rel="noopener">&copy; acloud.guru</a>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Use cases</h1>
+            </section>
+
+            <section data-background-image="../images/use-case1.png" data-background-size="contain" data-background-color="#fff"></section>
+            <section data-background-image="../images/use-case2.png" data-background-size="contain" data-background-color="#fff"></section>
+            <section data-background-image="../images/use-case3.png" data-background-size="contain" data-background-color="#fff"></section>
+            <section data-background-image="../images/use-case4.png" data-background-size="contain" data-background-color="#fff"></section>
+            <section data-background-image="../images/use-case5.png" data-background-size="contain" data-background-color="#fff"></section>
+            <section data-background-image="../images/use-case6.png" data-background-size="contain" data-background-color="#fff"></section>
+        </section>
+
+        <section>
+            <section>Gdzie można uruchamiać funkcje serverless?</section>
+
+            <section>
+                <h1>AWS Lambda functions</h1>
+                <img src="../images/logos/lambda-logo.png" class="logoImage" />
+            </section>
+
+            <section>
+                <h1>Google cloud functions</h1>
+                <img src="../images/logos/Google-Cloud-Functions.png" class="logoImage" />
+            </section>
+
+            <section>
+                <h1>Azure functions</h1>
+                <img src="../images/logos/azure-functions-logo.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../images/logos/alibaba-cloud-logo-chineese.jpg" class="logoImage" />
+            </section>
+
+            <section>
+                <h1>Alibaba compute functions</h1>
+                <img src="../images/logos/alibaba_cloud_logo.png" class="logoImage" />
+            </section>
+
+            <section>
+                <h1>Fn project: on-premise</h1>
+
+                <img src="../images/logos/fn.png" class="logoImage" />
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Lambda - jak to działa? <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ol>
+                    <li class="fragment fade-up">piszesz kod</li>
+                    <li class="fragment fade-up">kod jest uruchamiany przez event z innych usług AWS</li>
+                    <li class="fragment fade-up">Lambda wykonuje kod</li>
+                    <li class="fragment fade-up">płacisz 💰</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Lambda - języki <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">Node.js</li>
+                    <li class="fragment fade-up">Java</li>
+                    <li class="fragment fade-up">C# (.Net core)</li>
+                    <li class="fragment fade-up">Python</li>
+                    <li class="fragment fade-up">Go</li>
+                    <li class="fragment fade-up">Ruby</li>
+                </ul>
+
+                <aside class="notes">
+                    Każdy inny język może być również obsługiwany przez Lambdy,
+                    jesli skonfigurujemy swój interpreter do rpacy z Lambda API, we współpracy z Lambda Layers.
+                    Możemy również uruchomic kompatybilny interpreter na maszynie EC2.
+                </aside>
+            </section>
+
+            <section>
+                <h2>Lambda - jak pisać? <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">AWS Web Console</li>
+                </ul>
+            </section>
+
+            <section data-background-size="contain" data-background="../images/lambda-web-ide.gif"></section>
+
+            <section>
+                <h2>Lambda - jak pisać? <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>AWS Web Console</li>
+                    <li>lokalne IDE + upload</li>
+                    <li class="fragment fade-up">Serverless Framework</li>
+                </ul>
+            </section>
+
+            <section data-background-iframe="https://serverless.com/">
+            </section>
+
+            <section>
+                <h2>Jak projektować?</h2>
+                <img src="https://www.altexsoft.com/media/2018/03/monolith.png" />
+            </section>
+
+            <section>
+                <h2>Lambda - cechy wspólne <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">handler - uruchamiana funkcja</li>
+                    <li class="fragment fade-up">context - interakcje z AWS Lambda</li>
+                    <li class="fragment fade-up">logi - wszystko do CloudWatcha</li>
+                    <li class="fragment fade-up">wyjątki - należy je rzucać, zamiast tłumić</li>
+                    <li class="fragment fade-up">skalowanie poziome</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - sposoby uruchamiania <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">ręcznie</li>
+                    <li class="fragment fade-up">automatycznie, przy pomocy eventu</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - skąd pochodzą eventy 1/3 <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>Amazon S3</li>
+                    <li>Amazon DynamoDB</li>
+                    <li>Amazon Kinesis Data Streams</li>
+                    <li>Amazon Simple Notification Service</li>
+                    <li>Amazon Simple Email Service</li>
+                    <li>Amazon Simple Queue Service</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - skąd pochodzą eventy 2/3 <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>Amazon Cognito</li>
+                    <li>AWS CloudFormation</li>
+                    <li>Amazon CloudWatch Logs</li>
+                    <li>Amazon CloudWatch Events</li>
+                    <li>AWS CodeCommit</li>
+                    <li>Scheduled Events (powered by Amazon CloudWatch Events)</li>
+                    <li>AWS Config</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - skąd pochodzą eventy 3/3 <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>Amazon Alexa</li>
+                    <li>Amazon Lex</li>
+                    <li>Amazon API Gateway</li>
+                    <li>AWS IoT Button</li>
+                    <li>Amazon CloudFront</li>
+                    <li>Amazon Kinesis Data Firehose</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - koszty <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <p>koszt za 100ms</p>
+
+                <ul>
+                    <li>128 RAM - $ 0.000000208 ~ 4.8 mln</li>
+                    <li>512 RAM - $ 0.000000834 ~ 1.9 mln</li>
+                    <li>1024 RAM - $ 0.000001667 ~ 600 tys</li>
+                    <li>2048 RAM - $ 0.000003334 ~ 300 tys</li>
+                    <li>3008 RAM - $ 0.000004897 ~ 200 tys</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - limity 1/2 <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>Pamięć 128MB - 3008 MB, skok co 64 MB</li>
+                    <li>Timeout - 15 minut</li>
+                    <li>Env vars - 4 KB</li>
+                    <li>IAM policy - 20 KB</li>
+                    <li>warstwy - 5</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - limity 2/2 <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>req/res synchroniczny - 6 MB</li>
+                    <li>req/res asynchroniczny - 256 KB</li>
+                    <li>rozmiar przy uploadzie - 50 MB</li>
+                    <li>rozmiar funkcji - 250 MB</li>
+                    <li>edytor web - 3 MB</li>
+                    <li>/tmp storage - 512 MB</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Concurrency limit</h2>
+
+                <ul>
+                    <li>ile max. instancji funkcji żyje jednocześnie</li>
+                    <li>burst limit - 3000 / 1000 / 500</li>
+                    <li>twardy limit 1000 instancji per region</li>
+                    <li>można samemu ustalać limit w ramach reserved concurrency</li>
+                </ul>
+
+                <aside class="notes">
+                    Initial Concurrency Burst Limits
+
+                    3000 – US West (Oregon), US East (N. Virginia), EU (Ireland).
+
+                    1000 – Asia Pacific (Tokyo), EU (Frankfurt).
+
+                    500 – Other Regions.
+                </aside>
+            </section>
+
+            <section data-background="../images/coldlambda.jpg">
+                <h1 style="color: #fff;">Cold start</h1>
+            </section>
+
+            <section data-background-image="https://miro.medium.com/max/3592/1*xqp9vLyYhDGpgMrDLNi3JQ.png"
+                     data-background-size="contain"
+            ></section>
+
+            <section>
+                <h2>Dealing with cold start</h2>
+
+                <ul>
+                    <li><a href="https://hackernoon.com/cold-starts-in-aws-lambda-f9e3432adbf0">Everything you need to know about cold starts in AWS Lambda</a></li>
+                    <li><a href="https://read.acloud.guru/does-coding-language-memory-or-package-size-affect-cold-starts-of-aws-lambda-a15e26d12c76">How does language, memory and package size affect cold starts of AWS Lambda?</a></li>
+                    <li><a href="https://medium.com/thundra/dealing-with-cold-starts-in-aws-lambda-a5e3aa8f532">Dealing with cold starts in AWS Lambda</a></li>
+                    <li><a href="https://docs.thundra.io/docs/how-to-warmup">How to Warmup</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda - warstwy <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li>pozwalają budować współdzielone komponenty</li>
+                    <li>zmniejszają rozmiar samej funkcji</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda@Edge <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+            </section>
+
+            <section>
+                <h2>Lambda@Edge <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <img src="../images/lambda-at-edge.png"/>
+            </section>
+
+            <section>
+                <h2>Lambda@Edge 1/2 <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">tylko nodejs</li>
+                    <li class="fragment fade-up">brak dostępu do VPC</li>
+                    <li class="fragment fade-up">brak powiązań z innymi kontami AWS</li>
+                    <li class="fragment fade-up">brak wsparcia dla env vars</li>
+                    <li class="fragment fade-up">brak wsparcia dla warstw</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lambda@Edge 2/2 <img src="../images/logos/lambda-logo.png" class="lambdaLogo"></h2>
+
+                <ul>
+                    <li class="fragment fade-up">Timeout - 30 sekund</li>
+                    <li class="fragment fade-up">Response - 1 MB</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>API Gateway</h2>
+            </section>
+
+            <section data-background="../images/New-API-GW-Diagram.png" data-background-size="contain"></section>
+
+            <section data-background="../../aws/images/api-gateway.jpeg" data-background-size="contain"></section>
+
+            <section>
+                <h2>API Gateway</h2>
+
+                <ul>
+                    <li>REST/WebSocket API</li>
+                    <li class="fragment fade-up">bezbolesne skalowanie poziome</li>
+                    <li class="fragment fade-up">proste wersjonowanie API</li>
+                    <li class="fragment fade-up">wiele źródeł danych do API</li>
+                    <li class="fragment fade-up">możliwość sprzedawania API jako SaaS</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>$ 1.5 / milion requestów</h1>
+            </section>
+
+            <section>
+                <img src="../images/custom-auth-workflow.png" />
+                <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html">Przykład</a>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>CloudFront</h2>
+            </section>
+
+            <section>
+                <h2>CloudFront 1/2</h2>
+
+                <ul>
+                    <li>content delivery network (CDN)</li>
+                    <li class="fragment fade-up">wysokie transfery</li>
+                    <li class="fragment fade-up">low latency</li>
+                    <li class="fragment fade-up">bliskie końcowym użytkownikom</li>
+                    <li class="fragment fade-up">155 Edge Locations</li>
+                    <li class="fragment fade-up">11 Regional Edge Caches</li>
+                    <li class="fragment fade-up">166 Points of Presence</li>
+                    <li class="fragment fade-up">bezpośrednie połączenie do sieci AWS</li>
+                </ul>
+            </section>
+
+            <section data-background="../../aws/images/cloudfront.png" data-background-size="contain"></section>
+
+            <section>
+                <h2>CloudFront 2/2</h2>
+
+                <ul>
+                    <li>wspiera tylko protokół HTTP</li>
+                    <li class="fragment fade-up">wspiera websockety</li>
+                    <li class="fragment fade-up">źródłem danych mogą być EC2, LB, Lambda</li>
+                    <li class="fragment fade-up">Lambda@Edge</li>
+                    <li class="fragment fade-up">wykrywa typ urządzenia (desktop/mobile)</li>
+                    <li class="fragment fade-up">detekcja kraju pochodzenia requestu</li>
+                    <li class="fragment fade-up">pełna kontrola zachowania cache</li>
+                    <li class="fragment fade-up">darmowy transfer wewnątrz sieci AWS</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Fn project</h1>
+
+                <img src="../images/logos/fn.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../images/fn-project.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../images/fn-architecture.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../images/fn-dashboard.png" class="logoImage" />
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Monitoring</h1>
+            </section>
+
+            <section>
+                <h2>Monitoring</h2>
+
+                <table>
+                    <tr>
+                        <td style="width:50%; vertical-align: middle; text-align: center;">
+                            <img src="../images/logos/lumigo.png" class="logoImage" />
+                        </td>
+                        <td style="width:50%; vertical-align: middle; text-align: center;">
+                            <img src="../images/logos/thundra.png" class="logoImage" />
+                        </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <ul>
+                    <li>Python</li>
+                    <li>Node.js</li>
+                    <li>Java</li>
+                </ul>
+            </section>
+
+            <section data-background-iframe="https://demo.thundra.io/?utm_source=home-variant&utm_medium=explore_live_demo_button"></section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Podsumowanie</h1>
+            </section>
+
+            <section>
+                <h2>Plusy</h2>
+
+                <ol>
+                    <li>Function-as-a-service</li>
+                    <li class="fragment fade-up">Event-driven invocations</li>
+                    <li class="fragment fade-up">Płatność za każde wywołanie</li>
+                    <li class="fragment fade-up">Przezroczyste skalowanie</li>
+                    <li class="fragment fade-up">Mniej ludzkich zasobów przeznaczonych na infrastrukturę</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Minusy</h2>
+
+                <ol>
+                    <li>vendor lock-in</li>
+                    <li>próg wejścia</li>
+                    <li>przeznaczone raczej do szybkich zadań</li>
+                </ol>
+            </section>
+        </section>
+
+        <section id="q&a">
+            <h1>Pytania?</h1>
+        </section>
+
+        <section>
+            <h1>Dzięki za poświęcony czas!</h1>
+            <p>
+                Slajdy są dostępne na
+                <a href="https://michailw.github.io/talks/serverless-development/pl/">https://michailw.github.io/talks/serverless-development/pl/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+    </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" target="_blank" rel="noopener" class="no-shadow"><img src="../../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:michal.wojtowicz@pb.com" class="no-shadow"><img src="../../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> michal.wojtowicz@pb.com</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
+</div>
+
+<script src="../../reveal.js/lib/js/head.min.js"></script>
+<script src="../../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'https://platform.twitter.com/widgets.js' },
+			{ src: '../../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
+		]
+	});
+
+	Reveal.configure({
+		keyboard: {
+			39: 'next',
+			37: 'prev'
+		}
+	});
+
+	var typed = new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 300000,
+		loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
+</script>
+</body>
+</html>
