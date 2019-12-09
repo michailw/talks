@@ -1,0 +1,32 @@
+{
+  "name": "michailw-talks",
+  "version": "1.0.0",
+  "description": "Talks repository of @michailw",
+  "main": "npm start",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michailw/talks.git"
+  },
+  "keywords": [
+    "talks"
+  ],
+  "author": "Michal Wojtowicz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michailw/talks/issues"
+  },
+  "homepage": "https://github.com/michailw/talks#readme",
+  "dependencies": {
+    "browser-sync": "^2.24.4",
+    "gulp": "^3.9.1",
+    "gulp-pug": "^4.0.1",
+    "highlight.js": "^9.12.0"
+  },
+  "devDependencies": {
+    "gulp-sass": "^4.0.2",
+    "natives": "^1.1.6"
+  }
+}

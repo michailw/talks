@@ -44,12 +44,13 @@ $smallQrCodeSize: 100px;
     display: block;
     position:absolute;
     content: "Michal Wojtowicz";
-    background: url("../../images/logos/Pitney_Bowes_2015.svg") 0 0.5rem no-repeat;
+    background: url("../../images/logos/Mentor-ASB-Logo-Color-Hires.png") left bottom no-repeat;
+    background-size: contain;
     font-size: 1rem;
     bottom: 20px;
     left: 20px;
-    height: 65px;
-    width:40%;
+    height: 85px;
+    width:15vw;
   }
 }
 
@@ -75,4 +76,20 @@ a.no-shadow {
       box-shadow: none;
     }
   }
+}
+
+
+#typed-container {
+  position: absolute;
+  bottom: 2vh;
+  left: 17vw;
+  padding-left: 15px;
+  font-size: 20px;
+  z-index:9999;
+  border-left: 2px solid #ccc;
+  padding-bottom: 3px;
+}
+
+#typed-strings {
+  display: none;
 }

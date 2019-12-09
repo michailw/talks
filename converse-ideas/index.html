@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Converse ideas</title>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        .cross-container {
+            position: relative;
+            padding: 30px;
+            overflow: hidden;
+        }
+
+        .cross-container:before, .cross-container:after {
+            position: absolute;
+            content: '';
+            background: red;
+            display: block;
+            width: 100%;
+            height: 30px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .cross-container:after {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        #typed-container {
+            position: absolute;
+            bottom: 43px;
+            left: 230px;
+            padding-left: 15px;
+            font-size: 20px;
+            z-index:9999;
+            border-left: 2px solid #ccc;
+            padding-bottom: 3px;
+        }
+
+        #typed-strings {
+            display: none;
+        }
+
+        .reveal #costsTable td, .reveal #costsTable th {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .reveal #costsTable td:first-child {
+            text-align: left;
+        }
+        .reveal #costsTable th:last-child img {
+            margin-bottom: -10px;
+        }
+        .reveal #costsTable th:last-child small {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Converse ideas</h1>
+            <h4>Michal Wojtowicz</h4>
+            <h5>michal.wojtowicz@pb.com</h5>
+        </section>
+
+        <section>
+            <img src="../images/avatar.jpg" class="logoImage avatar"/>
+            <h2>Michal Wojtowicz</h2>
+            <h4>Senior Software Engineer</h4>
+            <img src="../images/logos/Pitney_Bowes_2015.svg" class="logoImage"/>
+        </section>
+
+        <section>
+            <h1>Self audit of code</h1>
+        </section>
+
+        <section>
+            <h1>Our issues</h1>
+        </section>
+
+        <section>
+            <section>
+                <h1>Business logic mixed with non-business code</h1>
+            </section>
+
+            <section>
+                <img src="images/issues/01-logic-mixed-with-delivery.png" />
+
+                <a href="https://gitlab.pitneycloud.com/engageoneconverse/bot-framework/blob/master/src/controllers/"><small>bot-framework/controllers/</small></a>
+
+                <aside class="notes">
+                    We mix application logic with delivery channels.
+                    In my opinion this lack of structure leads us to further issues.
+                </aside>
+            </section>
+
+            <section>
+                <img src="images/issues/02-analytics-mixed-to-delivery.png" />
+
+                <a href="https://gitlab.pitneycloud.com/engageoneconverse/bot-framework/blob/master/src/controllers/facebook.js#L280"><small>bot-framework/controllers/facebook.js</small></a>
+
+                <aside class="notes">
+                    We push analytics data inside each of delivery channels,
+                    instead of doing it in a generic place for all delivery channels.
+                </aside>
+            </section>
+
+            <section>
+                <img src="images/issues/03-live-takeover-analytics.png" />
+
+                <a href="https://gitlab.pitneycloud.com/engageoneconverse/bot-framework/blob/master/src/controllers/liveTakeover.js#L147"><small>bot-framework/controllers/liveTakeover.js</small></a>
+
+                <aside class="notes">
+                    Why do we push to analytics only one part of live takeover conversation?
+                </aside>
+            </section>
+
+            <section>
+                <h2>Lack of error severity</h2>
+
+                <img src="images/issues/04-app-to-check.png" />
+                <a href="https://gitlab.pitneycloud.com/engageoneconverse/bot-framework/blob/master/src/analytics/app2check.js#L34"><small>bot-framework/analytics/app2check.js</small></a>
+
+                <aside class="notes">
+                    We can't assume which error is more important than others, because we treat them all the same way.
+                </aside>
+            </section>
+
+            <section>
+                <h2>Lack of error severity</h2>
+
+                <img src="images/issues/05-facebook-debug.png" />
+                <a href="https://gitlab.pitneycloud.com/engageoneconverse/bot-framework/blob/master/src/controllers/facebook.js#L479"><small>bot-framework/controllers/facebook.js</small></a>
+
+                <aside class="notes">
+                    In this example we log a debug statement if cards going to be sent are not valid.
+                    It should not be just a debug, because we validate bot schema before we save changes.
+                    Bot designer shows errors. If such issue is happening, we should be worried about it,
+                    because it should give us an impression that we did a breaking change, which stops old,
+                    already working integrations.
+                </aside>
+            </section>
+
+            <section>
+                <h2>Lack of monitoring</h2>
+
+                <p>
+                    PagerDuty, monitoring of failure, monitoring of usage...
+                    We won't be notified if something break.
+                </p>
+
+                <aside class="notes">
+                    Lots of people in software development knows this joke:
+                    <cite>
+                        In most programming languages, it's a compiler job to warn about errors in code.<br/>
+                        In the PHP world - customers notify developers about them.
+                    </cite>
+                    Unfortunately it also applies to Converse.
+                </aside>
+            </section>
+
+            <section>
+                <h1>Challenge: new channel</h1>
+            </section>
+
+            <section>
+                <h2>New channel checklist:</h2>
+
+                <ul>
+                    <li class="fragment fade-up">basic messages</li>
+                    <li class="fragment fade-up">attachments</li>
+                    <li class="fragment fade-up">live takeover</li>
+                    <li class="fragment fade-up">analytics</li>
+                    <li class="fragment fade-up">session transcription (history)</li>
+                    <li class="fragment fade-up">... and more</li>
+                </ul>
+
+                <aside class="notes">
+                    That should not happen. All of this stuff should be resolved above the delivery channel level.
+                </aside>
+            </section>
+
+            <section>
+                <h1>It's in contradiction to DDD</h1>
+                <h5>Domain Driven Design</h5>
+            </section>
+
+            <section>
+                <h2>No way to support Lambda functions</h2>
+
+                <h3>Converse relies on Websockets</h3>
+
+                <aside class="notes">
+                    Websockets require that connection between client and users is persistent.
+                    If we would jump into Lambda functions, connections will be terminated after 30 seconds.
+                </aside>
+            </section>
+        </section>
+
+        <section>
+            <section data-background-color="#ff0000">
+                <h2 style="font-family: Times, serif; color: #fff;">Make Converse<br/>
+                    great again
+                </h2>
+                <br/>
+                <h2 class="fragment fade-up" style="font-family: Times, serif; color: #fff;">Can we?</h2>
+            </section>
+
+            <section data-background-image="../images/obama-yes-we-can.jpg" data-background-size="contain"></section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Ideas</h1>
+                <h4>how to solve issues</h4>
+            </section>
+
+            <section>
+                <h2>1. Divide business logic from delivery channels</h2>
+
+                <aside class="notes">
+                    We should implement DDD into Converse. We're expecting more channels,
+                    then we can't create same bugs forever, each time we add a new channel.
+                </aside>
+            </section>
+
+            <section>
+                <h2>2. Message model</h2>
+                <small>Standard structure for a single message</small>
+
+                <aside class="notes">
+                    At this moment messages coming through the code have different structure.
+                    It always depends on a delivery channel which message is coming from.
+                </aside>
+            </section>
+
+            <section>
+                <h2>3. Migration to Typescript</h2>
+                <p>
+                    Implementing common model or domain logic can be then guarded by strong typing
+                </p>
+            </section>
+
+            <section>
+                <h2>4. Change policy of log severity</h2>
+                <p>
+                    We need to change how we log errors
+                </p>
+                <aside class="notes">
+                    We need to change how we log errors, because information we have at this moment requires to conduct
+                    an investigation each time when something breaks up.
+                    If we can deal with it, then we can setup automated monitoring of code issues.
+                </aside>
+            </section>
+
+            <section>
+                <h2>5. Automated monitoring</h2>
+
+                <p>Even without changes to log policy we can set up automated monitoring to our infrastructure.</p>
+            </section>
+
+            <section>
+                <h2>6. Separate websockets from application logic</h2>
+
+                <ul>
+                    <li class="fragment fade-up">websocket hub used only for webchat channel</li>
+                    <li class="fragment fade-up">scale application logic independently from websockets</li>
+                    <li class="fragment fade-up">possibility to jump into Lambda functions</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <h2>Summary</h2>
+
+            <ul>
+                <li class="fragment fade-up">DDD</li>
+                <li class="fragment fade-up">strong typing</li>
+                <li class="fragment fade-up">log severity</li>
+                <li class="fragment fade-up">automated monitoring</li>
+                <li class="fragment fade-up">jump into Lambda functions</li>
+                <li class="fragment fade-up">we need it sooner than later</li>
+            </ul>
+        </section>
+
+        <section id="q&a">
+            <h1>Questions?</h1>
+        </section>
+
+        <section>
+            <h1>Thank you for your time!</h1>
+        </section>
+    </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" class="no-shadow"><img src="../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:michal.wojtowicz@pb.com" class="no-shadow"><img src="../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> michal.wojtowicz@pb.com</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.js"></script>
+
+<script type="text/javascript">
+	Reveal.initialize({
+		dependencies: [
+			{ src: '../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+		]
+	});
+
+	var typed = new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 300000,
+        loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
+</script>
+</body>
+</html>

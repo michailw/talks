@@ -3,7 +3,8 @@
 *.map
 node_modules
 !/overwrites/**/*.css
-.DS_Store
+*.DS_Store
+.vscode
 
 docker-compose.yml
 
