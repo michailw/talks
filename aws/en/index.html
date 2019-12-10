@@ -453,6 +453,280 @@
 
         <section id="q&a">
             <h1>Questions</h1>
+
+            <p>
+                Slides deck available at
+                <a href="https://michailw.github.io/talks/aws/en/">https://michailw.github.io/talks/aws/en/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+
+        <!--
+            DAY 2 START
+            Networking, security, load balancing
+        -->
+        
+        <section>
+            <div style="vertical-align: middle; line-height: 10px;">
+                <h1>AWS week</h1>
+                <h2>Day 2 - Networking, security, load balancing</h2>
+            </div>
+            <h4>Michal Wojtowicz</h4>
+            <h5>michal@wojtowicz.ovh</h5>
+            <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+        </section>
+
+        <section>
+            <h1>Live questions</h1>
+            <img src="qrcodeLink-questions.png" alt="Questions QRcode link" class="qrCodeLink"/>
+        </section>
+
+        <section>
+            <section>
+                <img src="../images/osimodel-en.gif" class="logoImage" style="max-height: 80vh"/>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Security groups (EC2)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">firewall working on 4th OSI layer</li>
+                    <li class="fragment fade-up">can filter ICMP packets</li>
+                    <li class="fragment fade-up">can filter TCP/UDP packets</li>
+                    <li class="fragment fade-up">allows to filter ports range</li>
+                    <li class="fragment fade-up">allows to filter IP addresses range</li>
+                    <li class="fragment fade-up">works bidirectional</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Elastic IP (EC2)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">IPv4 address related with our AWS account</li>
+                    <li class="fragment fade-up">it's switchable</li>
+                    <li class="fragment fade-up">no support for IPv6</li>
+                    <li class="fragment fade-up">paid, if not used</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Network interfaces (EC2)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">"virtual network adapter"</li>
+                    <li class="fragment fade-up">multiple private IPv4 addresses within our VPC pool</li>
+                    <li class="fragment fade-up">one public IPv4 address</li>
+                    <li class="fragment fade-up">many public IPv6 addresses</li>
+                    <li class="fragment fade-up">it has MAC adres</li>
+                    <li class="fragment fade-up">can have assigned many security groups</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Virtual private Cloud (VPC) 1/2
+                </h2>
+
+                <ul>
+                    <li>virtual network in AWS infrastructure</li>
+                    <li>illusionof your own data center</li>
+                    <li>owner of VPC manages incoming/outgoing access of the VPC</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Virtual private Cloud (VPC) 2/2
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">static IPv4 addresses (elastic IP)</li>
+                    <li class="fragment fade-up">many IP addresses can point to a resource</li>
+                    <li class="fragment fade-up">management of network interfaces</li>
+                    <li class="fragment fade-up">controlls network traffic</li>
+                    <li class="fragment fade-up">changes to security groups on-the-fly</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    VPC - IP addresses
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">each VPC is addressed with one of these IP addresses: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</li>
+                    <li class="fragment fade-up">VPC wraps all AZ within a region</li>
+                    <li class="fragment fade-up">VPC can be divided into subnets</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    VPC - subnets
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">subnet is part of larger address pool</li>
+                    <li class="fragment fade-up">subnet wraps only one AZ</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    VPC peering
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">private connection between two VPCs</li>
+                    <li class="fragment fade-up">allows connecting VPCs accross regions or AWS accounts</li>
+                    <li class="fragment fade-up">it doesn't use VPN or gateways (no bottleneck)</li>
+                    <li class="fragment fade-up">there's not any single-point-of-failure</li>
+                    <li class="fragment fade-up">there's not additional internet transfer markup</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    NAT gateway (VPC)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">allows to connect VPCs to the Internet</li>
+                    <li class="fragment fade-up">denies access to AWS resources incoming from the Internet</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Internet gateway (VPC)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">allows access to AWS resources incoming from the Internet</li>
+                    <li class="fragment fade-up">allows route traffic to resources within VPC for incoming requests</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Network ACL (VPC)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">firewall of 4th OSI layer</li>
+                    <li class="fragment fade-up">dedicated for subnets</li>
+                    <li class="fragment fade-up">each subnet has at least one default ACL assigned</li>
+                    <li class="fragment fade-up">by default, ACL allows all traffic</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Elastic Load Balancer (EC2)
+                </h2>
+            </section>
+
+            <section>
+                <img src="../images/loadBalancer.svg">
+                <p>&copy; <a href="https://www.educative.io/collection/page/5668639101419520/5649050225344512/5747976207073280">Educative.io</a></p>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Load balancer types (EC2)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">Network load balancer</li>
+                    <li class="fragment fade-up">Classic Load Balancer</li>
+                    <li class="fragment fade-up">Application Load Balancer</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Network load balancer (EC2)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">4th OSI layer</li>
+                    <li class="fragment fade-up">juggles TCP packets</li>
+                    <li class="fragment fade-up">it can have a static IPv4 address</li>
+                    <li class="fragment fade-up">it can resolve SSL (TLS)</li>
+                    <li class="fragment fade-up">targets EC2 instances or IP addresses</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Classic load balancer (EC2)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">7th OSI layer</li>
+                    <li class="fragment fade-up">works only with HTTP</li>
+                    <li class="fragment fade-up">sticky sessions</li>
+                    <li class="fragment fade-up">targets EC2 instances or IP addresses</li>
+                    <li class="fragment fade-up">does not work with websockets</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Application load balancer (EC2)
+                </h2>
+
+                <ul>
+                    <li>7th OSI layer</li>
+                    <li>works only with HTTP</li>
+                    <li>sticky sessions</li>
+                    <li class="fragment fade-up">targets EC2 instances or IP addresses, or Lambda functions</li>
+                    <li class="fragment fade-up">handles websockets</li>
+                    <li class="fragment fade-up">works with HTTP/2</li>
+                    <li class="fragment fade-up">routing based on hostname / pathname</li>
+                    <li class="fragment fade-up">authentication</li>
+                    <li class="fragment fade-up">redirects</li>
+                </ul>
+            </section>
+        </section>
+
+        <section id="q&a">
+            <h1>Questions</h1>
+
+            <p>
+                Slides deck available at
+                <a href="https://michailw.github.io/talks/aws/en/">https://michailw.github.io/talks/aws/en/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
         </section>
 
         <section>
