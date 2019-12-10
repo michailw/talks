@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AWS Services</title>
+
+    <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        .lambdaLogo {
+            border: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            width: 70px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <div style="vertical-align: middle; line-height: 10px;">
+                <h1>AWS week</h1>
+                <h2>Day 1 - Basics, IAM, EC2 instances</h2>
+            </div>
+            <h4>Michal Wojtowicz</h4>
+            <h5>michal@wojtowicz.ovh</h5>
+            <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+        </section>
+
+        <section>
+            <h1>Live questions</h1>
+            <img src="qrcodeLink-questions.png" alt="Questions QRcode link" class="qrCodeLink"/>
+        </section>
+
+        <section>
+            <h1>Lets go!</h1>
+        </section>
+
+        <section>
+            <section>
+                <h1>What is cloud?</h1>
+            </section>
+
+            <section>
+                <h2>What is cloud?</h2>
+
+                <ul>
+                    <li class="fragment fade-up">a service which sells software and/or IT infrastructure</li>
+                    <li class="fragment fade-up">eliminates need of buying licenses</li>
+                    <li class="fragment fade-up">eliminates need of buying hardware</li>
+                    <li class="fragment fade-up">it takes out a duty of management</li>
+                </ul>
+            </section>
+
+            <section>
+                <img src="../../images/management-chart.png" class="logoImage">
+                <br/>
+                <a href="https://read.acloud.guru/the-evolution-from-servers-to-functions-21833b576744" target="_blank" rel="noopener">&copy; acloud.guru</a>
+            </section>
+
+            <section>
+                <h2>Advantages - from developer scope</h2>
+
+                <ul>
+                    <li class="fragment fade-up">users are always up-to-date</li>
+                    <li class="fragment fade-up">zero maintenance of old versions</li>
+                    <li class="fragment fade-up">increase of delivery frequency</li>
+                    <li class="fragment fade-up">no time-frame between releases</li>
+                    <li class="fragment fade-up">CI/CD - delivery on time of passed tests</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Disadvantages - from developer scope</h2>
+
+                <ul>
+                    <li class="fragment fade-up">all bugs are immediately visible for all users</li>
+                    <li class="fragment fade-up">need of monitoring, 24/7 duty</li>
+                    <li class="fragment fade-up">SLA/SRE</li>
+                    <li class="fragment fade-up">CI/CD - need to cover everything with tests</li>
+                </ul>
+
+                <aside class="notes">
+                    Service-level agreement - services should be provided to the customer as agreed upon in the contract
+                    <br/>
+                    SRE - Site reliability engineers create a bridge between development and operations by applying a software engineering mindset to system administration topics.
+                </aside>
+            </section>
+
+            <section>
+                <h2>Cloud models</h2>
+
+                <p style="font-size: 5rem;">
+                    IaaS / Paas / SaaS<br/>
+                </p>
+                <p>
+                    <span data-fragment-index="1" class="fragment fade-up" style="margin-right:100px;">Infrastructure</span>
+                    <span data-fragment-index="3" class="fragment fade-up" style="margin-right:100px;">Platform</span>
+                    <span data-fragment-index="4" class="fragment fade-up" style="margin-right:100px;">Software</span>
+                </p>
+
+                <p class="fragment fade-up" data-fragment-index="2">
+                    ... as a Service
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1><img src="../../images/logos/google-cloud.svg" class="logoImage" style="max-width: 20vw;"/> Google Cloud</h1>
+            </section>
+            <section>
+                <h1><img src="../../images/logos/azure.svg" class="logoImage" style="max-width: 40vw;"/></h1>
+            </section>
+            <section>
+                <h1><img src="../../images/logos/alibaba-cloud-logo-chineese.jpg" class="logoImage" style="max-width: 40vw;"/></h1>
+            </section>
+            <section>
+                <h1><img src="../../images/logos/alibaba_cloud_logo.png" class="logoImage" style="max-width: 40vw;"/></h1>
+            </section>
+            <section>
+                <h1><img src="../../images/logos/aws.svg" class="logoImage" style="max-width: 40vw;"/></h1>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>AWS - basic info</h2>
+            </section>
+
+            <section>
+                <h2>Regions</h2>
+                <img src="../images/Global-Infrastructure.png" class="logoImage"/>
+            </section>
+
+            <section>
+                <h2>Regions</h2>
+                <ul>
+                    <li>21 regions</li>
+                    <li>60 availability zones</li>
+                    <li class="fragment fade-up">special region - China (Beijing, Ningxia)</li>
+                    <li class="fragment fade-up">special region - US GovCloud (US-East, US-West)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>US GovCloud</h2>
+                <img src="../images/usgovcloud.png" class="logoImage"/>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../images/usgovcloud.png" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    US GovCloud
+                </h2>
+
+                <ul>
+                    <li>available only for USA citizens (or "green card" owners)</li>
+                    <li>available only within USA territory</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../images/usgovcloud.png" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    US GovCloud - certifications
+                </h2>
+
+                <img src="../images/usgovcloud-compliance.png" class="logoImage"/>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/iam.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Identity and Access Management (IAM)
+                </h2>
+            </section>
+
+            <section>
+                <h2><img src="../../images/logos/aws-services-logos/iam.svg" class="logoImage" style="max-height:4rem; margin:0;"/> IAM</h2>
+
+                <ul>
+                    <li class="fragment fade-up">access controll over AWS resources</li>
+                    <li class="fragment fade-up">authentication and authorization layer</li>
+                    <li class="fragment fade-up">allows to share AWS resources within one AWS account</li>
+                    <li class="fragment fade-up">atomic permissions system</li>
+                    <li class="fragment fade-up">secures resources from apps running in AWS</li>
+                    <li class="fragment fade-up">MFA</li>
+                    <li class="fragment fade-up">Eventually Consistent</li>
+                    <li class="fragment fade-up">always free 💰</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/iam.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    IAM - users
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">root user - full controll</li>
+                    <li class="fragment fade-up">IAM user - user with permissions set</li>
+                    <li class="fragment fade-up">user can authenticate with login/password</li>
+                    <li class="fragment fade-up">user can authenticate with API keys</li>
+                    <li class="fragment fade-up">users data can be propagated from 3rd party (SSO)</li>
+                    <li class="fragment fade-up">users can be grouped</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/iam.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    IAM - permissions, policies
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">policy - a permissions set without a relation</li>
+                    <li class="fragment fade-up">rules within policy can grant or deny access</li>
+                    <li class="fragment fade-up">policy can be related to users, groups and roles</li>
+                    <li class="fragment fade-up">each user/group/role can have multiple policies</li>
+                    <li class="fragment fade-up">rules can be general or specific</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/iam.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    IAM - roles
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">role - fake "identity"</li>
+                    <li class="fragment fade-up">each role can contain many policies</li>
+                    <li class="fragment fade-up">role is temporarly assigned to user or resource</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Virtual private Cloud (VPC) 1/2
+                </h2>
+
+                <ul>
+                    <li>your own, isolated network inside AWS</li>
+                    <li>illusion of your own data center</li>
+                    <li>as owner, you manage an access to your VPC from the Internet</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/vpc.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Virtual private Cloud (VPC) 2/2
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">static IPv4 (elastic IP)</li>
+                    <li class="fragment fade-up">many IP addresses per resource</li>
+                    <li class="fragment fade-up">create/assign network interfaces</li>
+                    <li class="fragment fade-up">configure security groups during uptime of VPC</li>
+                    <li class="fragment fade-up">controll network traffic</li>
+                    <li class="fragment fade-up">network access control lists</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    EC2 Instances
+                </h2>
+                <p>
+                    <i>Elastic Compute Cloud</i>
+                </p>
+            </section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    EC2 Instances
+                </h2>
+                <ul>
+                    <li class="fragment fade-up">virtual machines</li>
+                    <li class="fragment fade-up">instance type based on CPU, RAM, IOPS and GPU</li>
+                    <li class="fragment fade-up">any amount of disk volumes</li>
+                    <li class="fragment fade-up">you pay only for running instances</li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    EC2 Instances - sales model
+                </h2>
+                <ul>
+                    <li class="fragment fade-up">on-demand</li>
+                    <li class="fragment fade-up">reserved</li>
+                    <li class="fragment fade-up">spot instances</li>
+                    <li class="fragment fade-up">dedicated host</li>
+                </ul>
+
+                <aside class="notes">
+                    <ul>
+                        <li>on-demand - flat rate per hour</li>
+                        <li>reserved - payment in-advance, 40% cost reduction</li>
+                        <li>spot - bid place of unused instances</li>
+                        <li>dedicated host - physical server which runs EC2 instances</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    EC2 Spot instances
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">cost reduction (up to 10x)</li>
+                    <li class="fragment fade-up">can be taken off (2 minutes notification)</li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    EC2 Spot Fleet
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">spot-instance cluster, required to run an app</li>
+                    <li class="fragment fade-up">can be mixed with on-demand instances</li>
+                    <li class="fragment fade-up">automatic rules which can lower TCO</li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    EC2 Instances - types
+                </h2>
+                <ul>
+                    <li class="fragment fade-up">General Purpose</li>
+                    <li class="fragment fade-up">Compute optimized</li>
+                    <li class="fragment fade-up">Accelerate Computing (GPU)</li>
+                    <li class="fragment fade-up">Storage optimized</li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Amazon Machine Image (AMI)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">image of an instance</li>
+                    <li class="fragment fade-up">can be paid</li>
+                    <li class="fragment fade-up">you can store your own AMIs</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Instance store
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">temporary storage</li>
+                    <li class="fragment fade-up">data are ephemeral when machine is stopped/deleted</li>
+                    <li class="fragment fade-up">good for buffers, caches or compute&upload flow</li>
+                </ul>
+
+                <aside class="notes">
+                    maszyny mające root dir na instance-store nie mają funkcji STOP
+                </aside>
+            </section>
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/ec2.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Elastic Block Storage (EBS)
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">block storage dedicated for EC2 instances</li>
+                    <li class="fragment fade-up">high availability</li>
+                    <li class="fragment fade-up">recommended for fast data access</li>
+                    <li class="fragment fade-up">recommended for long data access</li>
+                    <li class="fragment fade-up">supports encryption</li>
+                </ul>
+            </section>
+        </section>
+
+        <section id="q&a">
+            <h1>Questions</h1>
+
+            <p>
+                Slides deck available at
+                <a href="https://michailw.github.io/talks/aws/en/">https://michailw.github.io/talks/aws/en/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+
+        <section>
+            <h1>Thank you for your time!</h1>
+            <p>
+                Slides deck available at
+                <a href="https://michailw.github.io/talks/aws/en/">https://michailw.github.io/talks/aws/en/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+    </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" target="_blank" rel="noopener" class="no-shadow"><img src="../../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:michal@wojtowicz.ovh" class="no-shadow"><img src="../../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> michal@wojtowicz.ovh</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
+</div>
+
+<script src="../../reveal.js/lib/js/head.min.js"></script>
+<script src="../../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'https://platform.twitter.com/widgets.js' },
+			{ src: '../../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
+		]
+	});
+
+	// Reveal.configure({
+	// 	keyboard: {
+	// 		39: 'next',
+	// 		37: 'prev'
+	// 	}
+	// });
+    
+    new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 300000,
+		loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
+</script>
+</body>
+</html>
