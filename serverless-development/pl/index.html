@@ -569,13 +569,15 @@
 			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
 		]
 	});
-
-	Reveal.configure({
-		keyboard: {
-			39: 'next',
-			37: 'prev'
-		}
-	});
+    
+    if (window.location.search.match( /spotlight/gi )) {
+        Reveal.configure({
+            keyboard: {
+                39: 'next',
+                37: 'prev'
+            }
+        });
+    }
 
 	var typed = new Typed('#typed', {
 		stringsElement: '#typed-strings',
