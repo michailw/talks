@@ -1,0 +1,535 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AWS Services</title>
+
+    <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        .lambdaLogo {
+            border: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            width: 70px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <div style="vertical-align: middle; line-height: 10px;">
+                <h1>AWS week</h1>
+                <h2>Day 3 - API Gateway, Lambda Functions</h2>
+            </div>
+            <h4>Michal Wojtowicz</h4>
+            <h5>michal@wojtowicz.ovh</h5>
+            <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+        </section>
+
+        <section>
+            <h1>Live questions</h1>
+            <img src="qrcodeLink-questions.png" alt="Questions QRcode link" class="qrCodeLink"/>
+        </section>
+
+        <section>
+            <h1>Lets go!</h1>
+        </section>
+
+        <section>
+            <section>
+                <h2>
+                    API Gateway
+                </h2>
+
+                <img src="../../images/logos/aws-services-logos/api-gateway.svg" class="logoImage" style="max-height:50vh;">
+            </section>
+
+            <section data-background="../images/api-gateway.jpeg" data-background-size="contain"></section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/api-gateway.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    API Gateway
+                </h2>
+
+                <ul>
+                    <li>REST/WebSocket API</li>
+                    <li class="fragment fade-up">painless horizontal scaling</li>
+                    <li class="fragment fade-up">easy API versioning</li>
+                    <li class="fragment fade-up">many API backends</li>
+                    <li class="fragment fade-up">you can sell API as SaaS</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Lambda functions</h2>
+                <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:50vh;">
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda functions
+                </h2>
+
+                <ul>
+                    <li>it can run your code...</li>
+                    <li class="fragment fade-up">... but server doesn't exist</li>
+                    <li class="fragment fade-up">you pay only for time, when code is executed</li>
+                    <li class="fragment fade-up">serverless computing</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - what's the flow?
+                </h2>
+
+                <ol>
+                    <li class="fragment fade-up">write some code</li>
+                    <li class="fragment fade-up">run your code directly, or trigger an event</li>
+                    <li class="fragment fade-up">Lambda runs your code</li>
+                    <li class="fragment fade-up">you pay 💰</li>
+                </ol>
+            </section>
+
+            <section>
+                <img src="../../images/management-chart.png" class="logoImage">
+                <br/>
+                <a href="https://read.acloud.guru/the-evolution-from-servers-to-functions-21833b576744" target="_blank" rel="noopener">&copy; acloud.guru</a>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - runtimes
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">Node.js</li>
+                    <li class="fragment fade-up">Java</li>
+                    <li class="fragment fade-up">C#</li>
+                    <li class="fragment fade-up">Python</li>
+                    <li class="fragment fade-up">Go</li>
+                    <li class="fragment fade-up">Ruby</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - how to code?
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">AWS Web Console</li>
+                </ul>
+            </section>
+
+            <section data-background-size="contain" data-background="../images/lambda-web-ide.gif"></section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - how to code?
+                </h2>
+
+                <ul>
+                    <li>AWS Web Console</li>
+                    <li>local IDE + upload</li>
+                    <li class="fragment fade-up">Serverless Framework</li>
+                </ul>
+            </section>
+
+            <section data-background-iframe="https://serverless.com/"></section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Serverless code design
+                </h2>
+                <img src="../images/monolith.png" class="logoImage"/>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - features
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">handler - the function code</li>
+                    <li class="fragment fade-up">context - interaction with AWS</li>
+                    <li class="fragment fade-up">logs - everything pushed to CloudWatcha</li>
+                    <li class="fragment fade-up">exceptions - you need to throw them</li>
+                    <li class="fragment fade-up">horizontal scaling</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - how to trigger
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">manual (through API call)</li>
+                    <li class="fragment fade-up">automatic, by an event</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - events sources 1/3
+                </h2>
+
+                <ul>
+                    <li>Amazon S3</li>
+                    <li>Amazon DynamoDB</li>
+                    <li>Amazon Kinesis Data Streams</li>
+                    <li>Amazon Simple Notification Service</li>
+                    <li>Amazon Simple Email Service</li>
+                    <li>Amazon Simple Queue Service</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - events sources 2/3
+                </h2>
+
+                <ul>
+                    <li>Amazon Cognito</li>
+                    <li>AWS CloudFormation</li>
+                    <li>Amazon CloudWatch Logs</li>
+                    <li>Amazon CloudWatch Events</li>
+                    <li>AWS CodeCommit</li>
+                    <li>Scheduled Events (powered by Amazon CloudWatch Events)</li>
+                    <li>AWS Config</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - events sources 3/3
+                </h2>
+
+                <ul>
+                    <li>Amazon Alexa</li>
+                    <li>Amazon Lex</li>
+                    <li>Amazon API Gateway</li>
+                    <li>AWS IoT Button</li>
+                    <li>Amazon CloudFront</li>
+                    <li>Amazon Kinesis Data Firehose</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - costs <img src="../images/lambda-logo.png" class="lambdaLogo">
+                </h2>
+
+                <p>cost per 100ms</p>
+
+                <ul>
+                    <li>128 RAM - $ 0.000000208 ~ 4.8 mln</li>
+                    <li>512 RAM - $ 0.000000834 ~ 1.9 mln</li>
+                    <li>1024 RAM - $ 0.000001667 ~ 600 tys</li>
+                    <li>2048 RAM - $ 0.000003334 ~ 300 tys</li>
+                    <li>3008 RAM - $ 0.000004897 ~ 200 tys</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - limits 1/2
+                </h2>
+
+                <ul>
+                    <li>Memory 128MB - 3008 MB, skok co 64 MB</li>
+                    <li>Timeout - 15 minut</li>
+                    <li>Env vars - 4 KB</li>
+                    <li>IAM policy - 20 KB</li>
+                    <li>layers - 5</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - limits 2/2
+                </h2>
+
+                <ul>
+                    <li>req/res synchronous - 6 MB</li>
+                    <li>req/res asynchronous - 256 KB</li>
+                    <li>code size when uploaded - 50 MB</li>
+                    <li>unpacked code size - 250 MB</li>
+                    <li>Cloud9 editor - 3 MB</li>
+                    <li>/tmp storage - 512 MB</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Concurrency limit</h2>
+
+                <ul>
+                    <li>how many instances of Lambda can be alive</li>
+                    <li>burst limit - 3000 / 1000 / 500</li>
+                    <li>hard limit 1000 instances per region</li>
+                    <li>you can set up your own limit, lower than "global"</li>
+                </ul>
+
+                <aside class="notes">
+                    Initial Concurrency Burst Limits
+
+                    3000 – US West (Oregon), US East (N. Virginia), EU (Ireland).
+
+                    1000 – Asia Pacific (Tokyo), EU (Frankfurt).
+
+                    500 – Other Regions.
+                </aside>
+            </section>
+
+            <section data-background="../images/coldlambda.jpg">
+                <h1 style="color: #fff;">Cold start</h1>
+            </section>
+
+            <section data-background-image="../images/cold-start-chart.png"
+                     data-background-size="contain"
+            ></section>
+
+            <section>
+                <h2>Dealing with cold start</h2>
+
+                <ul>
+                    <li><a href="https://hackernoon.com/cold-starts-in-aws-lambda-f9e3432adbf0">Everything you need to know about cold starts in AWS Lambda</a></li>
+                    <li><a href="https://read.acloud.guru/does-coding-language-memory-or-package-size-affect-cold-starts-of-aws-lambda-a15e26d12c76">How does language, memory and package size affect cold starts of AWS Lambda?</a></li>
+                    <li><a href="https://medium.com/thundra/dealing-with-cold-starts-in-aws-lambda-a5e3aa8f532">Dealing with cold starts in AWS Lambda</a></li>
+                    <li><a href="https://docs.thundra.io/docs/how-to-warmup">How to Warmup</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda - layers
+                </h2>
+
+                <ul>
+                    <li>allow to build shared components</li>
+                    <li>they decrease size of last, code layer</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda@Edge
+                </h2>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda@Edge
+                </h2>
+
+                <img src="../images/lambda-at-edge.png"/>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda@Edge 1/2
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">utilizes CloudFront CDN</li>
+                    <li class="fragment fade-up">only nodejs</li>
+                    <li class="fragment fade-up">no access to VPC</li>
+                    <li class="fragment fade-up">no relations to other AWS accounts</li>
+                    <li class="fragment fade-up">no support for env vars</li>
+                    <li class="fragment fade-up">no support for layers</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Lambda@Edge 2/2
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">Timeout - 30 seconds</li>
+                    <li class="fragment fade-up">Response - 1 MB</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Simple Storage Service (S3)</h2>
+
+                <img src="../../images/logos/aws-services-logos/s3.svg" class="logoImage" style="max-height:50vh;"/>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/s3.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    S3
+                </h2>
+
+                <ul>
+                    <li>object storage</li>
+                    <li class="fragment fade-up">stores data in buckets</li>
+                    <li class="fragment fade-up">you can access to data through HTTP</li>
+                    <li class="fragment fade-up">allows to manage access to objects</li>
+                    <li class="fragment fade-up">objects can be versioned</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    S3 Bucket
+                </h2>
+
+                <ul>
+                    <li class="fragment fade-up">bucket persist in a specific region</li>
+                    <li class="fragment fade-up">bucket's name has to be globally unique</li>
+                    <li class="fragment fade-up">bucket can be encrypted</li>
+                    <li class="fragment fade-up">bucket policies / ACL</li>
+                    <li class="fragment fade-up">multiregional replication</li>
+                    <li class="fragment fade-up">events</li>
+                </ul>
+
+                <aside class="notes">
+                    S3 supports BitTorrent protocol
+                </aside>
+            </section>
+
+            <section>
+                <h2>
+                    <img src="../../images/logos/aws-services-logos/lambda.svg" class="logoImage" style="max-height:4rem; margin:0;"/>
+                    Storage types (S3)
+                </h2>
+
+                <ul>
+                    <li>Standard - $0.023 per GB</li>
+                    <li>Infrequent Access - $0.0125 per GB</li>
+                    <li>Glacier - $0.004 per GB</li>
+                    <li>Glacier Deep Archive - $0.00099 per GB</li>
+                </ul>
+
+                <aside class="notes">
+                    <ol>
+                        <li>Standard - access within miliseconds</li>
+                        <li>Infrequent Access - access within miliseconds with no guaranty</li>
+                        <li>Glacier - access from 1 minute to 12 hours</li>
+                        <li>Glacier Deep Archive - data can be restored once or twice per year within 12 hours access</li>
+                    </ol>
+                </aside>
+            </section>
+
+            <section data-background-image="../images/snowmobile.jpg"
+                     data-background-size="cover"
+            >
+                <aside class="notes">
+                    Snowmobile
+                </aside>
+            </section>
+        </section>
+
+        <section id="q&a">
+            <h1>Questions</h1>
+
+            <p>
+                Slides deck available at
+                <a href="https://michailw.github.io/talks/aws/en/">https://michailw.github.io/talks/aws/en/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+
+        <section>
+            <h1>Thank you for your time!</h1>
+            <p>
+                Slides deck available at
+                <a href="https://michailw.github.io/talks/aws/en/">https://michailw.github.io/talks/aws/en/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+    </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" target="_blank" rel="noopener" class="no-shadow"><img src="../../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:michal@wojtowicz.ovh" class="no-shadow"><img src="../../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> michal@wojtowicz.ovh</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
+</div>
+
+<script src="../../reveal.js/lib/js/head.min.js"></script>
+<script src="../../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'https://platform.twitter.com/widgets.js' },
+			{ src: '../../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
+		]
+	});
+
+    if (window.location.search.match( /spotlight/gi )) {
+        Reveal.configure({
+            keyboard: {
+                39: 'next',
+                37: 'prev'
+            }
+        });
+    }
+    
+    new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 300000,
+		loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
+</script>
+</body>
+</html>

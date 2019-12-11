@@ -123,6 +123,20 @@
 
                 <h3><a href="day2.html">Go to slides from Day 2</a></h3>
             </section>
+
+            <section>
+                <h2>Day 3</h2>
+
+                <p>
+                    <ul>
+                        <li>API Gateway</li>
+                        <li>Lambda functions</li>
+                        <li>S3</li>
+                    </ul>
+                </p>
+
+                <h3><a href="day3.html">Go to slides from Day 3</a></h3>
+            </section>
         </section>
     </div>
 
@@ -149,13 +163,15 @@
 			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
 		]
 	});
-
-	// Reveal.configure({
-	// 	keyboard: {
-	// 		39: 'next',
-	// 		37: 'prev'
-	// 	}
-	// });
+    
+    if (window.location.search.match( /spotlight/gi )) {
+        Reveal.configure({
+            keyboard: {
+                39: 'next',
+                37: 'prev'
+            }
+        });
+    }
     
     new Typed('#typed', {
 		stringsElement: '#typed-strings',
