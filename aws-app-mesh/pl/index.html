@@ -1,0 +1,396 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AWS App Mesh</title>
+
+    <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        .lambdaLogo {
+            border: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            width: 70px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <div style="vertical-align: middle; line-height: 10px;">
+                <h1>AWS App Mesh</h1>
+            </div>
+            <h4>Michal Wojtowicz</h4>
+            <h5>michal@wojtowicz.ovh</h5>
+            <img src="../qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+        </section>
+
+        <section>
+            <h1>Live questions</h1>
+            <img src="qrcodeLink-questions.png" alt="Questions QRcode link" class="qrCodeLink"/>
+            <p><a href="https://app.sli.do/event/ezjfnp63">Sli.do/#B660</a></p>
+        </section>
+
+        <section>
+            <h1>Zaczynamy!</h1>
+        </section>
+
+        <section>
+            <section>
+                <h1>Czym jest service mesh?</h1>
+            </section>
+
+            <section>
+                <h2>Czym jest service mesh?</h2>
+
+                <ul>
+                    <li>kolejną warstwą abstrakcji w infrastrukturze</li>
+                    <li class="fragment fade-up">odpowiada za komunikację między (mikro) serwisami</li>
+                    <li class="fragment fade-up">niezawodny transfer requestów</li>
+                    <li class="fragment fade-up">nie ma znaczenia złożoność aplikacji</li>
+                    <li class="fragment fade-up">load balancing</li>
+                    <li class="fragment fade-up">service discovery</li>
+                    <li class="fragment fade-up">security/monitoring</li>
+                </ul>
+
+                <aside class="notes">
+                    Przez złożoność w tym wypadku rozumiemy mnogość mikro-serwisów, ich rozproszenie, oraz zeskalowanie horyzontalne.
+
+                    Security/monitoring - dla takich meshów jak Istio, Consul
+                </aside>
+            </section>
+
+            <section>
+                <h2>(Sidecar) Proxy</h2>
+
+                <ul>
+                    <li class="fragment fade-up">proxy jako część serwisu</li>
+                    <li class="fragment fade-up">może egzystować jako kontener, we wzorcu sidecar</li>
+                    <li class="fragment fade-up">proxy raportuje do service mesha swój stan</li>
+                    <li class="fragment fade-up">komunikacja poprzez proxy</li>
+                </ul>
+            </section>
+
+            <section data-background-image="../images/how-things-work.jpg">
+                <h1 style="color: #516bf7">Jak to działa?</h1>
+            </section>
+
+            <section>
+                <h2>Jak to działa?</h2>
+
+                <ul>
+                    <li class="fragment fade-up">Centrum service mesha kontroluje ruch</li>
+                    <li class="fragment fade-up">DNS serwer, jako część infrastruktury</li>
+                    <li class="fragment fade-up">aktualizowany często, propagowany "natychmiast"</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Wolę mieć kontrolę...</h2>
+
+                <ul>
+                    <li class="fragment fade-up">weightened routing (Route53)</li>
+                    <li class="fragment fade-up">weightened balancing (ELB)</li>
+                    <li class="fragment fade-up">monitoring (CloudWatch)</li>
+                    <li class="fragment fade-up">auto-replace (healthchecks, auto-scaling)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Open source service meshes</h2>
+
+                <ul>
+                    <li>Consul (Hashicorp)</li>
+                    <li>Linkerd</li>
+                    <li>Istio</li>
+                    <li>Envoy proxy</li>
+                    <li>Nginx (?)</li>
+                    <li>haproxy (?)</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Envoy proxy</h1>
+            </section>
+
+            <section>
+                <h2>Envoy proxy</h2>
+
+                <ul>
+                    <li>open source</li>
+                    <li class="fragment fade-up">L3/L4 network proxy</li>
+                    <li class="fragment fade-up">L7 http proxy</li>
+                    <li class="fragment fade-up">support HTTP/2</li>
+                    <li class="fragment fade-up">support gRPC</li>
+                    <li class="fragment fade-up">support Mongo/DynamoDB w L7</li>
+                    <li class="fragment fade-up">napisany w C++ 11</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Envoy proxy</h2>
+
+                <ul>
+                    <li>tryb "internal"</li>
+                    <li class="fragment fade-up">upfront proxy</li>
+                    <li class="fragment fade-up">upfront proxy działa podobnie do ALB</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ficzery</h2>
+
+                <ul>
+                    <li class="fragment fade-up">rate limits</li>
+                    <li class="fragment fade-up">service discovery</li>
+                    <li class="fragment fade-up">observability</li>
+                    <li class="fragment fade-up">circuit break</li>
+                    <li class="fragment fade-up">traffic shifting</li>
+                    <li class="fragment fade-up">load balancing</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Envoy - algorytmy LB</h2>
+
+                <ul>
+                    <li class="fragment fade-up">Weighted round robin</li>
+                    <li class="fragment fade-up">Weighted least request</li>
+                    <li class="fragment fade-up">Ring hash</li>
+                    <li class="fragment fade-up">Maglev</li>
+                    <li class="fragment fade-up">Random</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>AWS używa Envoy Proxy w App Mesh</h1>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Jak to robi AWS?</h1>
+            </section>
+
+            <section>
+                <h2>Envoy proxy jako sidecar</h2>
+
+                <img class="logoImage" src="../images/sidecar.jpg" />
+            </section>
+
+            <section>
+                <h2>Elementy logiczne AWS</h2>
+
+                <ul>
+                        <li class="fragment fade-up">Mesh</li>
+                        <li class="fragment fade-up">Virtual Service</li>
+                        <li class="fragment fade-up">Virtual Node</li>
+                        <li class="fragment fade-up">Virtual Router</li>
+                        <li class="fragment fade-up">Route</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Nasza-apka.pl</h2>
+
+                <img src="../images/story/the-app.png" />
+            </section>
+
+            <section>
+                <h2>Nasza-apka.pl</h2>
+
+                <img src="../images/story/auth-app.png" />
+            </section>
+
+            <section>
+                <h2>Nasza-apka.pl</h2>
+
+                <img src="../images/story/authz-app4.png" />
+            </section>
+
+            <section>
+                <h2>Mesh</h2>
+
+                <p>Granica, wewnątrz której znajdują się wszystkie (mikro) serwisy naszej infrastruktury</p>
+            </section>
+
+            <section>
+                <h2>Nasza-apka.pl</h2>
+
+                <img src="../images/story/mesh.png" />
+            </section>
+
+            <section>
+                <h2>Virtual service</h2>
+
+                <ul>
+                    <li class="fragment fade-up">abstrakcja na istniejący service</li>
+                    <li class="fragment fade-up">określa nazwę domenową dla service</li>
+                    <li class="fragment fade-up">określa, czy za serwisem stoi Node czy Router</li>
+                </ul>
+
+                <aside class="notes">
+                    If you want the virtual service to spread traffic across multiple virtual nodes,
+                    select Virtual router and then choose the virtual router to use from the drop-down menu.
+                    <br/>
+                    If you want the virtual service to reach a virtual node directly, without a virtual router,
+                    select Virtual node and then choose the virtual node to use from the drop-down menu.
+                </aside>
+            </section>
+
+            <section>
+                <h2>Nasza-apka.pl</h2>
+
+                <img src="../images/story/virtual-service.png" />
+            </section>
+
+            <section>
+                <h2>Virtual Node</h2>
+
+                <ul>
+                    <li class="fragment fade-up">abstrakcja na fizyczny serwis w ramach infrastruktury</li>
+                    <li class="fragment fade-up">określa nazwę tego "node"</li>
+                    <li class="fragment fade-up">service discovery method (DNS / AWS Cloud Map)</li>
+                    <li class="fragment fade-up">definiuje z jakimi serwisami może się komunikować node</li>
+                    <li class="fragment fade-up">definiuje healthchecki</li>
+                    <li class="fragment fade-up">ustawia listenery (port + protokół))</li>
+                </ul>
+
+                <aside class="notes">
+                    DNS discovery bazuje na internal DNS dostarczanym przez VPC<br/>
+                    Healthcheck może być robiony przez protokół gRPC
+                </aside>
+            </section>
+
+            <section>
+                <h2>Nasza-apka.pl</h2>
+
+                <img src="../images/story/virtual-node.png" />
+            </section>
+
+            <section>
+                <h2>Virtual router</h2>
+
+                <ul>
+                    <li class="fragment fade-up">Zestaw obiektów Route</li>
+                    <li class="fragment fade-up">Definiuje listener (port + protokół)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Nasza-apka.pl</h2>
+
+                <img src="../images/story/virtual-router.png" />
+            </section>
+
+            <section>
+                <h2>Route</h2>
+
+                <ul>
+                    <li class="fragment fade-up">określa protokół na którym działa (HTTP/gRPC/TCP)</li>
+                    <li class="fragment fade-up">w przypadku HTTP określa pathname na którym działa</li>
+                    <li class="fragment fade-up">definiuje VirtualNode, na który ma przekierować ruch</li>
+                    <li class="fragment fade-up">ma swoją wagę</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Nasza-apka.pl</h2>
+
+                <img src="../images/story/routes.png" />
+            </section>
+
+            <section>
+                <h1>Gratis 💰 *</h1>
+                <p><sub>* - conditions apply</sub></p>
+            </section>
+        </section>
+
+        <section id="q&a">
+            <h1>Pytania?</h1>
+
+            <p>
+                Slajdy:
+                <a href="https://michailw.github.io/talks/aws-app-mesh/pl/">https://michailw.github.io/talks/aws-app-mesh/pl</a>
+                <br/>
+                <img src="../qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+
+        <section>
+            <h1>Dzięki za Twój czas!</h1>
+            <p>
+                Slajdy:
+                <a href="https://michailw.github.io/talks/aws-app-mesh/pl/">https://michailw.github.io/talks/aws-app-mesh/pl</a>
+                <br/>
+                <img src="../qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+    </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" target="_blank" rel="noopener" class="no-shadow"><img src="../../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:michal@wojtowicz.ovh" class="no-shadow"><img src="../../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> michal@wojtowicz.ovh</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
+</div>
+
+<script src="../../reveal.js/lib/js/head.min.js"></script>
+<script src="../../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'https://platform.twitter.com/widgets.js' },
+			{ src: '../../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
+		]
+	});
+
+    if (window.location.search.match( /spotlight/gi )) {
+        Reveal.configure({
+            keyboard: {
+                39: 'next',
+                37: 'prev'
+            }
+        });
+    }
+    
+    new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 300000,
+		loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
+</script>
+</body>
+</html>
