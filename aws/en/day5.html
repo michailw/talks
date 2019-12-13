@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AWS Services</title>
+
+    <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        .lambdaLogo {
+            border: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            width: 70px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <div style="vertical-align: middle; line-height: 10px;">
+                <h1>AWS week</h1>
+                <h2>Day 5 - Cloud Formation, Elastic Beanstalk, ECS, EKS</h2>
+            </div>
+            <h4>Michal Wojtowicz</h4>
+            <h5>michal@wojtowicz.ovh</h5>
+            <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+        </section>
+
+        <section>
+            <h1>Live questions</h1>
+            <img src="qrcodeLink-questions.png" alt="Questions QRcode link" class="qrCodeLink"/>
+            <p><a href="https://www.sli.do/#R787">Sli.do/#R787</a></p>
+        </section>
+
+        <section>
+            <h1>Lets go!</h1>
+        </section>
+
+        <section>
+            <section>
+                <h2>Cloud Formation</h2>
+            </section>
+
+            <section>
+                <h2>Cloud Formation</h2>
+
+                <ul>
+                    <li>infrastructure as a code</li>
+                    <li class="fragment fade-up">allows to setup all AWS resources</li>
+                    <li class="fragment fade-up">does not describe EC2 machine state (provisioning)</li>
+                    <li class="fragment fade-up">visual editor</li>
+                </ul>
+            </section>
+
+            <section data-background="../images/cloudformation-designer.png" data-background-size="contain"></section>
+
+            <section data-background="../images/cloudformation-yaml.png" data-background-size="contain"></section>
+
+            <section>
+                <h2>Cloud Formation</h2>
+
+                <ul>
+                    <li>infrastructure as a code</li>
+                    <li>allows to setup all AWS resources</li>
+                    <li>does not describe EC2 machine state (provisioning)</li>
+                    <li>visual editor</li>
+                    <li>CF templates can be parametrized</li>
+                    <li class="fragment fade-up">stacks can contain other stacks</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Elastic Beanstalk</h2>
+            </section>
+
+            <section>
+                <h2>Elastic Beanstalk</h2>
+
+                <ul>
+                    <li>simplifies application deployment</li>
+                    <li>quick start with AWS of your app</li>
+                    <li class="fragment fade-up">overlay of over 100 other AWS services</li>
+                    <li class="fragment fade-up">runs your code on EC2 instances</li>
+                    <li class="fragment fade-up">user chooses platform which has to run code</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Elastic Beanstalk - platforms</h2>
+
+                <ul style="font-size: 2rem;">
+                    <li>Packer Builder</li>
+                    <li>Single Container Docker</li>
+                    <li>Multicontainer Docker</li>
+                    <li>Preconfigured Docker</li>
+                    <li>Go</li>
+                    <li>Java SE</li>
+                    <li>Java with Tomcat</li>
+                    <li>.NET on Windows Server with IIS</li>
+                    <li>Node.js</li>
+                    <li>PHP</li>
+                    <li>Python</li>
+                    <li>Ruby</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Elastic Beanstalk - Docker</h2>
+
+                <ul>
+                    <li class="fragment fade-up">integrates with ECS and ELB</li>
+                    <li class="fragment fade-up">no-config autoscaling</li>
+                    <li class="fragment fade-up">hard memory limits</li>
+                    <li class="fragment fade-up">Docker image is build by AWS on their side during deployment</li>
+                </ul>
+            </section>
+        </section>
+
+        <section data-background="../images/containers_on_ship.png"></section>
+
+        <section>
+            <section>
+                <h2>Elastic Container Service</h2>
+
+                <ul>
+                    <li class="fragment fade-up">AWS container orchestration tool</li>
+                    <li class="fragment fade-up">gives you full controll</li>
+                    <li class="fragment fade-up">obraz budowany poza infrastrukturą</li>
+                    <li class="fragment fade-up">hard and soft memory limits</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>How it works? (ECS)</h2>
+
+                <ul>
+                    <li class="fragment fade-up">runs on EC2 instances</li>
+                    <li class="fragment fade-up">user becomes owner of EC2 instances</li>
+                    <li class="fragment fade-up">user maintains EC2 instances</li>
+                    <li class="fragment fade-up">allows to mount external volumes (EBS/S3/IS)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fargate (ECS)</h2>
+
+                <ul>
+                    <li class="fragment fade-up">user doesn't manage EC2 instances</li>
+                    <li class="fragment fade-up">user is not owner of EC2 instances</li>
+                    <li class="fragment fade-up">no abbility to mount volumes</li>
+                    <li class="fragment fade-up">more expensive than classic ECS</li>
+                    <li class="fragment fade-up">recommended for apps integrated over the network</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Elastic Kubernetes Service</h2>
+            </section>
+
+            <section>
+                <h2>Elastic Kubernetes Service</h2>
+
+                <ul>
+                    <li>runs Kubernetes stacks in AWS cloud</li>
+                    <li class="fragment fade-up">no changes around Kubernetes</li>
+                    <li class="fragment fade-up">claster runs on EC2 instances</li>
+                    <li class="fragment fade-up">user becomes owner of EC2 instances</li>
+                    <li class="fragment fade-up">machines run AWS Linux 2</li>
+                    <li class="fragment fade-up">you can use different AMI, with EKS agent preinstalled</li>
+                    <li class="fragment fade-up">works also with Fargate</li>
+                </ul>
+            </section>
+        </section>
+
+        <section id="q&a">
+            <h1>Questions</h1>
+
+            <p>
+                Slides deck available at
+                <a href="https://michailw.github.io/talks/aws/en/">https://michailw.github.io/talks/aws/en/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+
+        <section>
+            <h1>Thank you for your time!</h1>
+            <p>
+                Slides deck available at
+                <a href="https://michailw.github.io/talks/aws/en/">https://michailw.github.io/talks/aws/en/</a>
+                <br/>
+                <img src="qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+    </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" target="_blank" rel="noopener" class="no-shadow"><img src="../../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:michal@wojtowicz.ovh" class="no-shadow"><img src="../../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> michal@wojtowicz.ovh</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
+</div>
+
+<script src="../../reveal.js/lib/js/head.min.js"></script>
+<script src="../../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'https://platform.twitter.com/widgets.js' },
+			{ src: '../../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
+		]
+	});
+
+    if (window.location.search.match( /spotlight/gi )) {
+        Reveal.configure({
+            keyboard: {
+                39: 'next',
+                37: 'prev'
+            }
+        });
+    }
+    
+    new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 300000,
+		loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
+</script>
+</body>
+</html>
