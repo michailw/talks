@@ -43,8 +43,8 @@ $smallQrCodeSize: 100px;
   &:after{
     display: block;
     position:absolute;
-    content: "Michal Wojtowicz";
-    background: url("../../images/logos/Mentor-ASB-Logo-Color-Hires.png") left bottom no-repeat;
+    content: "";
+    background: url("../../images/logos/indacloud.png") left bottom no-repeat;
     background-size: contain;
     font-size: 1rem;
     bottom: 20px;

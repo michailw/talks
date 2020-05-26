@@ -1,0 +1,347 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Wszystko co powinieneś wiedzieć o SSL</title>
+
+    <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        .lambdaLogo {
+            border: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            width: 70px;
+        }
+
+        #typed-container {
+            position: absolute;
+            bottom: 29px;
+            left: 170px;
+            padding-left: 15px;
+            font-size: 20px;
+            z-index:9999;
+            border-left: 2px solid #ccc;
+            padding-bottom: 3px;
+        }
+
+        #typed-strings {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-background-image="../images/cover.png" data-background-size="contain"></section>
+
+        <section>
+            <section>
+                <h2>Szyfrowanie asynchroniczne</h2>
+
+                <img src="../images/encryption.png" />
+                <a href="https://www.preveil.com/blog/public-and-private-key/" target="_blank">&copy; preveil.com</a>
+            </section>
+
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/U62S8SchxX4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <br/>
+                <a href="https://youtu.be/U62S8SchxX4" target="_blank">&copy; 2008 Royal Institution Christmas Lectures</a>
+            </section>
+
+            <section>
+                <h2>Przykładowe algorytmy</h2>
+
+                <ul>
+                    <li class="fragment fade-up">Diffie-Hellmana</li>
+                    <li class="fragment fade-up">SSL/TLS handshake</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                Co muszę wiedzieć o SSL jako zwykły użytkownik Internetu?
+            </section>
+
+            <section>
+                <h2>SSL to nie tylko kłódka</h2>
+            </section>
+
+            <section>
+                Certyfikat zapewnia nas, że strona do której się odwołujemy jest tą, której szukamy
+
+                <aside class="notes">
+                    Przykład: <a href="https://indacloud.pl">Indacloud.pl</a>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Potwierdzenie autentyczności</h2>
+            </section>
+
+            <section>
+                <h2>Zaufane centra autoryzacyjne</h2>
+
+                <aside class="notes">
+                    Przykład: <a href="https://badssl.com">badssl.com</a>
+
+                    Dodaj przykład z centrami w Firefox
+                </aside>
+            </section>
+
+            <section>
+                <h3>Szyfrujemy również:</h3>
+
+                <ul>
+                    <li class="fragment fade-up">e-maile</li>
+                    <li class="fragment fade-up">komunikatory</li>
+                    <li class="fragment fade-up">rozmowy</li>
+                    <li class="fragment fade-up">płatności</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            Co musi wiedzieć QA/developer?
+        </section>
+
+        <section>
+            <section>
+                <h2>Typy poświadczeń</h2>
+            </section>
+
+            <section>
+                <h2>(DV) Domain Validation</h2>
+
+                <ul>
+                    <li class="fragment fade-up">na podstawie e-maila</li>
+                    <li class="fragment fade-up">na podstawie rekordu DNS</li>
+                    <li class="fragment fade-up">na podstawie pliku "well known"</li>
+                </ul>
+
+                <aside class="notes">
+                    Przykład: <a href="https://letsencrypt.com">letsencrypt.com</a>
+                </aside>
+            </section>
+
+            <section>
+                <h2>(OV) Organization Validation</h2>
+
+                <ul>
+                    <li class="fragment fade-up">na podstawie danych organizacji</li>
+                    <li class="fragment fade-up">na podstawie danych w rejestrach rządowych</li>
+                </ul>
+
+                <aside class="notes">
+                    Przykład: <a href="https://sejm.gov.pl">sejm.gov.pl</a>
+                </aside>
+            </section>
+
+            <section>
+                <h2>(EV) Extended Validation</h2>
+
+                <ul>
+                    <li class="fragment fade-up">umowy prawne</li>
+                    <li class="fragment fade-up">rejestry rządowe</li>
+                    <li class="fragment fade-up">fizyczna lokalizacja (telefon)</li>
+                    <li class="fragment fade-up">rekord WHOIS</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>SSL czy jednak TLS?</h2>
+            </section>
+
+            <section>
+                <h3>Oś czasu</h3>
+
+                <img src="../images/ssl-timeline.png" />
+                <br/>
+                <a href="https://www.networkdatapedia.com/post/3-things-you-should-know-about-https-ssltls-traffic-with-wireshark" target="_blank">&copy; Networkdatapedia.com</a>
+            </section>
+
+            <section>
+                <h2>SSL 3.1 === TLS 1.0</h2>
+            </section>
+
+            <section>
+                Heartbleed (2012)
+                <br/>
+                <span class="fragment fade-up">SSL 3.0 Poodle attack (2011)</span>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>SSL/TLS Handshake</h2>
+            </section>
+
+            <section>
+                <h2><= TLS 1.2 Handshake</h2>
+            </section>
+
+            <section>
+                <h2>TLS 1.3 Handshake</h2>
+
+                <img src="../images/TLS_1_3_Handshake.jpg"/>
+                <a href="https://www.thesslstore.com/blog/tls-1-3-handshake-tls-1-2/" target="_blank">&copy; thesslstore.com</a>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>DNS record - Certification Authority Authorization</h2>
+
+                <code>
+                    <pre>
+allow.com.  IN  CAA 0 issue "ca.example.net"
+disallow-all.com.  IN  CAA  0 issue ";"
+report-request.com.  IN  CAA 0 iodef "mailto:security@example.com"
+report-request.com.  IN  CAA 0 iodef "http://iodef.example.com/"
+                    </pre>
+                </code>
+
+                <a href="https://en.wikipedia.org/wiki/DNS_Certification_Authority_Authorization" target="_blank">DNS Certification Authority Authorization</a>
+            </section>
+
+            <section>
+                <h2>OCSP - Online Certificate Status Protocol</h2>
+
+                <a href="https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol" target="_blank">Online Certificate Status Protocol</a>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Let's Encrypt</h2>
+            </section>
+
+            <section>
+                <h2>ACME Protocol</h2>
+
+                <a href="https://letsencrypt.org/how-it-works/" target="_blank">How works ACME protocol</a>
+            </section>
+        </section>
+
+        <section>
+            <section>Private certification authorities</section>
+
+            <section>
+                <h3>Przykłady:</h3>
+
+                <ul>
+                    <li class="fragment fade-up">klucze VPN</li>
+                    <li class="fragment fade-up">karty PKI</li>
+                    <li class="fragment fade-up">tokeny RSA</li>
+                    <li class="fragment fade-up">urządzenia dostępowe</li>
+                </ul>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h1>Podsumowanie</h1>
+            </section>
+
+            <section>
+                <h2>Plusy</h2>
+
+                <ol>
+                    <li>Function-as-a-service</li>
+                    <li class="fragment fade-up">Event-driven invocations</li>
+                    <li class="fragment fade-up">Płatność za każde wywołanie</li>
+                    <li class="fragment fade-up">Przezroczyste skalowanie</li>
+                    <li class="fragment fade-up">Mniej ludzkich zasobów przeznaczonych na infrastrukturę</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Minusy</h2>
+
+                <ol>
+                    <li>vendor lock-in</li>
+                    <li>próg wejścia</li>
+                    <li>przeznaczone raczej do szybkich zadań</li>
+                </ol>
+            </section>
+        </section>
+
+        <section id="q&a">
+            <h1>Pytania?</h1>
+        </section>
+
+        <section>
+            <h1>Dzięki za poświęcony czas!</h1>
+            <p>
+                Slajdy są dostępne na
+                <a href="https://michailw.github.io/talks/ssl/pl/">https://michailw.github.io/talks/ssl/pl/</a>
+                <br/>
+                <img src="../qrcodeLink.png" alt="QRcode link" class="qrCodeLink small"/>
+            </p>
+        </section>
+    </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" target="_blank" rel="noopener" class="no-shadow"><img src="../../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:kontakt@indacloud.pl" class="no-shadow"><img src="../../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> kontakt@indacloud.pl</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
+</div>
+
+<script src="../../reveal.js/lib/js/head.min.js"></script>
+<script src="../../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'https://platform.twitter.com/widgets.js' },
+			{ src: '../../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
+		]
+	});
+    
+    if (window.location.search.match( /spotlight/gi )) {
+        Reveal.configure({
+            keyboard: {
+                39: 'next',
+                37: 'prev'
+            }
+        });
+    }
+
+	var typed = new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 300000,
+		loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
+</script>
+</body>
+</html>
