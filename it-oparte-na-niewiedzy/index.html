@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Czy IT jest oparte na niewiedzy?</title>
+
+        <link rel="stylesheet" href="../reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/beige.css">
+        <link rel="stylesheet" href="../overwrites/css/overwrites.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <section>
+                        <h2>99.99%</h2>
+                        <img src="images/aws-ec2-sla.png" />
+                    </section>
+                    <section>
+                        <h2>99.99%</h2>
+                        <img src="images/slack-sla.png"/>
+                    </section>
+                    <section>
+                        <h2>99.9%</h2>
+                        <img src="images/ms-teams-sla.png"/>
+                    </section>
+                    <section>
+                        <h2>Buddy - 100%</h2>
+                        <img src="images/buddy-works-sla.png" />
+                    </section>
+                    <section>
+                        <h2>Ellie Mae - 99.5%</h2>
+                        <img src="images/ellie-mae-sla.png" />
+                    </section>
+                    <section>
+                        <h2>Moment.pl - brak danych</h2>
+                        <img src="images/moment-sla.png" />
+                    </section>
+                </section>
+
+                <section>
+                    <h1>Czy całe IT</h1>
+                    <h2>jest oparte na niewiedzy?</h2>
+                </section>
+
+                <section>
+                    <img src="../images/avatar.jpg" class="logoImage avatar"/>
+                    <h2>Michal Wojtowicz</h2>
+                    <h4>Senior Cloud Developer</h4>
+                    <img src="../images/logos/Mentor-ASB-Logo-Color-Hires.png" class="logoImage" style="width:30vw;"/>
+                </section>
+
+                <section>
+                    <img src="../images/avatar.jpg" class="logoImage avatar"/>
+                    <h2>Michal Wojtowicz</h2>
+                    <h4>Redaktor</h4>
+                    <img src="../images/logos/indacloud.png" class="logoImage" style="width:30vw;"/>
+                </section>
+
+                <section>
+                    <h2>Czym jest SLA?</h2>
+
+                    <ul>
+                        <li>umowa między dostawcą a odbiorcą usługi</li>
+                        <li>definiuje zakres usługi i jej poziom</li>
+                        <li>definiuje minimalny czas dostępu (w tzw. cloudzie)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Najczęstsze uproszczenia systemów rozproszonych</h2>
+                    </section>
+
+                    <section>
+                        <h1>1. Sieć jest zawsze online</h1>
+                    </section>
+
+                    <section>
+                        <h1>2. Transfer jest nieograniczony</h1>
+                    </section>
+
+                    <section>
+                        <h1>3. Brak opóźnień</h1>
+                    </section>
+
+                    <section>
+                        <h1>4. Sieć się nie zmienia</h1>
+                    </section>
+
+                    <section>
+                        <h1>5. Sieć jest bezpieczna</h1>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2><a href="https://uptime.is" target="_blank">uptime.is</a></h2>
+                    </section>
+
+                    <section>
+                        <h3>99.9%</h3>
+
+                        <img src="images/sla-99.9.png" />
+                    </section>
+
+                    <section>
+                        <h3>99.5%</h3>
+
+                        <img src="images/sla-99.5.png" />
+                    </section>
+
+                    <section>
+                        <h3>99.0%</h3>
+
+                        <img src="images/sla-99.png" />
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Czy mój system się kwalifikuje?</h2>
+                    </section>
+
+                    <section>
+                        <h2>99.93%</h2>
+
+                        <img src="images/cloud-app-99.93.png"/>
+                    </section>
+
+                    <section>
+                        <h2>99.83%</h2>
+
+                        <img src="images/cloud-app-99.83.png"/>
+                    </section>
+
+                    <section>
+                        <h2>92.99%</h2>
+
+                        <img src="images/cloud-app-92.99.png" style="max-height:50vh;"/>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Jak określić SLA swojej aplikacji?</h2>
+                    </section>
+
+                    <section>
+                        <h3>Jak poznać wartość X?</h3>
+                        <img src="images/cloud-app-x.png" style="max-height:50vh;"/>
+                    </section>
+
+                    <section>
+                        <h2>Testy obciążeniowe</h2>
+
+                        <ul>
+                            <li>zdefiniuj obciążenie</li>
+                            <li class="fragment fade-up">sprawdź je</li>
+                            <li class="fragment fade-up">oblicz procent pomyślnych testów</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Czym może być obciążenie?</h2>
+
+                        <ul>
+                            <li>liczba jednoczesnych requestów</li>
+                            <li class="fragment fade-up">obciążenie ilością danych wejściowych per request</li>
+                            <li class="fragment fade-up">obciążenie złożonością danych wejściowych per request</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Czas reakcji na błędy</h2>
+
+                        <ul>
+                            <li>czy twój system jest monitorowany 24/7?</li>
+                            <li>czy twój system zbiera i analizuje metryki?</li>
+                            <li class="fragment fade-up">jak szybko błąd może być naprawiony w weekend?</li>
+                            <li class="fragment fade-up">jak szybko błąd może być naprawiony w środku nocy?</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Jak zwiększyć SLA?</h2>
+                    </section>
+
+                    <section>
+                        <h3>Design for failure</h3>
+
+                        TODO: Jakiś opis, najlepiej obrazek z architekturą gdzie występuje błąd
+                    </section>
+
+                    <section>
+                        <h3>Komunikacja asynchroniczna</h3>
+
+
+                        TODO: przykład prostej komunikacji z użyciem kolejki, + opis przetwarzania + opis odpytywania
+                        TODO: omówić specjalny przykład z plikami
+                    </section>
+
+                    <section>
+                        <h3>Circuit breaker + fallback</h3>
+
+                        TODO: Service meshe
+                        TODO: przykłady
+                    </section>
+
+                    <section>
+                        <h3>Monitoring</h3>
+
+                        <ul>
+                            <li>automatyczny monitoring 24/7</li>
+                            <li class="fragment fade-up">analiza metryk - systemowych i biznesowych</li>
+                            <li class="fragment fade-up">automatyczne alarmowanie zespołu</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Rozdziel odpowiedzialności aplikacji</h3>
+
+                        <ul>
+                            <li>baza danych</li>
+                            <li>pliki</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Zadbaj o dane</h3>
+
+                        <ul>
+                            <li>twórz kopie zapasowe wyprodukowanych danych</li>
+                            <li>zadbaj o nieulotność danych wejściowych</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Stale zwiększaj pokrycie testami automatycznymi</h3>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Podsumowanie</h1>
+                    </section>
+
+                    <section>
+                        <h2>1. Zbieraj feedback ze swojego systemu</h2>
+                    </section>
+
+                    <section>
+                        <h2>2. Zredukuj liczbę punktów styku elementów systemu</h2>
+                    </section>
+
+                    <section>
+                        <h2>3. Zadbaj o nieulotność danych</h2>
+                    </section>
+
+                    <section>
+                        <h2>4. Rozwijaj testy automatyczne</h2>
+                    </section>
+                </section>
+            </div>
+
+            <div id="typed-container">
+                <div id="typed-strings">
+                    <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" target="_blank" rel="noopener" class="no-shadow"><img src="../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+                    <p><a href="mailto:michal@indacloud.pl" class="no-shadow"><img src="../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> michal@indacloud.pl</a></p>
+                </div>
+                <span id="typed"></span>
+            </div>
+
+        </div>
+
+        <script src="../reveal.js/lib/js/head.min.js"></script>
+        <script src="../reveal.js/js/reveal.js"></script>
+
+        <script>
+            Reveal.initialize({
+                dependencies: [
+                    { src: 'https://platform.twitter.com/widgets.js' },
+                    { src: '../../reveal.js/plugin/markdown/marked.js' },
+                    { src: '../../reveal.js/plugin/markdown/markdown.js' },
+                    { src: '../../reveal.js/plugin/notes/notes.js', async: true },
+                    { src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../../reveal-alt-arrows/alt-arrows.js' }
+                ]
+            });
+
+            if (window.location.search.match( /spotlight/gi )) {
+                Reveal.configure({
+                    keyboard: {
+                        39: 'next',
+                        37: 'prev'
+                    }
+                });
+            }
+
+            new Typed('#typed', {
+                stringsElement: '#typed-strings',
+                backDelay: 300000,
+                loop: true,
+                showCursor: false,
+                typeSpeed: 50
+            });
+        </script>
+    </body>
+</html>
