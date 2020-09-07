@@ -22,10 +22,26 @@
             document.getElementsByTagName( 'head' )[0].appendChild( link );
         </script>
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+
+        <style type="text/css">
+            .reveal::after{
+                height:7vh;
+                width: 15vw;
+            }
+
+            #typed-container {
+                left: 7vw;
+            }
+        </style>
     </head>
     <body>
         <div class="reveal">
             <div class="slides">
+                <section>
+                    <h1>Czy całe IT</h1>
+                    <h2>jest oparte na niewiedzy?</h2>
+                </section>
+
                 <section>
                     <section>
                         <h2>99.99%</h2>
@@ -48,7 +64,7 @@
                         <img src="images/ellie-mae-sla.png" />
                     </section>
                     <section>
-                        <h2>Moment.pl - brak danych</h2>
+                        <h2>Moment.pl (Versum)</h2>
                         <img src="images/moment-sla.png" />
                     </section>
                 </section>
@@ -60,16 +76,16 @@
 
                 <section>
                     <img src="../images/avatar.jpg" class="logoImage avatar"/>
-                    <h2>Michal Wojtowicz</h2>
+                    <h2>Michał Wójtowicz</h2>
                     <h4>Senior Cloud Developer</h4>
-                    <img src="../images/logos/Mentor-ASB-Logo-Color-Hires.png" class="logoImage" style="width:30vw;"/>
+                    <img src="../images/logos/Mentor-ASB-Logo-Color-Hires.png" class="logoImage" style="max-width:30vw; max-height:30vh;"/>
                 </section>
 
                 <section>
                     <img src="../images/avatar.jpg" class="logoImage avatar"/>
                     <h2>Michal Wojtowicz</h2>
                     <h4>Redaktor</h4>
-                    <img src="../images/logos/indacloud.png" class="logoImage" style="width:30vw;"/>
+                    <img src="../images/logos/indacloud.png" class="logoImage" style="max-width:30vw; max-height:30vh;"/>
                 </section>
 
                 <section>
@@ -105,6 +121,12 @@
 
                     <section>
                         <h1>5. Sieć jest bezpieczna</h1>
+                    </section>
+
+                    <section>
+                        <img src="images/dilbert-kubernetes.jpeg" />
+                        <br/>
+                        <a href="https://dilbert.com/strip/2017-11-08" target="_blank">&copy; Dilbert.com</a>
                     </section>
                 </section>
 
@@ -152,7 +174,7 @@
                     <section>
                         <h2>92.99%</h2>
 
-                        <img src="images/cloud-app-92.99.png" style="max-height:50vh;"/>
+                        <img src="images/cloud-app-92.99.png" style="max-height:30vh;"/>
                     </section>
                 </section>
 
@@ -163,7 +185,7 @@
 
                     <section>
                         <h3>Jak poznać wartość X?</h3>
-                        <img src="images/cloud-app-x.png" style="max-height:50vh;"/>
+                        <img src="images/cloud-app-x.png" style="max-height:30vh;"/>
                     </section>
 
                     <section>
@@ -196,6 +218,12 @@
                             <li class="fragment fade-up">jak szybko błąd może być naprawiony w środku nocy?</li>
                         </ul>
                     </section>
+
+                    <section>
+                        <h2>Ostatecznie, SLA jest deklarowane</h2>
+
+                        <h4 class="fragment fade-up">...i utrzymujemy je ku uciesze klientów</h4>
+                    </section>
                 </section>
 
                 <section>
@@ -206,22 +234,53 @@
                     <section>
                         <h3>Design for failure</h3>
 
-                        TODO: Jakiś opis, najlepiej obrazek z architekturą gdzie występuje błąd
+                        <img src="images/money-app-ok.png" />
+                    </section>
+
+                    <section>
+                        <h3>Design for failure</h3>
+
+                        <img src="images/money-app-fallback.png" />
                     </section>
 
                     <section>
                         <h3>Komunikacja asynchroniczna</h3>
 
 
-                        TODO: przykład prostej komunikacji z użyciem kolejki, + opis przetwarzania + opis odpytywania
-                        TODO: omówić specjalny przykład z plikami
+                        <img src="images/async-queue.png" />
+                    </section>
+
+                    <section>
+                        <h3>Komunikacja asynchroniczna</h3>
+
+
+                        <img src="images/async-queue-db.png" />
+                    </section>
+
+                    <section>
+                        <h3>Komunikacja asynchroniczna</h3>
+
+
+                        <img src="images/async-queue-files.png" />
+                    </section>
+
+                    <section>
+                        <h3>Komunikacja asynchroniczna</h3>
+
+
+                        <img src="images/async-queue-files-pooling.png" />
                     </section>
 
                     <section>
                         <h3>Circuit breaker + fallback</h3>
 
-                        TODO: Service meshe
-                        TODO: przykłady
+                        <img src="images/money-app-fallback.png" />
+                    </section>
+
+                    <section>
+                        <h3>Circuit breaker + fallback</h3>
+
+                        <img src="images/money-app-circuit-breaker.png" />
                     </section>
 
                     <section>
@@ -238,18 +297,37 @@
                         <h3>Rozdziel odpowiedzialności aplikacji</h3>
 
                         <ul>
-                            <li>baza danych</li>
-                            <li>pliki</li>
+                            <li class="fragment fade-up">baza danych</li>
+                            <li class="fragment fade-up">pliki</li>
                         </ul>
+                    </section>
+
+                    <section>
+                        <h3>Rozdziel odpowiedzialności aplikacji</h3>
+
+                        <img src="images/bounded-context-simple.png">
+                    </section>
+
+                    <section>
+                        <h3>Rozdziel odpowiedzialności aplikacji</h3>
+
+                        <img src="images/bounded-context-complex.png">
                     </section>
 
                     <section>
                         <h3>Zadbaj o dane</h3>
 
                         <ul>
-                            <li>twórz kopie zapasowe wyprodukowanych danych</li>
-                            <li>zadbaj o nieulotność danych wejściowych</li>
+                            <li class="fragment fade-up">twórz kopie zapasowe wyprodukowanych danych</li>
+                            <li class="fragment fade-up">przetestuj przywracanie kopii zapasowych</li>
+                            <li class="fragment fade-up">zadbaj o nieulotność danych wejściowych</li>
                         </ul>
+                    </section>
+
+                    <section>
+                        <h3>Zadbaj o dane</h3>
+
+                        <img src="images/async-queue-files-pooling.png" />
                     </section>
 
                     <section>
@@ -263,20 +341,41 @@
                     </section>
 
                     <section>
-                        <h2>1. Zbieraj feedback ze swojego systemu</h2>
+                        <h2>1. Design for failure</h2>
                     </section>
 
                     <section>
-                        <h2>2. Zredukuj liczbę punktów styku elementów systemu</h2>
+                        <h2>2. Zbieraj feedback ze swojego systemu</h2>
                     </section>
 
                     <section>
-                        <h2>3. Zadbaj o nieulotność danych</h2>
+                        <h2>3. Rozdziel odpowiedzialności aplikacji</h2>
                     </section>
 
                     <section>
-                        <h2>4. Rozwijaj testy automatyczne</h2>
+                        <h2>4. Zadbaj o nieulotność danych</h2>
                     </section>
+
+                    <section>
+                        <h2>5. Rozwijaj testy automatyczne</h2>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Konkurs</h2>
+
+                    <p class="fragment fade-up">
+                        Jak nazywamy metodę testowania systemów rozproszonych,
+                        która weryfikuje wzorzec "design for failure"?
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Pytania?</h2>
+                </section>
+
+                <section>
+                    <h2>Dziękuję za uwagę</h2>
                 </section>
             </div>
 
@@ -297,11 +396,11 @@
             Reveal.initialize({
                 dependencies: [
                     { src: 'https://platform.twitter.com/widgets.js' },
-                    { src: '../../reveal.js/plugin/markdown/marked.js' },
-                    { src: '../../reveal.js/plugin/markdown/markdown.js' },
-                    { src: '../../reveal.js/plugin/notes/notes.js', async: true },
-                    { src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: '../../reveal-alt-arrows/alt-arrows.js' }
+                    { src: '../reveal.js/plugin/markdown/marked.js' },
+                    { src: '../reveal.js/plugin/markdown/markdown.js' },
+                    { src: '../reveal.js/plugin/notes/notes.js', async: true },
+                    { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../reveal-alt-arrows/alt-arrows.js' }
                 ]
             });
 
