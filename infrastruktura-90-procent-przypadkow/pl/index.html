@@ -1,0 +1,333 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Infrastruktura 90% przypadków</title>
+
+    <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        .lambdaLogo {
+            border: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            width: 70px;
+        }
+
+        #typed-container {
+            position: absolute;
+            bottom: 29px;
+            left: 170px;
+            padding-left: 15px;
+            font-size: 20px;
+            z-index:9999;
+            border-left: 2px solid #ccc;
+            padding-bottom: 3px;
+        }
+
+        #typed-strings {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-background-image="../images/cover.jpg" data-background-size="contain"></section>
+
+        <section>
+            <section>
+                <img src="../images/sponsorship-1.png" />
+            </section>
+
+            <section>
+                <img src="../images/sponsorship-2.png" />
+            </section>
+        </section>
+
+        <section data-background-image="../images/cover.jpg" data-background-size="contain"></section>
+
+        <section>
+            <section>
+                <h2>Dlaczego 90%?</h2>
+
+                <iframe src="https://giphy.com/embed/4JVTF9zR9BicshFAb7" width="480" height="345" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/achievementhunter-rooster-teeth-achievement-hunter-off-topic-ah-4JVTF9zR9BicshFAb7">via GIPHY</a></p>
+            </section>
+
+            <section>
+                <h2>Poniewaź będziemy rozmawiać o</h2>
+                <ul>
+                    <li class="fragment fade-up">VPC</li>
+                    <li class="fragment fade-up">podsieciach</li>
+                    <li class="fragment fade-up">tabelach routingu</li>
+                    <li class="fragment fade-up">bramkach IGW, NAT, Egress Only</li>
+                    <li class="fragment fade-up">DHCP options set</li>
+                    <li class="fragment fade-up">Elastic IP</li>
+                    <li class="fragment fade-up">Endpointach</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>są to sieci</h2>
+            </section>
+
+            <section>
+                <h2>Prawie wszystkie projekty potrzebują sieci</h2>
+            </section>
+
+            <section>
+                <p>* - poza tymi, które są oparte o Lambda Functions i DynamoDB</p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Czym jest VPC?</h2>
+
+                <img class="fragment fade-up" src="../images/wioska-galow.jpg"/>
+            </section>
+
+            <section>
+                <h2>Czym jest VPC?</h2>
+
+                <ul>
+                    <li class="fragment fade-up">ma własną przestrzeń adresową IPv4/IPv6</li>
+                    <li class="fragment fade-up">obejmuje zasięgiem cały region AWS</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Czym jest podsieć?</h2>
+
+                <img class="fragment fade-up" src="../images/paris.png"/>
+            </section>
+
+            <section>
+                <h2>Czym jest podsieć?</h2>
+
+                <ul>
+                    <li class="fragment fade-up">pula IPv4/6 wynika z podziału puli VPC</li>
+                    <li class="fragment fade-up">obejmuje zasięgiem jedną AZ</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Tabele routingu</h2>
+
+                <img src="../images/router.jpg" />
+            </section>
+
+            <section>
+                <h2>Tabele routingu</h2>
+
+                <img src="../images/router-cisco.jpg" />
+            </section>
+
+            <section>
+                <h2>Tabele routingu</h2>
+
+                <img src="../images/route-table-ipv4.png" />
+            </section>
+
+            <section>
+                <h2>Tabele routingu</h2>
+
+                <img src="../images/route-table-ipv6.png" />
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Czym jest NAT Gateway?</h2>
+
+                <ul>
+                    <li class="fragment fade-up">brama udostępniająca internet prywatnym zasobom</li>
+                    <li class="fragment fade-up">mamy tylko ~4,3 miliarda adresów IPv4</li>
+                    <li class="fragment fade-up">IPv6 ma ich dużo więcej</li>
+                </ul>
+            </section>
+
+            <section>
+                <img src="../images/wolfram-2-power-128.png" />
+            </section>
+
+            <section>
+                <h2>Czym jest NAT Gateway?</h2>
+
+                <img src="../images/nat-diagram.jpg"/>
+            </section>
+
+            <section>
+                <h2>Czym jest NAT Gateway?</h2>
+
+                <img src="../images/nat-table.png"/>
+
+                <aside class="notes">
+                    NAT Gateway musi działać w publicznej podsieci
+                </aside>
+            </section>
+
+            <section>
+                <h2>NAT Gateway - analogia</h2>
+
+                <img src="../images/skrytka-pocztowa.jpg"/>
+            </section>
+
+            <section>
+                <h2>NAT Gateway - analogia</h2>
+
+                <img src="../images/koperta.png"/>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Internet gateway</h2>
+
+                <ul>
+                    <li class="fragment fade-up">target do tabel routingu</li>
+                    <li class="fragment fade-up">NAT do zasobów eksponowanych w publicznej przestrzeni</li>
+                </ul>
+
+                <aside class="notes">
+                    NAT 1:1 - instancje nie mają świadomości o istnieniu publicznego IP,
+                    IGW tłumaczy publiczny na prywatny
+                </aside>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Egress only gateway</h2>
+
+                <ul>
+                    <li class="fragment fade-up">target do tabel routingu</li>
+                    <li class="fragment fade-up">działa tylko w oparciu o IPv6</li>
+                    <li class="fragment fade-up">skaluje się na całą VPC</li>
+                </ul>
+
+                <aside class="notes">
+                    NAT 1:1 - adresy IPv6 są unikalne w skali globalnej
+                </aside>
+            </section>
+
+            <section>
+                <h2>Egress only gateway</h2>
+
+                <img src="../images/egress-only-igw-diagram.png"/>
+            </section>
+        </section>
+
+        <section>
+            <h2>Elastic IP</h2>
+
+            <ul>
+                <li class="fragment fade-up">publiczne adresy IPv4</li>
+                <li class="fragment fade-up">możemy je "bookować" i przepinać między zasobami</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Endpointy</h2>
+
+            <ul>
+                <li class="fragment fade-up">działają w oparciu o AWS PrivateLink</li>
+                <li class="fragment fade-up">połączenie między VPC a usługami AWS</li>
+                <li class="fragment fade-up">wystawianie serwisów ze swojego VPC</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>DHCP options set</h2>
+
+            <ul>
+                <li class="fragment fade-up">adresy serwerów DNS dla VPC</li>
+                <li class="fragment fade-up">domena maszyn uruchamianych w VPC</li>
+                <li class="fragment fade-up">adresy serwerów NTP</li>
+                <li class="fragment fade-up">konfiguracja serwerów NetBIOS</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Repozytorium</h2>
+
+            <a href="https://github.com/michailw/aws-with-michal">https://github.com/michailw/aws-with-michal</a>
+        </section>
+
+        <section id="q&a">
+            <h1>Pytania?</h1>
+        </section>
+
+        <section>
+            <h1>Dzięki za poświęcony czas!</h1>
+            <p>
+                Slajdy są dostępne na
+                <a href="https://michailw.github.io/talks/infrastruktura-90-procent-przypadkow/pl/">https://michailw.github.io/talks/infrastruktura-90-procent-przypadkow/pl/</a>
+            </p>
+        </section>
+    </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" target="_blank" rel="noopener" class="no-shadow"><img src="../../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:kontakt@indacloud.pl" class="no-shadow"><img src="../../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> kontakt@indacloud.pl</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
+</div>
+
+<script src="../../reveal.js/lib/js/head.min.js"></script>
+<script src="../../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'https://platform.twitter.com/widgets.js' },
+			{ src: '../../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
+		]
+	});
+    
+    if (window.location.search.match( /spotlight/gi )) {
+        Reveal.configure({
+            keyboard: {
+                39: 'next',
+                37: 'prev'
+            }
+        });
+    }
+
+	var typed = new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 300000,
+		loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
+</script>
+</body>
+</html>
