@@ -23,7 +23,7 @@
     "browser-sync": "^2.24.4",
     "gulp": "^3.9.1",
     "gulp-pug": "^4.0.1",
-    "highlight.js": "^9.12.0"
+    "highlight.js": "^10.4.1"
   },
   "devDependencies": {
     "gulp-sass": "^4.0.2",
