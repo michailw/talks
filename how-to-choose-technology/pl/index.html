@@ -1,0 +1,374 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Jak wybrać technologię do projektu?</title>
+
+    <link rel="stylesheet" href="../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="../../overwrites/css/overwrites.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style type="text/css">
+        #typed-container {
+            position: absolute;
+            bottom: 29px;
+            left: 170px;
+            padding-left: 15px;
+            font-size: 20px;
+            z-index:9999;
+            border-left: 2px solid #ccc;
+            padding-bottom: 3px;
+        }
+
+        #typed-strings {
+            display: none;
+        }
+
+        .reveal::after{
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Jak wybrać technologię do projektu?</h1>
+        </section>
+
+        <section>
+            <section>
+                <h2>Michał Wójtowicz</h2>
+                <img src="../../images/avatar.jpg" class="logoImage avatar center" />
+            </section>
+
+            <section>
+                <img src="../../images/logos/elephant.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../../images/logos/nodejsLogo.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../../images/logos/javascript-illustration.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../../images/logos/awsLogo.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../../images/logos/dockerLogo.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../../images/logos/KubernetesLogo.png" class="logoImage" />
+            </section>
+
+            <section>
+                <img src="../../images/devsecops.jpg" class="logoImage" />
+            </section>
+        </section>
+
+        <section>
+            <h1>Jak wybrać technologię do projektu?</h1>
+        </section>
+
+        <section>
+            <section>
+                <h1>Metoda studencka</h1>
+            </section>
+
+            <section>
+                <h2>Metoda studencka</h2>
+
+                <ul>
+                    <li>mam projekt do zrobienia</li>
+                    <li class="fragment fade-up">znam technologie: X, Y, Z</li>
+                    <li class="fragment fade-up">wybieram tę którą najbardziej lubię</li>
+                    <li class="fragment fade-up">realizuję projekt</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>W czym więc problem?</h1>
+            </section>
+
+            <section>
+                <h2>To działa tylko dla:</h2>
+
+                <ul>
+                    <li>projektów realizowanych solo</li>
+                    <li class="fragment fade-up">tylko z dobrze poznanymi technologiami</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <h1>Szacowanie / ocenianie</h1>
+        </section>
+
+        <section>
+            <section>
+                <h1>Jakich wyborów musimy dokonywać?</h1>
+            </section>
+
+            <section>
+                <ol>
+                    <li>język programowania</li>
+                    <li class="fragment fade-up">framework</li>
+                    <li class="fragment fade-up">biblioteki/zależności</li>
+                    <li class="fragment fade-up">typ bazy danych</li>
+                    <li class="fragment fade-up">silnik bazy danych</li>
+                    <li class="fragment fade-up">platforma docelowa</li>
+                    <li class="fragment fade-up">chmura</li>
+                    <li class="fragment fade-up">codefull / no-code</li>
+                </ol>
+            </section>
+        </section>
+
+        <section>
+            <h1>Co wziąć pod uwagę?</h1>
+        </section>
+
+        <section>
+            <section>
+                <h1>Technologię dobieramy do problemu</h1>
+            </section>
+
+            <section>
+                <ul>
+                    <li class="fragment fade-up">chcę pisać bloga</li>
+                    <li class="fragment fade-up">chcę nagrywać video</li>
+                    <li class="fragment fade-up">chcę zintegrować to z social</li>
+                </ul>
+
+                <h2 class="fragment fade-up">załóż profil na Fejsie</h2>
+            </section>
+
+            <section>
+                <ul>
+                    <li>chcę pisać bloga</li>
+                    <li>chcę nagrywać video</li>
+                    <li>chcę zintegrować to z social</li>
+                    <li class="fragment fade-up">będę na blogu krytykował rząd</li>
+                </ul>
+
+                <h2 class="fragment fade-up">PHP, blog na Wordpress, hostowany na własnym serwerze</h2>
+            </section>
+
+            <section>
+                <ul>
+                    <li class="fragment fade-up">chcę sprzedawać w internecie</li>
+
+                    <h2 class="fragment fade-up">profil na Allegro / Facebook Marketplace / OLX</h2>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <li>chcę sprzedawać w internecie</li>
+                    <li class="fragment fade-up">mam dużą konkurencję, małą marżę</li>
+
+                    <h2 class="fragment fade-up">własny sklep, np. PHP + Magento/Prestashop</h2>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <li>sprzedaję w internecie</li>
+                    <li>mam duży ruch, fajną marżę</li>
+                    <li class="fragment fade-up">moje Magento/Prestashop nie dźwiga ruchu</li>
+
+                    <h2 class="fragment fade-up">własny sklep w innej technologii</h2>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <h2>Kwestie do rozwiązania</h2>
+            <ul>
+                <li class="fragment fade-up">jak ten język programowania wpłynie na produktywność zespołu?</li>
+                <li class="fragment fade-up">czy ten framework przyczyni się do poprawy jakości i tempa prac?</li>
+                <li class="fragment fade-up">czy ta biblioteka jest godna zaufania?</li>
+                <li class="fragment fade-up">czy ten silnik obsłuży rozmiar moich transakcji?</li>
+                <li class="fragment fade-up">czy ta platforma pozwala mi dostatecznie konfigurować środowisko?</li>
+                <li class="fragment fade-up">czy ta chmura oferuje wystarczająco dużo zasobów do skalowania?</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Popularność</h2>
+            <ul>
+                <li class="fragment fade-up">ilość gwiazdek na Github</li>
+                <li class="fragment fade-up">szerokie community</li>
+                <li class="fragment fade-up">łatwe wsparcie</li>
+                <li class="fragment fade-up">łatwa rekrutacja</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Rozwój</h2>
+            <ul>
+                <li class="fragment fade-up">czas trwania aktywnego rozwoju</li>
+                <li class="fragment fade-up">ilość issues Github</li>
+                <li class="fragment fade-up">most-upvoted issues</li>
+                <li class="fragment fade-up">czas rozwiązywania issues</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Jakość</h2>
+            <ul>
+                <li class="fragment fade-up">czy projekt ma testy</li>
+                <li class="fragment fade-up">pokrycie testami</li>
+                <li class="fragment fade-up">statyczna analiza kodu</li>
+                <li class="fragment fade-up">skany security</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Prostota</h2>
+            <ul>
+                <li class="fragment fade-up">czas poświęcony na implementację</li>
+                <li class="fragment fade-up">próg wejścia</li>
+                <li class="fragment fade-up">good enough vs kombajn</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Uzależnienie</h2>
+            <ul>
+                <li class="fragment fade-up">separacja logiki biznesowej od frameworka</li>
+                <li class="fragment fade-up">vendor lock</li>
+                <li class="fragment fade-up">abstrakcja zależności</li>
+                <li class="fragment fade-up">fallback solution</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Swoboda działania</h2>
+
+            <ul>
+                <li class="fragment fade-up">framework/lib vs use cases</li>
+                <li class="fragment fade-up">łatwość implementacji niestandardowych use cases</li>
+                <li class="fragment fade-up">znikoma koneczność "hackowania"</li>
+            </ul>
+        </section>
+
+        <section>
+            <section>
+                <h1>Jak ocenić te wszystkie "metryki"?</h1>
+            </section>
+
+            <section>
+                <ol>
+                    <li>doświadczenie</li>
+                    <li>wsparcie zespołu</li>
+                    <li class="fragment fade-up">POC - proof of concept</li>
+                    <li class="fragment fade-up">evaluation period</li>
+                    <li class="fragment fade-up">korekta błednych decyzji</li>
+                </ol>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Relacja z biznesem</h1>
+            </section>
+
+            <section>
+                <ul>
+                    <li>programiści tworzą</li>
+                    <li>ktoś inny za to płaci</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <li>ten kto płaci, chce efektów jak najszybciej</li>
+                    <li>programiści chcą jakości</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Decyzje projektowe muszą być klarowne, powody logiczne, a efekty namacalne</h2>
+            </section>
+        </section>
+
+        <section>
+            <ul>
+                <li class="fragment fade-up">decyzje podejmujcie całym zespołem</li>
+                <li class="fragment fade-up">każdy wnosi swoje doświadczenie i obawy</li>
+                <li class="fragment fade-up">błędy na etapie projektu są najłatwiejsze do naprawy</li>
+            </ul>
+        </section>
+
+        <section id="q&a">
+            <h1>Pytania?</h1>
+        </section>
+
+        <section>
+            <h1>Dzięki za uwagę!</h1>
+        </section>
+    </div>
+
+    <div id="typed-container">
+        <div id="typed-strings">
+            <p><a href="https://www.linkedin.com/in/wojtowiczmichal/" target="_blank" rel="noopener" class="no-shadow"><img src="../../images/logos/linkedin.png" class="logoImage" style="width:20px; margin-bottom: -4px;"/> /in/wojtowiczmichal</a></p>
+            <p><a href="mailto:kontakt@indacloud.pl" class="no-shadow"><img src="../../images/email.svg" class="logoImage" style="width:20px; margin-bottom: -4px;"/> kontakt@indacloud.pl</a></p>
+        </div>
+        <span id="typed"></span>
+    </div>
+</div>
+
+<script src="../../reveal.js/lib/js/head.min.js"></script>
+<script src="../../reveal.js/js/reveal.js"></script>
+
+<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'https://platform.twitter.com/widgets.js' },
+			{ src: '../../reveal.js/plugin/markdown/marked.js' },
+			{ src: '../../reveal.js/plugin/markdown/markdown.js' },
+			{ src: '../../reveal.js/plugin/notes/notes.js', async: true },
+			{ src: '../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '../../reveal-alt-arrows/alt-arrows.js' }
+		]
+	});
+    
+    if (window.location.search.match( /spotlight/gi )) {
+        Reveal.configure({
+            keyboard: {
+                39: 'next',
+                37: 'prev'
+            }
+        });
+    }
+
+	var typed = new Typed('#typed', {
+		stringsElement: '#typed-strings',
+		backDelay: 300000,
+		loop: true,
+		showCursor: false,
+		typeSpeed: 50
+	});
+</script>
+</body>
+</html>
