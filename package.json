@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/michailw/talks#readme",
   "dependencies": {
-    "browser-sync": "^2.24.4",
-    "gulp": "^3.9.1",
+    "browser-sync": "^2.29.1",
+    "gulp": "^4.0.2",
     "gulp-pug": "^4.0.1",
     "highlight.js": "^9.12.0"
   },
